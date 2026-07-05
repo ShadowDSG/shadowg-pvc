@@ -61,37 +61,32 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr"></div>
+<div id="circlr"></div>
 
-
-
-      <!-- 將需要的圖片放置在這個區域 開始 -->
 <script>
-const folder = "adago";   // ← 改這裡就好
-const total = 36;         // ← 圖片數量
+const folder = "adago";   // 資料夾名稱
+const total = 36;          // 圖片張數（你自己改）
+
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
 
 const container = document.getElementById("circlr");
 
+// 1 → total 正確順序
 for (let i = 1; i <= total; i++) {
 
     const img = document.createElement("img");
 
-    img.setAttribute("data-src", `images/${folder}/${i}.jpg`);
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
     container.appendChild(img);
 }
 </script>
-
-
-
-
-
-
-
-
-    </div>
 </section>
 </footer>
+
 
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.singlePageNav.min.js"></script>
