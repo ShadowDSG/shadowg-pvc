@@ -43,14 +43,12 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,57 +60,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/sinobu/1.jpg">
-      <img data-src="images/sinobu/2.jpg">
-      <img data-src="images/sinobu/3.jpg">
-      <img data-src="images/sinobu/4.jpg">
-      <img data-src="images/sinobu/5.jpg">
-      <img data-src="images/sinobu/6.jpg">
-      <img data-src="images/sinobu/7.jpg">
-      <img data-src="images/sinobu/8.jpg">
-      <img data-src="images/sinobu/9.jpg">
-      <img data-src="images/sinobu/10.jpg">
-      <img data-src="images/sinobu/11.jpg">
-      <img data-src="images/sinobu/12.jpg">
-      <img data-src="images/sinobu/13.jpg">
-      <img data-src="images/sinobu/14.jpg">
-      <img data-src="images/sinobu/15.jpg">
-      <img data-src="images/sinobu/16.jpg">
-      <img data-src="images/sinobu/17.jpg">
-      <img data-src="images/sinobu/18.jpg">
-      <img data-src="images/sinobu/19.jpg">
-      <img data-src="images/sinobu/20.jpg">
-      <img data-src="images/sinobu/21.jpg">
-      <img data-src="images/sinobu/22.jpg">
-      <img data-src="images/sinobu/23.jpg">
-      <img data-src="images/sinobu/24.jpg">
-      <img data-src="images/sinobu/25.jpg">
-      <img data-src="images/sinobu/26.jpg">
-      <img data-src="images/sinobu/27.jpg">
-      <img data-src="images/sinobu/28.jpg">
-      <img data-src="images/sinobu/29.jpg">
-      <img data-src="images/sinobu/30.jpg">
-      <img data-src="images/sinobu/31.jpg">
-      <img data-src="images/sinobu/32.jpg">
-      <img data-src="images/sinobu/33.jpg">
-      <img data-src="images/sinobu/34.jpg">
-      <img data-src="images/sinobu/35.jpg">
-      <img data-src="images/sinobu/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

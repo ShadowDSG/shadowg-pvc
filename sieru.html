@@ -43,14 +43,12 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,58 +60,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/sieru/1.jpg">
-      <img data-src="images/sieru/2.jpg">
-      <img data-src="images/sieru/3.jpg">
-      <img data-src="images/sieru/4.jpg">
-      <img data-src="images/sieru/5.jpg">
-      <img data-src="images/sieru/6.jpg">
-      <img data-src="images/sieru/7.jpg">
-      <img data-src="images/sieru/8.jpg">
-      <img data-src="images/sieru/9.jpg">
-      <img data-src="images/sieru/10.jpg">
-      <img data-src="images/sieru/11.jpg">
-      <img data-src="images/sieru/12.jpg">
-      <img data-src="images/sieru/13.jpg">
-      <img data-src="images/sieru/14.jpg">
-      <img data-src="images/sieru/15.jpg">
-      <img data-src="images/sieru/16.jpg">
-      <img data-src="images/sieru/17.jpg">
-      <img data-src="images/sieru/18.jpg">
-      <img data-src="images/sieru/19.jpg">
-      <img data-src="images/sieru/20.jpg">
-      <img data-src="images/sieru/21.jpg">
-      <img data-src="images/sieru/22.jpg">
-      <img data-src="images/sieru/23.jpg">
-      <img data-src="images/sieru/24.jpg">
-      <img data-src="images/sieru/25.jpg">
-      <img data-src="images/sieru/26.jpg">
-      <img data-src="images/sieru/27.jpg">
-      <img data-src="images/sieru/28.jpg">
-      <img data-src="images/sieru/29.jpg">
-      <img data-src="images/sieru/30.jpg">
-      <img data-src="images/sieru/31.jpg">
-      <img data-src="images/sieru/32.jpg">
-      <img data-src="images/sieru/33.jpg">
-      <img data-src="images/sieru/34.jpg">
-      <img data-src="images/sieru/35.jpg">
-      <img data-src="images/sieru/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

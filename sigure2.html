@@ -48,10 +48,6 @@
                                     <DIV style="text-align:center;"><p></p></DIV>
 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -69,112 +65,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/sigure2/1.jpg">
-    <img data-src="images/sigure2/2.jpg">
-    <img data-src="images/sigure2/3.jpg">
-    <img data-src="images/sigure2/4.jpg">
-    <img data-src="images/sigure2/5.jpg">
-    <img data-src="images/sigure2/6.jpg">
-    <img data-src="images/sigure2/7.jpg">
-    <img data-src="images/sigure2/8.jpg">
-    <img data-src="images/sigure2/9.jpg">
-    <img data-src="images/sigure2/10.jpg">
-    <img data-src="images/sigure2/11.jpg">
-    <img data-src="images/sigure2/12.jpg">
-    <img data-src="images/sigure2/13.jpg">
-    <img data-src="images/sigure2/14.jpg">
-    <img data-src="images/sigure2/15.jpg">
-    <img data-src="images/sigure2/16.jpg">
-    <img data-src="images/sigure2/17.jpg">
-    <img data-src="images/sigure2/18.jpg">
-    <img data-src="images/sigure2/19.jpg">
-    <img data-src="images/sigure2/20.jpg">
-    <img data-src="images/sigure2/21.jpg">
-    <img data-src="images/sigure2/22.jpg">
-    <img data-src="images/sigure2/23.jpg">
-    <img data-src="images/sigure2/24.jpg">
-    <img data-src="images/sigure2/25.jpg">
-    <img data-src="images/sigure2/26.jpg">
-    <img data-src="images/sigure2/27.jpg">
-    <img data-src="images/sigure2/28.jpg">
-    <img data-src="images/sigure2/29.jpg">
-    <img data-src="images/sigure2/30.jpg">
-    <img data-src="images/sigure2/31.jpg">
-    <img data-src="images/sigure2/32.jpg">
-    <img data-src="images/sigure2/33.jpg">
-    <img data-src="images/sigure2/34.jpg">
-    <img data-src="images/sigure2/35.jpg">
-    <img data-src="images/sigure2/36.jpg">
- 
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 
