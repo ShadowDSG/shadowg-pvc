@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ShadowG's Studio</title>
+    <link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous">
+  </head>
+
+  <body class="bg-dark" onload="bodyOnload()">
+		
+		<div class="container bg-light min-vh-100">
+
+			<h1 class="text-center pt-4">ShadowG's Studio</h1>
+
+			<div class="row pt-4">
+				<label for="nameSearch" class="col-auto col-form-label">名稱</label>
+				<div class="col">
+					<input
+					id="nameSearch"
+					type="search"
+					class="form-control"
+					placeholder="搜尋"
+					aria-label="Search Query Input Box"
+					oninput="searchValueOnInput(this)">
+				</div>
+			</div>
+
+			<div class="row pt-4">
+				<label for="filterCompany" class="col-auto col-form-label">公司</label>
+				<div class="col">
+					<select
+					id="filterCompany"
+					class="form-select"
+					onchange="companyFilterOnChange(this.value)">
+						<option selected value="">全部</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row pt-4">
+				<label class="col-auto col-form-label">排序</label>
+				<div class="col">
+					<select class="form-select" onchange="sortByOptionOnChange(this.value)">
+						<option value="postDate" selected>發佈日期</option>
+						<option value="name">名稱</option>
+						<option value="company">公司</option>
+					</select>
+				</div>
+				<div class="col-auto btn-group" role="group">
+					<input
+					type="radio"
+					class="btn-check"
+					name="options"
+					id="option1"
+					onclick="ascDescButtonOnClick(false)">
+					<label
+					class="btn btn-secondary"
+					for="option1"
+					>順序</label>
+
+					<input
+					checked
+					type="radio"
+					class="btn-check"
+					name="options"
+					id="option2"
+					onclick="ascDescButtonOnClick(true)">
+					<label
+					class="btn btn-secondary"
+					for="option2"
+					>倒序</label>
+				</div>
+			</div>
+
+			<div class="row justify-content-center row-cols-auto pb-4" id="cardContainer"></div>
+
+		</div>
+    
+    <script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://code.jquery.com/jquery-3.6.1.min.js"
+			integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+			crossorigin="anonymous"
+		></script>
+		<script src="jquery.csv.min.js"></script>
+
+
+
+		<script>
+			let originalFigureList = [];
+			let sortByOption = "postDate";
+			let isDesc = true;
+			let companyFilter = "";
+			let searchValue = "";
+
+			async function bodyOnload() {
+				originalFigureList = await fetchCsv();
+				if(originalFigureList.length == 0)
+					return;
+				let companySet = new Set();
+				for (figure of originalFigureList) {
+					companySet.add(figure.company);
+				}
+				let companyList = Array.from(companySet);
+				companyList.sort();
+				let filterCompany = document.getElementById("filterCompany");
+				for (company of companyList) {
+					let companyOption = document.createElement("option");
+					companyOption.setAttribute("value", company);
+					companyOption.innerText = company;
+					filterCompany.appendChild(companyOption);
+				}
+
+				loadFigureCards();
+			}
+
+			async function fetchCsv() {
+				let fetchResponse = 
+					await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1ejz434BtmO_oWJrhdsicXwJrIRzNfT_uuzX9mGFqd2Inbvqa716_2H6NG7eaddGYBnRHhEiEUF7h/pub?gid=0&single=true&output=csv");
+				let csvString = await fetchResponse.text();
+				return $.csv.toObjects(csvString);
+			}
+
+			function sortListByProp(list, prop, isDesc) {
+				if (!isDesc)
+					list.sort((a, b) => a[prop].localeCompare(b[prop]));
+				else
+					list.sort((a, b) => b[prop].localeCompare(a[prop]));
+			}
+
+			function filterListByCompany(list, company) {
+				return list.filter(item => item.company == company);
+			}
+
+			function filterListByName(list, name) {
+				return list.filter(item => item.name.includes(name));
+			}
+
+			function loadFigureCards() {
+				if (originalFigureList.length == 0)
+					return;
+
+				let displayFigureList = originalFigureList.slice();
+				if (companyFilter) 
+					displayFigureList = filterListByCompany(displayFigureList, companyFilter);
+				if (searchValue)
+					displayFigureList = filterListByName(displayFigureList, searchValue);
+
+				sortListByProp(displayFigureList, sortByOption, isDesc);
+
+				const cardContainer = document.getElementById("cardContainer");
+				cardContainer.innerHTML = "";
+
+				for (let figureObject of displayFigureList) {
+					let cardCol = document.createElement("div");
+					cardCol.className = "col";
+					cardCol.innerHTML = `
+						<div
+							class="card mt-4"
+							style="width: 270px;">
+							<img
+								class="card-img-top"
+								src="${figureObject.thumbnail}"
+								alt="${figureObject.name}"
+								style="cursor: pointer;"
+								onclick="openNewTab('${figureObject.url}')">
+							<div class="card-body">
+								<h5 class="card-title">${figureObject.name}</h5>
+								<h6 class="card-subtitle text-muted">${figureObject.company}</h6>
+							</div>
+						</div>
+					`;
+					cardContainer.appendChild(cardCol);
+				}
+			}
+
+			function openNewTab(url) { window.open(url); }
+
+			function ascDescButtonOnClick(newIsDesc) {
+				isDesc = newIsDesc;
+				loadFigureCards();
+			}
+
+			function sortByOptionOnChange(newValue) {
+				sortByOption = newValue;
+				loadFigureCards();
+			}
+
+			function companyFilterOnChange(newValue) {
+				companyFilter = newValue;
+				loadFigureCards();
+			}
+
+			function searchValueOnInput(element) {
+				searchValue = element.value.trim();
+				loadFigureCards();
+			} 
+
+		</script>
+  </body>
+</html>

@@ -57,7 +57,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -69,97 +69,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/Javelin3/1.jpg">
-    <img data-src="images/Javelin3/2.jpg">
-    <img data-src="images/Javelin3/3.jpg">
-    <img data-src="images/Javelin3/4.jpg">
-    <img data-src="images/Javelin3/5.jpg">
-    <img data-src="images/Javelin3/6.jpg">
-    <img data-src="images/Javelin3/7.jpg">
-    <img data-src="images/Javelin3/8.jpg">
-    <img data-src="images/Javelin3/9.jpg">
-    <img data-src="images/Javelin3/10.jpg">
-    <img data-src="images/Javelin3/11.jpg">
-    <img data-src="images/Javelin3/12.jpg">
-    <img data-src="images/Javelin3/13.jpg">
-    <img data-src="images/Javelin3/14.jpg">
-    <img data-src="images/Javelin3/15.jpg">
-    <img data-src="images/Javelin3/16.jpg">
-    <img data-src="images/Javelin3/17.jpg">
-    <img data-src="images/Javelin3/18.jpg">
-    <img data-src="images/Javelin3/19.jpg">
-    <img data-src="images/Javelin3/20.jpg">
-    <img data-src="images/Javelin3/21.jpg">
-    <img data-src="images/Javelin3/22.jpg">
-    <img data-src="images/Javelin3/23.jpg">
-    <img data-src="images/Javelin3/24.jpg">
-    <img data-src="images/Javelin3/25.jpg">
-    <img data-src="images/Javelin3/26.jpg">
-    <img data-src="images/Javelin3/27.jpg">
-    <img data-src="images/Javelin3/28.jpg">
-    <img data-src="images/Javelin3/29.jpg">
-    <img data-src="images/Javelin3/30.jpg">
-    <img data-src="images/Javelin3/31.jpg">
-    <img data-src="images/Javelin3/32.jpg">
-    <img data-src="images/Javelin3/33.jpg">
-    <img data-src="images/Javelin3/34.jpg">
-    <img data-src="images/Javelin3/35.jpg">
-    <img data-src="images/Javelin3/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

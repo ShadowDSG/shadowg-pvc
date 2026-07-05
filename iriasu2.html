@@ -59,7 +59,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -71,88 +71,31 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/iriasu2/1.jpg">
-    <img data-src="images/iriasu2/2.jpg">
-    <img data-src="images/iriasu2/3.jpg">
-    <img data-src="images/iriasu2/4.jpg">
-    <img data-src="images/iriasu2/5.jpg">
-    <img data-src="images/iriasu2/6.jpg">
-    <img data-src="images/iriasu2/7.jpg">
-    <img data-src="images/iriasu2/8.jpg">
-    <img data-src="images/iriasu2/9.jpg">
-    <img data-src="images/iriasu2/10.jpg">
-    <img data-src="images/iriasu2/11.jpg">
-    <img data-src="images/iriasu2/12.jpg">
-    <img data-src="images/iriasu2/13.jpg">
-    <img data-src="images/iriasu2/14.jpg">
-    <img data-src="images/iriasu2/15.jpg">
-    <img data-src="images/iriasu2/16.jpg">
-    <img data-src="images/iriasu2/17.jpg">
-    <img data-src="images/iriasu2/18.jpg">
-    <img data-src="images/iriasu2/19.jpg">
-    <img data-src="images/iriasu2/20.jpg">
-    <img data-src="images/iriasu2/21.jpg">
-    <img data-src="images/iriasu2/22.jpg">
-    <img data-src="images/iriasu2/23.jpg">
-    <img data-src="images/iriasu2/24.jpg">
-    <img data-src="images/iriasu2/25.jpg">
-    <img data-src="images/iriasu2/26.jpg">
-    <img data-src="images/iriasu2/27.jpg">
-    <img data-src="images/iriasu2/28.jpg">
-    <img data-src="images/iriasu2/29.jpg">
-    <img data-src="images/iriasu2/30.jpg">
-    <img data-src="images/iriasu2/31.jpg">
-    <img data-src="images/iriasu2/32.jpg">
-    <img data-src="images/iriasu2/33.jpg">
-    <img data-src="images/iriasu2/34.jpg">
-    <img data-src="images/iriasu2/35.jpg">
-    <img data-src="images/iriasu2/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
-
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.singlePageNav.min.js"></script>
         <script src="js/circlr.min.js"></script>

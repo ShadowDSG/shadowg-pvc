@@ -45,12 +45,13 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,69 +63,31 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/himari/1.jpg">
-      <img data-src="images/himari/2.jpg">
-      <img data-src="images/himari/3.jpg">
-      <img data-src="images/himari/4.jpg">
-      <img data-src="images/himari/5.jpg">
-      <img data-src="images/himari/6.jpg">
-      <img data-src="images/himari/7.jpg">
-      <img data-src="images/himari/8.jpg">
-      <img data-src="images/himari/9.jpg">
-      <img data-src="images/himari/10.jpg">
-      <img data-src="images/himari/11.jpg">
-      <img data-src="images/himari/12.jpg">
-      <img data-src="images/himari/13.jpg">
-      <img data-src="images/himari/14.jpg">
-      <img data-src="images/himari/15.jpg">
-      <img data-src="images/himari/16.jpg">
-      <img data-src="images/himari/17.jpg">
-      <img data-src="images/himari/18.jpg">
-      <img data-src="images/himari/19.jpg">
-      <img data-src="images/himari/20.jpg">
-      <img data-src="images/himari/21.jpg">
-      <img data-src="images/himari/22.jpg">
-      <img data-src="images/himari/23.jpg">
-      <img data-src="images/himari/24.jpg">
-      <img data-src="images/himari/25.jpg">
-      <img data-src="images/himari/26.jpg">
-      <img data-src="images/himari/27.jpg">
-      <img data-src="images/himari/28.jpg">
-      <img data-src="images/himari/29.jpg">
-      <img data-src="images/himari/30.jpg">
-      <img data-src="images/himari/31.jpg">
-      <img data-src="images/himari/32.jpg">
-      <img data-src="images/himari/33.jpg">
-      <img data-src="images/himari/34.jpg">
-      <img data-src="images/himari/35.jpg">
-      <img data-src="images/himari/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
-
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.singlePageNav.min.js"></script>
         <script src="js/circlr.min.js"></script>
