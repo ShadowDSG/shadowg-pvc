@@ -50,7 +50,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,57 +62,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/arisa/1.jpg">
-      <img data-src="images/arisa/2.jpg">
-      <img data-src="images/arisa/3.jpg">
-      <img data-src="images/arisa/4.jpg">
-      <img data-src="images/arisa/5.jpg">
-      <img data-src="images/arisa/6.jpg">
-      <img data-src="images/arisa/7.jpg">
-      <img data-src="images/arisa/8.jpg">
-      <img data-src="images/arisa/9.jpg">
-      <img data-src="images/arisa/10.jpg">
-      <img data-src="images/arisa/11.jpg">
-      <img data-src="images/arisa/12.jpg">
-      <img data-src="images/arisa/13.jpg">
-      <img data-src="images/arisa/14.jpg">
-      <img data-src="images/arisa/15.jpg">
-      <img data-src="images/arisa/16.jpg">
-      <img data-src="images/arisa/17.jpg">
-      <img data-src="images/arisa/18.jpg">
-      <img data-src="images/arisa/19.jpg">
-      <img data-src="images/arisa/20.jpg">
-      <img data-src="images/arisa/21.jpg">
-      <img data-src="images/arisa/22.jpg">
-      <img data-src="images/arisa/23.jpg">
-      <img data-src="images/arisa/24.jpg">
-      <img data-src="images/arisa/25.jpg">
-      <img data-src="images/arisa/26.jpg">
-      <img data-src="images/arisa/27.jpg">
-      <img data-src="images/arisa/28.jpg">
-      <img data-src="images/arisa/29.jpg">
-      <img data-src="images/arisa/30.jpg">
-      <img data-src="images/arisa/31.jpg">
-      <img data-src="images/arisa/32.jpg">
-      <img data-src="images/arisa/33.jpg">
-      <img data-src="images/arisa/34.jpg">
-      <img data-src="images/arisa/35.jpg">
-      <img data-src="images/arisa/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

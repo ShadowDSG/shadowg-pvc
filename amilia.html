@@ -50,7 +50,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,59 +62,32 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const folder = "amilia";   // 資料夾名稱
+const total = 36;          // 圖片張數（你自己改）
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/amilia/1.jpg">
-      <img data-src="images/amilia/2.jpg">
-      <img data-src="images/amilia/3.jpg">
-      <img data-src="images/amilia/4.jpg">
-      <img data-src="images/amilia/5.jpg">
-      <img data-src="images/amilia/6.jpg">
-      <img data-src="images/amilia/7.jpg">
-      <img data-src="images/amilia/8.jpg">
-      <img data-src="images/amilia/9.jpg">
-      <img data-src="images/amilia/10.jpg">
-      <img data-src="images/amilia/11.jpg">
-      <img data-src="images/amilia/12.jpg">
-      <img data-src="images/amilia/13.jpg">
-      <img data-src="images/amilia/14.jpg">
-      <img data-src="images/amilia/15.jpg">
-      <img data-src="images/amilia/16.jpg">
-      <img data-src="images/amilia/17.jpg">
-      <img data-src="images/amilia/18.jpg">
-      <img data-src="images/amilia/19.jpg">
-      <img data-src="images/amilia/20.jpg">
-      <img data-src="images/amilia/21.jpg">
-      <img data-src="images/amilia/22.jpg">
-      <img data-src="images/amilia/23.jpg">
-      <img data-src="images/amilia/24.jpg">
-      <img data-src="images/amilia/25.jpg">
-      <img data-src="images/amilia/26.jpg">
-      <img data-src="images/amilia/27.jpg">
-      <img data-src="images/amilia/28.jpg">
-      <img data-src="images/amilia/29.jpg">
-      <img data-src="images/amilia/30.jpg">
-      <img data-src="images/amilia/31.jpg">
-      <img data-src="images/amilia/32.jpg">
-      <img data-src="images/amilia/33.jpg">
-      <img data-src="images/amilia/34.jpg">
-      <img data-src="images/amilia/35.jpg">
-      <img data-src="images/amilia/36.jpg">
+const container = document.getElementById("circlr");
 
+// 1 → total 正確順序
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
+
 
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.singlePageNav.min.js"></script>

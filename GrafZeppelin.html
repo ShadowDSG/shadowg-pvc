@@ -53,7 +53,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -65,131 +65,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/GrafZeppelin/1.jpg">
-    <img data-src="images/GrafZeppelin/2.jpg">
-    <img data-src="images/GrafZeppelin/3.jpg">
-    <img data-src="images/GrafZeppelin/4.jpg">
-    <img data-src="images/GrafZeppelin/5.jpg">
-    <img data-src="images/GrafZeppelin/6.jpg">
-    <img data-src="images/GrafZeppelin/7.jpg">
-    <img data-src="images/GrafZeppelin/8.jpg">
-    <img data-src="images/GrafZeppelin/9.jpg">
-    <img data-src="images/GrafZeppelin/10.jpg">
-    <img data-src="images/GrafZeppelin/11.jpg">
-    <img data-src="images/GrafZeppelin/12.jpg">
-    <img data-src="images/GrafZeppelin/13.jpg">
-    <img data-src="images/GrafZeppelin/14.jpg">
-    <img data-src="images/GrafZeppelin/15.jpg">
-    <img data-src="images/GrafZeppelin/16.jpg">
-    <img data-src="images/GrafZeppelin/17.jpg">
-    <img data-src="images/GrafZeppelin/18.jpg">
-    <img data-src="images/GrafZeppelin/19.jpg">
-    <img data-src="images/GrafZeppelin/20.jpg">
-    <img data-src="images/GrafZeppelin/21.jpg">
-    <img data-src="images/GrafZeppelin/22.jpg">
-    <img data-src="images/GrafZeppelin/23.jpg">
-    <img data-src="images/GrafZeppelin/24.jpg">
-    <img data-src="images/GrafZeppelin/25.jpg">
-    <img data-src="images/GrafZeppelin/26.jpg">
-    <img data-src="images/GrafZeppelin/27.jpg">
-    <img data-src="images/GrafZeppelin/28.jpg">
-    <img data-src="images/GrafZeppelin/29.jpg">
-    <img data-src="images/GrafZeppelin/30.jpg">
-    <img data-src="images/GrafZeppelin/31.jpg">
-    <img data-src="images/GrafZeppelin/32.jpg">
-    <img data-src="images/GrafZeppelin/33.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

@@ -65,96 +65,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
+const container = document.getElementById("circlr");
 
-    <img data-src="images/freng/1.jpg">
-    <img data-src="images/freng/2.jpg">
-    <img data-src="images/freng/3.jpg">
-    <img data-src="images/freng/4.jpg">
-    <img data-src="images/freng/5.jpg">
-    <img data-src="images/freng/6.jpg">
-    <img data-src="images/freng/7.jpg">
-    <img data-src="images/freng/8.jpg">
-    <img data-src="images/freng/9.jpg">
-    <img data-src="images/freng/10.jpg">
-    <img data-src="images/freng/11.jpg">
-    <img data-src="images/freng/12.jpg">
-    <img data-src="images/freng/13.jpg">
-    <img data-src="images/freng/14.jpg">
-    <img data-src="images/freng/15.jpg">
-    <img data-src="images/freng/16.jpg">
-    <img data-src="images/freng/17.jpg">
-    <img data-src="images/freng/18.jpg">
-    <img data-src="images/freng/19.jpg">
-    <img data-src="images/freng/20.jpg">
-    <img data-src="images/freng/21.jpg">
-    <img data-src="images/freng/22.jpg">
-    <img data-src="images/freng/23.jpg">
-    <img data-src="images/freng/24.jpg">
-    <img data-src="images/freng/25.jpg">
-    <img data-src="images/freng/26.jpg">
-    <img data-src="images/freng/27.jpg">
-    <img data-src="images/freng/28.jpg">
-    <img data-src="images/freng/29.jpg">
-    <img data-src="images/freng/30.jpg">
-    <img data-src="images/freng/31.jpg">
-    <img data-src="images/freng/32.jpg">
-    <img data-src="images/freng/33.jpg">
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

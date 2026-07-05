@@ -53,6 +53,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -70,87 +71,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 32;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/gokusinsukasi01/0.jpg">
-    <img data-src="images/gokusinsukasi01/1.jpg">
-    <img data-src="images/gokusinsukasi01/2.jpg">
-    <img data-src="images/gokusinsukasi01/3.jpg">
-    <img data-src="images/gokusinsukasi01/4.jpg">
-    <img data-src="images/gokusinsukasi01/5.jpg">
-    <img data-src="images/gokusinsukasi01/6.jpg">
-    <img data-src="images/gokusinsukasi01/7.jpg">
-    <img data-src="images/gokusinsukasi01/8.jpg">
-    <img data-src="images/gokusinsukasi01/9.jpg">
-    <img data-src="images/gokusinsukasi01/10.jpg">
-    <img data-src="images/gokusinsukasi01/11.jpg">
-    <img data-src="images/gokusinsukasi01/12.jpg">
-    <img data-src="images/gokusinsukasi01/13.jpg">
-    <img data-src="images/gokusinsukasi01/14.jpg">
-    <img data-src="images/gokusinsukasi01/15.jpg">
-    <img data-src="images/gokusinsukasi01/16.jpg">
-    <img data-src="images/gokusinsukasi01/17.jpg">
-    <img data-src="images/gokusinsukasi01/18.jpg">
-    <img data-src="images/gokusinsukasi01/19.jpg">
-    <img data-src="images/gokusinsukasi01/20.jpg">
-    <img data-src="images/gokusinsukasi01/21.jpg">
-    <img data-src="images/gokusinsukasi01/22.jpg">
-    <img data-src="images/gokusinsukasi01/23.jpg">
-    <img data-src="images/gokusinsukasi01/24.jpg">
-    <img data-src="images/gokusinsukasi01/25.jpg">
-    <img data-src="images/gokusinsukasi01/26.jpg">
-    <img data-src="images/gokusinsukasi01/27.jpg">
-    <img data-src="images/gokusinsukasi01/28.jpg">
-    <img data-src="images/gokusinsukasi01/29.jpg">
-    <img data-src="images/gokusinsukasi01/30.jpg">
-    <img data-src="images/gokusinsukasi01/31.jpg">
-    <img data-src="images/gokusinsukasi01/32.jpg">
+const container = document.getElementById("circlr");
 
- 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

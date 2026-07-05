@@ -46,7 +46,6 @@
 
 
 
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -64,109 +63,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 31;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/ginko2/1.jpg">
-      <img data-src="images/ginko2/2.jpg">
-      <img data-src="images/ginko2/3.jpg">
-      <img data-src="images/ginko2/4.jpg">
-      <img data-src="images/ginko2/5.jpg">
-      <img data-src="images/ginko2/6.jpg">
-      <img data-src="images/ginko2/7.jpg">
-      <img data-src="images/ginko2/8.jpg">
-      <img data-src="images/ginko2/9.jpg">
-      <img data-src="images/ginko2/10.jpg">
-      <img data-src="images/ginko2/11.jpg">
-      <img data-src="images/ginko2/12.jpg">
-      <img data-src="images/ginko2/13.jpg">
-      <img data-src="images/ginko2/14.jpg">
-      <img data-src="images/ginko2/15.jpg">
-      <img data-src="images/ginko2/16.jpg">
-      <img data-src="images/ginko2/17.jpg">
-      <img data-src="images/ginko2/18.jpg">
-      <img data-src="images/ginko2/19.jpg">
-      <img data-src="images/ginko2/20.jpg">
-      <img data-src="images/ginko2/21.jpg">
-      <img data-src="images/ginko2/22.jpg">
-      <img data-src="images/ginko2/23.jpg">
-      <img data-src="images/ginko2/24.jpg">
-      <img data-src="images/ginko2/25.jpg">
-      <img data-src="images/ginko2/26.jpg">
-      <img data-src="images/ginko2/27.jpg">
-      <img data-src="images/ginko2/28.jpg">
-      <img data-src="images/ginko2/29.jpg">
-      <img data-src="images/ginko2/30.jpg">
-      <img data-src="images/ginko2/31.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.JPG`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

@@ -50,7 +50,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,67 +62,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const folder = "ariko";   // 資料夾名稱
+const total = 36;          // 圖片張數（你自己改）
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/ariko/1.jpg">
-      <img data-src="images/ariko/2.jpg">
-      <img data-src="images/ariko/3.jpg">
-      <img data-src="images/ariko/4.jpg">
-      <img data-src="images/ariko/5.jpg">
-      <img data-src="images/ariko/6.jpg">
-      <img data-src="images/ariko/7.jpg">
-      <img data-src="images/ariko/8.jpg">
-      <img data-src="images/ariko/9.jpg">
-      <img data-src="images/ariko/10.jpg">
-      <img data-src="images/ariko/11.jpg">
-      <img data-src="images/ariko/12.jpg">
-      <img data-src="images/ariko/13.jpg">
-      <img data-src="images/ariko/14.jpg">
-      <img data-src="images/ariko/15.jpg">
-      <img data-src="images/ariko/16.jpg">
-      <img data-src="images/ariko/17.jpg">
-      <img data-src="images/ariko/18.jpg">
-      <img data-src="images/ariko/19.jpg">
-      <img data-src="images/ariko/20.jpg">
-      <img data-src="images/ariko/21.jpg">
-      <img data-src="images/ariko/22.jpg">
-      <img data-src="images/ariko/23.jpg">
-      <img data-src="images/ariko/24.jpg">
-      <img data-src="images/ariko/25.jpg">
-      <img data-src="images/ariko/26.jpg">
-      <img data-src="images/ariko/27.jpg">
-      <img data-src="images/ariko/28.jpg">
-      <img data-src="images/ariko/29.jpg">
-      <img data-src="images/ariko/30.jpg">
-      <img data-src="images/ariko/31.jpg">
-      <img data-src="images/ariko/32.jpg">
-      <img data-src="images/ariko/33.jpg">
-      <img data-src="images/ariko/34.jpg">
-      <img data-src="images/ariko/35.jpg">
-      <img data-src="images/ariko/36.jpg">
+const container = document.getElementById("circlr");
 
+// 1 → total 正確順序
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

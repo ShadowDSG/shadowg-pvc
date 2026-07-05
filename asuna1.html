@@ -47,6 +47,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -64,84 +65,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/asuna1/1.jpg">
-      <img data-src="images/asuna1/2.jpg">
-      <img data-src="images/asuna1/3.jpg">
-      <img data-src="images/asuna1/4.jpg">
-      <img data-src="images/asuna1/5.jpg">
-      <img data-src="images/asuna1/6.jpg">
-      <img data-src="images/asuna1/7.jpg">
-      <img data-src="images/asuna1/8.jpg">
-      <img data-src="images/asuna1/9.jpg">
-      <img data-src="images/asuna1/10.jpg">
-      <img data-src="images/asuna1/11.jpg">
-      <img data-src="images/asuna1/12.jpg">
-      <img data-src="images/asuna1/13.jpg">
-      <img data-src="images/asuna1/14.jpg">
-      <img data-src="images/asuna1/15.jpg">
-      <img data-src="images/asuna1/16.jpg">
-      <img data-src="images/asuna1/17.jpg">
-      <img data-src="images/asuna1/18.jpg">
-      <img data-src="images/asuna1/19.jpg">
-      <img data-src="images/asuna1/20.jpg">
-      <img data-src="images/asuna1/21.jpg">
-      <img data-src="images/asuna1/22.jpg">
-      <img data-src="images/asuna1/23.jpg">
-      <img data-src="images/asuna1/24.jpg">
-      <img data-src="images/asuna1/25.jpg">
-      <img data-src="images/asuna1/26.jpg">
-      <img data-src="images/asuna1/27.jpg">
-      <img data-src="images/asuna1/28.jpg">
-      <img data-src="images/asuna1/29.jpg">
-      <img data-src="images/asuna1/30.jpg">
-      <img data-src="images/asuna1/31.jpg">
-      <img data-src="images/asuna1/32.jpg">
-      <img data-src="images/asuna1/33.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.JPG`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

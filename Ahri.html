@@ -62,54 +62,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const folder = "Ahri";   // 資料夾名稱
+const total = 32;          // 圖片張數（你自己改）
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/Ahri/32.jpg">
-    <img data-src="images/Ahri/1.jpg">
-    <img data-src="images/Ahri/2.jpg">
-    <img data-src="images/Ahri/3.jpg">
-    <img data-src="images/Ahri/4.jpg">
-    <img data-src="images/Ahri/5.jpg">
-    <img data-src="images/Ahri/6.jpg">
-    <img data-src="images/Ahri/7.jpg">
-    <img data-src="images/Ahri/8.jpg">
-    <img data-src="images/Ahri/9.jpg">
-    <img data-src="images/Ahri/10.jpg">
-    <img data-src="images/Ahri/11.jpg">
-    <img data-src="images/Ahri/12.jpg">
-    <img data-src="images/Ahri/13.jpg">
-    <img data-src="images/Ahri/14.jpg">
-    <img data-src="images/Ahri/15.jpg">
-    <img data-src="images/Ahri/16.jpg">
-    <img data-src="images/Ahri/17.jpg">
-    <img data-src="images/Ahri/18.jpg">
-    <img data-src="images/Ahri/19.jpg">
-    <img data-src="images/Ahri/20.jpg">
-    <img data-src="images/Ahri/21.jpg">
-    <img data-src="images/Ahri/22.jpg">
-    <img data-src="images/Ahri/23.jpg">
-    <img data-src="images/Ahri/24.jpg">
-    <img data-src="images/Ahri/25.jpg">
-    <img data-src="images/Ahri/26.jpg">
-    <img data-src="images/Ahri/27.jpg">
-    <img data-src="images/Ahri/28.jpg">
-    <img data-src="images/Ahri/29.jpg">
-    <img data-src="images/Ahri/30.jpg">
-    <img data-src="images/Ahri/31.jpg">
+const container = document.getElementById("circlr");
 
+// 1 → total 正確順序
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

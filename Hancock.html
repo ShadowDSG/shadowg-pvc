@@ -50,7 +50,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -62,84 +62,31 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 46;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/Hancock/1.jpg">
-    <img data-src="images/Hancock/2.jpg">
-    <img data-src="images/Hancock/3.jpg">
-    <img data-src="images/Hancock/4.jpg">
-    <img data-src="images/Hancock/5.jpg">
-    <img data-src="images/Hancock/6.jpg">
-    <img data-src="images/Hancock/7.jpg">
-    <img data-src="images/Hancock/8.jpg">
-    <img data-src="images/Hancock/9.jpg">
-    <img data-src="images/Hancock/10.jpg">
-    <img data-src="images/Hancock/11.jpg">
-    <img data-src="images/Hancock/12.jpg">
-    <img data-src="images/Hancock/13.jpg">
-    <img data-src="images/Hancock/14.jpg">
-    <img data-src="images/Hancock/15.jpg">
-    <img data-src="images/Hancock/16.jpg">
-    <img data-src="images/Hancock/17.jpg">
-    <img data-src="images/Hancock/18.jpg">
-    <img data-src="images/Hancock/19.jpg">
-    <img data-src="images/Hancock/20.jpg">
-    <img data-src="images/Hancock/21.jpg">
-    <img data-src="images/Hancock/22.jpg">
-    <img data-src="images/Hancock/23.jpg">
-    <img data-src="images/Hancock/24.jpg">
-    <img data-src="images/Hancock/25.jpg">
-    <img data-src="images/Hancock/26.jpg">
-    <img data-src="images/Hancock/27.jpg">
-    <img data-src="images/Hancock/28.jpg">
-    <img data-src="images/Hancock/29.jpg">
-    <img data-src="images/Hancock/30.jpg">
-    <img data-src="images/Hancock/31.jpg">
-    <img data-src="images/Hancock/32.jpg">
-    <img data-src="images/Hancock/33.jpg">
-    <img data-src="images/Hancock/34.jpg">
-    <img data-src="images/Hancock/35.jpg">
-    <img data-src="images/Hancock/36.jpg">
-    <img data-src="images/Hancock/37.jpg">
-    <img data-src="images/Hancock/38.jpg">
-    <img data-src="images/Hancock/39.jpg">
-    <img data-src="images/Hancock/40.jpg">
-    <img data-src="images/Hancock/41.jpg">
-    <img data-src="images/Hancock/42.jpg">
-    <img data-src="images/Hancock/43.jpg">
-    <img data-src="images/Hancock/44.jpg">
-    <img data-src="images/Hancock/45.jpg">
-    <img data-src="images/Hancock/46.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
-
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.singlePageNav.min.js"></script>
         <script src="js/circlr.min.js"></script>

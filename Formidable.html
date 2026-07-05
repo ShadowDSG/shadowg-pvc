@@ -48,12 +48,13 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -65,122 +66,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/Formidable/1.jpg">
-    <img data-src="images/Formidable/2.jpg">
-    <img data-src="images/Formidable/3.jpg">
-    <img data-src="images/Formidable/4.jpg">
-    <img data-src="images/Formidable/5.jpg">
-    <img data-src="images/Formidable/6.jpg">
-    <img data-src="images/Formidable/7.jpg">
-    <img data-src="images/Formidable/8.jpg">
-    <img data-src="images/Formidable/9.jpg">
-    <img data-src="images/Formidable/10.jpg">
-    <img data-src="images/Formidable/11.jpg">
-    <img data-src="images/Formidable/12.jpg">
-    <img data-src="images/Formidable/13.jpg">
-    <img data-src="images/Formidable/14.jpg">
-    <img data-src="images/Formidable/15.jpg">
-    <img data-src="images/Formidable/16.jpg">
-    <img data-src="images/Formidable/17.jpg">
-    <img data-src="images/Formidable/18.jpg">
-    <img data-src="images/Formidable/19.jpg">
-    <img data-src="images/Formidable/20.jpg">
-    <img data-src="images/Formidable/21.jpg">
-    <img data-src="images/Formidable/22.jpg">
-    <img data-src="images/Formidable/23.jpg">
-    <img data-src="images/Formidable/24.jpg">
-    <img data-src="images/Formidable/25.jpg">
-    <img data-src="images/Formidable/26.jpg">
-    <img data-src="images/Formidable/27.jpg">
-    <img data-src="images/Formidable/28.jpg">
-    <img data-src="images/Formidable/29.jpg">
-    <img data-src="images/Formidable/30.jpg">
-    <img data-src="images/Formidable/31.jpg">
-    <img data-src="images/Formidable/32.jpg">
-    <img data-src="images/Formidable/33.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

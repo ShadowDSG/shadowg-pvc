@@ -46,6 +46,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -63,70 +64,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/Astolfoup/1.jpg">
-      <img data-src="images/Astolfoup/2.jpg">
-      <img data-src="images/Astolfoup/3.jpg">
-      <img data-src="images/Astolfoup/4.jpg">
-      <img data-src="images/Astolfoup/5.jpg">
-      <img data-src="images/Astolfoup/6.jpg">
-      <img data-src="images/Astolfoup/7.jpg">
-      <img data-src="images/Astolfoup/8.jpg">
-      <img data-src="images/Astolfoup/9.jpg">
-      <img data-src="images/Astolfoup/10.jpg">
-      <img data-src="images/Astolfoup/11.jpg">
-      <img data-src="images/Astolfoup/12.jpg">
-      <img data-src="images/Astolfoup/13.jpg">
-      <img data-src="images/Astolfoup/14.jpg">
-      <img data-src="images/Astolfoup/15.jpg">
-      <img data-src="images/Astolfoup/16.jpg">
-      <img data-src="images/Astolfoup/17.jpg">
-      <img data-src="images/Astolfoup/18.jpg">
-      <img data-src="images/Astolfoup/19.jpg">
-      <img data-src="images/Astolfoup/20.jpg">
-      <img data-src="images/Astolfoup/21.jpg">
-      <img data-src="images/Astolfoup/22.jpg">
-      <img data-src="images/Astolfoup/23.jpg">
-      <img data-src="images/Astolfoup/24.jpg">
-      <img data-src="images/Astolfoup/25.jpg">
-      <img data-src="images/Astolfoup/26.jpg">
-      <img data-src="images/Astolfoup/27.jpg">
-      <img data-src="images/Astolfoup/28.jpg">
-      <img data-src="images/Astolfoup/29.jpg">
-      <img data-src="images/Astolfoup/30.jpg">
-      <img data-src="images/Astolfoup/31.jpg">
-      <img data-src="images/Astolfoup/32.jpg">
-      <img data-src="images/Astolfoup/33.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.JPG`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 
