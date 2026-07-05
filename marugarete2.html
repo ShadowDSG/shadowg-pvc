@@ -70,83 +70,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/marugarete2/1.jpg">
-    <img data-src="images/marugarete2/2.jpg">
-    <img data-src="images/marugarete2/3.jpg">
-    <img data-src="images/marugarete2/4.jpg">
-    <img data-src="images/marugarete2/5.jpg">
-    <img data-src="images/marugarete2/6.jpg">
-    <img data-src="images/marugarete2/7.jpg">
-    <img data-src="images/marugarete2/8.jpg">
-    <img data-src="images/marugarete2/9.jpg">
-    <img data-src="images/marugarete2/10.jpg">
-    <img data-src="images/marugarete2/11.jpg">
-    <img data-src="images/marugarete2/12.jpg">
-    <img data-src="images/marugarete2/13.jpg">
-    <img data-src="images/marugarete2/14.jpg">
-    <img data-src="images/marugarete2/15.jpg">
-    <img data-src="images/marugarete2/16.jpg">
-    <img data-src="images/marugarete2/17.jpg">
-    <img data-src="images/marugarete2/18.jpg">
-    <img data-src="images/marugarete2/19.jpg">
-    <img data-src="images/marugarete2/20.jpg">
-    <img data-src="images/marugarete2/21.jpg">
-    <img data-src="images/marugarete2/22.jpg">
-    <img data-src="images/marugarete2/23.jpg">
-    <img data-src="images/marugarete2/24.jpg">
-    <img data-src="images/marugarete2/25.jpg">
-    <img data-src="images/marugarete2/26.jpg">
-    <img data-src="images/marugarete2/27.jpg">
-    <img data-src="images/marugarete2/28.jpg">
-    <img data-src="images/marugarete2/29.jpg">
-    <img data-src="images/marugarete2/30.jpg">
-    <img data-src="images/marugarete2/31.jpg">
-    <img data-src="images/marugarete2/32.jpg">
-    <img data-src="images/marugarete2/33.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

@@ -65,116 +65,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 46;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
+const container = document.getElementById("circlr");
 
-    <img data-src="images/kasima/1.jpg">
-    <img data-src="images/kasima/2.jpg">
-    <img data-src="images/kasima/3.jpg">
-    <img data-src="images/kasima/4.jpg">
-    <img data-src="images/kasima/5.jpg">
-    <img data-src="images/kasima/6.jpg">
-    <img data-src="images/kasima/7.jpg">
-    <img data-src="images/kasima/8.jpg">
-    <img data-src="images/kasima/9.jpg">
-    <img data-src="images/kasima/10.jpg">
-    <img data-src="images/kasima/11.jpg">
-    <img data-src="images/kasima/12.jpg">
-    <img data-src="images/kasima/13.jpg">
-    <img data-src="images/kasima/14.jpg">
-    <img data-src="images/kasima/15.jpg">
-    <img data-src="images/kasima/16.jpg">
-    <img data-src="images/kasima/17.jpg">
-    <img data-src="images/kasima/18.jpg">
-    <img data-src="images/kasima/19.jpg">
-    <img data-src="images/kasima/20.jpg">
-    <img data-src="images/kasima/21.jpg">
-    <img data-src="images/kasima/22.jpg">
-    <img data-src="images/kasima/23.jpg">
-    <img data-src="images/kasima/24.jpg">
-    <img data-src="images/kasima/25.jpg">
-    <img data-src="images/kasima/26.jpg">
-    <img data-src="images/kasima/27.jpg">
-    <img data-src="images/kasima/28.jpg">
-    <img data-src="images/kasima/29.jpg">
-    <img data-src="images/kasima/30.jpg">
-    <img data-src="images/kasima/31.jpg">
-    <img data-src="images/kasima/32.jpg">
-    <img data-src="images/kasima/33.jpg">
-    <img data-src="images/kasima/34.jpg">
-    <img data-src="images/kasima/35.jpg">
-    <img data-src="images/kasima/36.jpg">
-    <img data-src="images/kasima/37.jpg">
-    <img data-src="images/kasima/38.jpg">
-    <img data-src="images/kasima/39.jpg">
-    <img data-src="images/kasima/40.jpg">
-    <img data-src="images/kasima/41.jpg">
-    <img data-src="images/kasima/42.jpg">
-    <img data-src="images/kasima/43.jpg">
-    <img data-src="images/kasima/44.jpg">
-    <img data-src="images/kasima/45.jpg">
-    <img data-src="images/kasima/46.jpg">
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.JPG`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

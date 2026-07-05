@@ -50,15 +50,12 @@
 
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -70,128 +67,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/miyamoto4/1.jpg">
-      <img data-src="images/miyamoto4/2.jpg">
-      <img data-src="images/miyamoto4/3.jpg">
-      <img data-src="images/miyamoto4/4.jpg">
-      <img data-src="images/miyamoto4/5.jpg">
-      <img data-src="images/miyamoto4/6.jpg">
-      <img data-src="images/miyamoto4/7.jpg">
-      <img data-src="images/miyamoto4/8.jpg">
-      <img data-src="images/miyamoto4/9.jpg">
-      <img data-src="images/miyamoto4/10.jpg">
-      <img data-src="images/miyamoto4/11.jpg">
-      <img data-src="images/miyamoto4/12.jpg">
-      <img data-src="images/miyamoto4/13.jpg">
-      <img data-src="images/miyamoto4/14.jpg">
-      <img data-src="images/miyamoto4/15.jpg">
-      <img data-src="images/miyamoto4/16.jpg">
-      <img data-src="images/miyamoto4/17.jpg">
-      <img data-src="images/miyamoto4/18.jpg">
-      <img data-src="images/miyamoto4/19.jpg">
-      <img data-src="images/miyamoto4/20.jpg">
-      <img data-src="images/miyamoto4/21.jpg">
-      <img data-src="images/miyamoto4/22.jpg">
-      <img data-src="images/miyamoto4/23.jpg">
-      <img data-src="images/miyamoto4/24.jpg">
-      <img data-src="images/miyamoto4/25.jpg">
-      <img data-src="images/miyamoto4/26.jpg">
-      <img data-src="images/miyamoto4/27.jpg">
-      <img data-src="images/miyamoto4/28.jpg">
-      <img data-src="images/miyamoto4/29.jpg">
-      <img data-src="images/miyamoto4/30.jpg">
-      <img data-src="images/miyamoto4/31.jpg">
-      <img data-src="images/miyamoto4/32.jpg">
-      <img data-src="images/miyamoto4/33.jpg">
-      <img data-src="images/miyamoto4/34.jpg">
-      <img data-src="images/miyamoto4/35.jpg">
-      <img data-src="images/miyamoto4/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

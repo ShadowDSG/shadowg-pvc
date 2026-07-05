@@ -69,111 +69,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/kasima02/1.jpg">
-    <img data-src="images/kasima02/2.jpg">
-    <img data-src="images/kasima02/3.jpg">
-    <img data-src="images/kasima02/4.jpg">
-    <img data-src="images/kasima02/5.jpg">
-    <img data-src="images/kasima02/6.jpg">
-    <img data-src="images/kasima02/7.jpg">
-    <img data-src="images/kasima02/8.jpg">
-    <img data-src="images/kasima02/9.jpg">
-    <img data-src="images/kasima02/10.jpg">
-    <img data-src="images/kasima02/11.jpg">
-    <img data-src="images/kasima02/12.jpg">
-    <img data-src="images/kasima02/13.jpg">
-    <img data-src="images/kasima02/14.jpg">
-    <img data-src="images/kasima02/15.jpg">
-    <img data-src="images/kasima02/16.jpg">
-    <img data-src="images/kasima02/17.jpg">
-    <img data-src="images/kasima02/18.jpg">
-    <img data-src="images/kasima02/19.jpg">
-    <img data-src="images/kasima02/20.jpg">
-    <img data-src="images/kasima02/21.jpg">
-    <img data-src="images/kasima02/22.jpg">
-    <img data-src="images/kasima02/23.jpg">
-    <img data-src="images/kasima02/24.jpg">
-    <img data-src="images/kasima02/25.jpg">
-    <img data-src="images/kasima02/26.jpg">
-    <img data-src="images/kasima02/27.jpg">
-    <img data-src="images/kasima02/28.jpg">
-    <img data-src="images/kasima02/29.jpg">
-    <img data-src="images/kasima02/30.jpg">
-    <img data-src="images/kasima02/31.jpg">
-    <img data-src="images/kasima02/32.jpg">
-    <img data-src="images/kasima02/33.jpg">
-    <img data-src="images/kasima02/34.jpg">
-    <img data-src="images/kasima02/35.jpg">
-    <img data-src="images/kasima02/36.jpg">
- 
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

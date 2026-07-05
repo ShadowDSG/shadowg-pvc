@@ -49,7 +49,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -61,59 +61,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 36;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-      <img data-src="images/momo down/1.jpg">
-      <img data-src="images/momo down/2.jpg">
-      <img data-src="images/momo down/3.jpg">
-      <img data-src="images/momo down/4.jpg">
-      <img data-src="images/momo down/5.jpg">
-      <img data-src="images/momo down/6.jpg">
-      <img data-src="images/momo down/7.jpg">
-      <img data-src="images/momo down/8.jpg">
-      <img data-src="images/momo down/9.jpg">
-      <img data-src="images/momo down/10.jpg">
-      <img data-src="images/momo down/11.jpg">
-      <img data-src="images/momo down/12.jpg">
-      <img data-src="images/momo down/13.jpg">
-      <img data-src="images/momo down/14.jpg">
-      <img data-src="images/momo down/15.jpg">
-      <img data-src="images/momo down/16.jpg">
-      <img data-src="images/momo down/17.jpg">
-      <img data-src="images/momo down/18.jpg">
-      <img data-src="images/momo down/19.jpg">
-      <img data-src="images/momo down/20.jpg">
-      <img data-src="images/momo down/21.jpg">
-      <img data-src="images/momo down/22.jpg">
-      <img data-src="images/momo down/23.jpg">
-      <img data-src="images/momo down/24.jpg">
-      <img data-src="images/momo down/25.jpg">
-      <img data-src="images/momo down/26.jpg">
-      <img data-src="images/momo down/27.jpg">
-      <img data-src="images/momo down/28.jpg">
-      <img data-src="images/momo down/29.jpg">
-      <img data-src="images/momo down/30.jpg">
-      <img data-src="images/momo down/31.jpg">
-      <img data-src="images/momo down/32.jpg">
-      <img data-src="images/momo down/33.jpg">
-      <img data-src="images/momo down/34.jpg">
-      <img data-src="images/momo down/35.jpg">
-      <img data-src="images/momo down/36.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 

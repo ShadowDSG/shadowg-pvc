@@ -46,14 +46,12 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>Sample</title>
     
@@ -65,128 +63,29 @@
 <section id="gallery">
 
 <footer>    
-    <div id="circlr">
+<div id="circlr"></div>
 
+<script>
+const fileName = window.location.pathname.split("/").pop().replace(".html", "");
+const folder = fileName;
 
+const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+const total = 33;
 
-    
-      <!-- 將需要的圖片放置在這個區域 開始 -->
-    <img data-src="images/Ryza/1.jpg">
-    <img data-src="images/Ryza/2.jpg">
-    <img data-src="images/Ryza/3.jpg">
-    <img data-src="images/Ryza/4.jpg">
-    <img data-src="images/Ryza/5.jpg">
-    <img data-src="images/Ryza/6.jpg">
-    <img data-src="images/Ryza/7.jpg">
-    <img data-src="images/Ryza/8.jpg">
-    <img data-src="images/Ryza/9.jpg">
-    <img data-src="images/Ryza/10.jpg">
-    <img data-src="images/Ryza/11.jpg">
-    <img data-src="images/Ryza/12.jpg">
-    <img data-src="images/Ryza/13.jpg">
-    <img data-src="images/Ryza/14.jpg">
-    <img data-src="images/Ryza/15.jpg">
-    <img data-src="images/Ryza/16.jpg">
-    <img data-src="images/Ryza/17.jpg">
-    <img data-src="images/Ryza/18.jpg">
-    <img data-src="images/Ryza/19.jpg">
-    <img data-src="images/Ryza/20.jpg">
-    <img data-src="images/Ryza/21.jpg">
-    <img data-src="images/Ryza/22.jpg">
-    <img data-src="images/Ryza/23.jpg">
-    <img data-src="images/Ryza/24.jpg">
-    <img data-src="images/Ryza/25.jpg">
-    <img data-src="images/Ryza/26.jpg">
-    <img data-src="images/Ryza/27.jpg">
-    <img data-src="images/Ryza/28.jpg">
-    <img data-src="images/Ryza/29.jpg">
-    <img data-src="images/Ryza/30.jpg">
-    <img data-src="images/Ryza/31.jpg">
-    <img data-src="images/Ryza/32.jpg">
-    <img data-src="images/Ryza/33.jpg">
+const container = document.getElementById("circlr");
 
+for (let i = 1; i <= total; i++) {
 
+    const img = document.createElement("img");
 
+    img.setAttribute(
+        "data-src",
+        `${baseUrl}/${folder}/${i}.jpg`
+    );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- 將需要的圖片放置在這個區域 結束-->
-    
-
-
-
-    </div>
+    container.appendChild(img);
+}
+</script>
 </section>
 </footer>
 
