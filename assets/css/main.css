@@ -1612,3 +1612,27 @@
 			}
 
 		}
+
+
+
+.pickup-title{
+    font-size:48px;
+    font-weight:900;
+    letter-spacing:4px;
+    margin:40px 0 20px;
+    border-bottom:4px solid #000;
+    padding-bottom:10px;
+}
+
+
+====泡泡特效=====
+
+
+
+.gallery a img{
+    transition:transform .35s cubic-bezier(.2,1.3,.3,1);
+}
+
+.gallery a:hover img{
+    transform:scale(1.12);
+}
