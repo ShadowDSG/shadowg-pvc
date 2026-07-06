@@ -129,8 +129,8 @@
         </div>
     </nav>
 
-    <!-- 主舞台區域 -->
-    <main class="flex-1 max-w-6xl mx-auto w-full px-4 md:px-8 py-4 flex flex-col items-center justify-center">
+    <!-- 主舞台區域 - 外層容器已放寬至 max-w-7xl (1280px) -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-8 py-4 flex flex-col items-center justify-center">
         
         <!-- 作品標題卡片 -->
         <div class="text-center mb-4 w-full">
@@ -139,8 +139,8 @@
             </h1>
         </div>
 
-        <!-- 360 旋轉主面板 -->
-        <div class="w-full max-w-2xl aspect-square bg-slate-950/80 rounded-3xl border border-sky-950/60 relative flex items-center justify-center overflow-hidden neon-shadow-abyssal group">
+        <!-- 360 旋轉主面板 - 寬度已放寬至最大 1080px -->
+        <div class="w-full max-w-[1080px] aspect-square bg-slate-950/80 rounded-3xl border border-sky-950/60 relative flex items-center justify-center overflow-hidden neon-shadow-abyssal group">
             
             <!-- 海嗣幽藍與緋紅底座背景燈效 -->
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-red-600/5 blur-2xl rounded-full"></div>
@@ -181,8 +181,8 @@
             </div>
         </div>
 
-        <!-- 控制與操控面板 -->
-        <div class="w-full max-w-2xl mt-6 space-y-4">
+        <!-- 控制與操控面板 - 寬度同步設定為最大 1080px 以維持版面整齊 -->
+        <div class="w-full max-w-[1080px] mt-6 space-y-4">
             
             <!-- 手動控制與自動播放工具列 -->
             <div class="glass-panel rounded-2xl p-4 flex items-center justify-between gap-4">
@@ -437,7 +437,7 @@
                 showFrame(currentIndex + 1);
             }, playSpeed);
             
-            // UI 切換為暫停狀態，配色改為湛藍高亮
+            // UI 切換為暫停狀態，配色改為 1080px/湛藍高亮
             playIcon.className = "fa-solid fa-pause";
             btnPlay.classList.remove("bg-red-600");
             btnPlay.classList.add("bg-sky-500");
