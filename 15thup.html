@@ -1,166 +1,452 @@
-<html>
-
-    <head>
-        <title>ShadowG的攝影小屋</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-    </head>
-    <body>
-        <div class="page-wrap">
-
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.html" class="active"><span class="icon fa-home"></span></a></li>
-                    </ul>
-                </nav>
-
-            <!-- Main -->
-                <section id="main">
-
-                    <!-- Banner -->
-                        <section id="baner">
-                            
-                                <h1><font color="black">&emsp;Lemoe Vtuber 瀕臨絕種團 No.Fifteen 十五號 15號  </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://forum.gamer.com.tw/C.php?bsn=60036&snA=61907&tnum=1"><u>(YaMao 開箱文連結)</u></h1>
-                                    <h2> <center>(<font color="navy"><a href="15th.html">低角度仰視</a></font>)</h2>
-                                <p></a></p>
-                                <ul class="actions">
-                                   
-                                </ul>
-                            </div>
-                        </section>
-
-                    <!-- Gallery -->
-                        <section id="galleries">
-
-                            <!-- Photo Galleries -->
-                              
-                                    <header class="special">
-                                        <h1></h1>
-                                    </header>
-                                    <DIV style="text-align:center;"><p></p></DIV>
-
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-
-    <title>Sample</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>15號 通常角度 - ShadowG的攝影小屋</title>
     
-
-</head>
-
-<body>
-
-<section id="gallery">
-
-<footer>    
-<div id="circlr"></div>
-
-<script>
-const folder = "15thup";   // 資料夾名稱
-const total = 32;          // 圖片張數（你自己改）
-
-const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
-
-const container = document.getElementById("circlr");
-
-// 1 → total 正確順序
-for (let i = 1; i <= total; i++) {
-
-    const img = document.createElement("img");
-
-    img.setAttribute(
-        "data-src",
-        `${baseUrl}/${folder}/${i}.JPG`
-    );
-
-    container.appendChild(img);
-}
-</script>
-</section>
-</footer>
-
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.singlePageNav.min.js"></script>
-        <script src="js/circlr.min.js"></script>
-        <script>
-
-            // Prevent console.log from generating errors in IE for the purposes of the demo
-            if ( ! window.console ) console = { log: function(){} };
-
-            // The actual plugin
-            $('.single-page-nav').singlePageNav({
-                offset: $('.single-page-nav').outerHeight(),
-                filter: ':not(.external)',
-                updateHash: true,
-                beforeStart: function() {
-                    console.log('begin scrolling');
-                },
-                onComplete: function() {
-                    console.log('done scrolling');
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        studio: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            800: '#3c096c',
+                            900: '#240046',
+                            950: '#10002b',
+                        }
+                    }
                 }
-            });
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* ==========================================================================
+           🎯 全域整體放大 140%
+           ========================================================================== */
+        html {
+            zoom: 1.4; /* 將整體版面放大 140%，帶來更震撼的細節視覺體驗 */
+        }
+
+        body {
+            background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.99) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 磨砂玻璃質感 */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* 霓虹發光陰影 */
+        .neon-shadow-violet {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        /* 自訂滾動條 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 99px;
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
+
+    <!-- 導覽列：透過響應式 Grid 排版，確保電腦版「返回」靠左、「視角切換」絕對置中 -->
+    <nav class="w-full glass-panel border-b border-slate-800/60 py-2 md:py-2.5 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-slate-950/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-2 md:gap-4">
             
-            $(document).ready(function ($) {
+            <!-- 左側：精緻化的返回按鈕 -->
+            <div class="flex justify-start order-2 md:order-1">
+                <a href="index.html" class="w-full md:w-auto flex items-center justify-center space-x-2.5 px-4 py-1.5 rounded-xl bg-slate-900/90 hover:bg-violet-600/25 border border-slate-800 hover:border-violet-500/40 text-slate-300 hover:text-white shadow-lg transition-all duration-300 active:scale-[0.98] group">
+                    <div class="w-7 h-7 rounded-lg bg-slate-850 flex items-center justify-center group-hover:bg-violet-600 group-hover:scale-105 transition-all">
+                        <i class="fa-solid fa-arrow-left text-xs text-white"></i>
+                    </div>
+                    <span class="text-xs tracking-wider font-extrabold uppercase">返回模型展廳</span>
+                </a>
+            </div>
 
-                // delegate calls to data-toggle="lightbox"
-                $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-                    event.preventDefault();
-                    return $(this).ekkoLightbox({
-                        always_show_close: true
-                    });
-                });
-
-            });
-
-            var crl = circlr('circlr', {
-              scroll : true,
-              loader : 'loader'
-            });
-            
-        </script>
-
-</body>
-</html>
-
-
-    <p></p>
-    <p></p>
-    <center>手機建議橫置觀看
-    <center><p>圖片會閃是還沒讀取完成，轉動一圈後就不會了</p>
-    <center><h3><u>本旋轉圖片，由巴哈網友 YaMao洋帽叔叔 所提供</u></h3>
+            <!-- 正中間：精緻、比例適中的通常/低角度視角切換器 (此頁為通常角度高亮) -->
+            <div class="flex justify-center order-1 md:order-2">
+                <div class="flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 shadow-xl shadow-violet-950/30">
+                    <!-- 通常角度按鈕 (高亮版) -->
+                    <span class="px-4 py-1 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20 flex items-center gap-1.5 border border-violet-400/10">
+                        通常角度
+                    </span>
                     
+                    <!-- 低角度仰視按鈕 (指向 15th.html) -->
+                    <a href="15th.html" class="px-4 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 flex items-center gap-1.5">
+                        低角度仰視 <i class="fa-solid fa-circle-chevron-down text-[10px] text-slate-500"></i>
+                    </a>
+                </div>
+            </div>
 
-                    <!-- Contact -->
-                        <section id="contact">
-                            <!-- Social -->
-                                <div class="social column">
-                                    <h3>本旋轉圖片，由巴哈網友 YaMao洋帽叔叔 所提供</h3>
-                                    <p></p>
-                                    <p></p>
-                                </div>
+            <!-- 右側：僅用於在大螢幕平衡排版的隱形預留位置 -->
+            <div class="hidden md:block order-3 invisible pointer-events-none">
+                <div class="px-4 py-1">平衡佔位</div>
+            </div>
+            
+        </div>
+    </nav>
 
-
-                
-                        </section>
+    <!-- 主舞台區域 -->
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 md:px-8 py-4 flex flex-col items-center justify-center">
+        
+        <!-- 作品標題卡片 -->
+        <div class="text-center mb-4 w-full">
+            <h1 class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight">
+                Lemoe Vtuber 瀕臨絕種團 <span class="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400">No.Fifteen 十五號</span>
+            </h1>
         </div>
 
-        <!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.poptrox.min.js"></script>
-            <script src="assets/js/jquery.scrolly.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <script src="assets/js/main.js"></script>
+        <!-- 360 旋轉主面板 -->
+        <div class="w-full max-w-2xl aspect-square bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
+            
+            <!-- 霓虹旋轉底座背景燈效 -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-violet-600/10 blur-2xl rounded-full"></div>
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-40"></div>
 
-    </body>
+            <!-- 科技感載入畫面 (Preloader) -->
+            <div id="loader-screen" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-slate-950/95 transition-opacity duration-500">
+                <div class="relative w-24 h-24 mb-4">
+                    <!-- 環形旋轉條 -->
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle class="text-slate-800" stroke-width="4" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                        <circle id="loader-progress-bar" class="text-violet-500 transition-all duration-100" stroke-width="5" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                    </svg>
+                    <!-- 中間數字 -->
+                    <span id="loader-percentage" class="absolute inset-0 flex items-center justify-center text-lg font-black text-white">0%</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-200 tracking-wider">寫真檔案高畫質預載中...</h3>
+                <p class="text-xs text-slate-500 mt-1.5">載入完畢後即能享有極致順暢的 360° 轉動</p>
+            </div>
+
+            <!-- 360° 圖片渲染容器 -->
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden">
+                <!-- 圖片會由 JS 動態生成並塞入此處 -->
+            </div>
+
+            <!-- 手機橫置提示 -->
+            <div class="absolute top-4 left-4 z-10 hidden sm:block">
+                <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm">
+                    <i class="fa-solid fa-mobile-screen-button text-violet-400"></i> 手機版建議橫放觀看
+                </span>
+            </div>
+
+            <!-- 互動操作導引提示 -->
+            <div id="drag-tips" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-700 pointer-events-none">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-950/90 border border-slate-800 text-slate-300 gap-2 shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-arrows-left-right animate-pulse text-violet-400"></i> 拖曳、滑動或撥動圖片進行轉動
+                </span>
+            </div>
+        </div>
+
+        <!-- 控制與操控面板 -->
+        <div class="w-full max-w-2xl mt-6 space-y-4">
+            
+            <!-- 手動控制與自動播放工具列 -->
+            <div class="glass-panel rounded-2xl p-4 flex items-center justify-between gap-4">
+                <button id="btn-play" class="w-10 h-10 rounded-xl bg-violet-600 hover:bg-violet-500 text-white flex items-center justify-center shadow-lg shadow-violet-500/20 active:scale-95 transition-all" title="自動播放">
+                    <i id="play-icon" class="fa-solid fa-play"></i>
+                </button>
+                <div class="flex-1 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-slate-500 text-sm"></i>
+                    <input id="frame-range" type="range" min="0" max="31" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
+                </div>
+                <span id="frame-counter" class="text-xs font-mono font-bold text-slate-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[50px] text-center">1 / 32</span>
+            </div>
+
+            <!-- 雙排卡片：開箱文外鏈 & 協力感謝 -->
+            <div class="grid sm:grid-cols-2 gap-4">
+                
+                <!-- 開箱連結卡片 -->
+                <a href="https://forum.gamer.com.tw/C.php?bsn=60036&snA=61907&tnum=1" target="_blank" rel="noopener" class="glass-panel p-4 rounded-2xl flex items-center justify-between group hover:border-violet-500/30 transition-all duration-300 glow-card">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-newspaper text-base"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-500 font-bold uppercase tracking-wider">YaMao 開箱文推薦</span>
+                            <span class="block text-sm font-bold text-slate-200">看洋帽叔叔圖文介紹</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-violet-400 transition-colors"></i>
+                </a>
+
+                <!-- 網友感謝卡片 -->
+                <div class="glass-panel p-4 rounded-2xl flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-fuchsia-600/10 border border-fuchsia-500/20 flex items-center justify-center text-fuchsia-400">
+                        <i class="fa-solid fa-hands-helping text-base"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-slate-500 font-bold uppercase tracking-wider">360° 旋轉寫真協力</span>
+                        <span class="block text-sm font-bold text-slate-200">由巴哈網友 <span class="text-fuchsia-400">YaMao洋帽叔叔</span> 提供</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 說明提示提示條 -->
+            <div class="bg-slate-900/40 border border-slate-800/60 p-4 rounded-2xl flex items-start gap-3">
+                <i class="fa-solid fa-circle-info text-violet-400 mt-0.5 text-sm"></i>
+                <div class="text-xs text-slate-400 leading-relaxed space-y-1">
+                    <p>📌 轉動時若感覺畫面閃爍，此為初次下載延遲。本網頁已內建**完全預載機制**，等上方進度完成後，即可順暢流利地旋轉。</p>
+                    <p>📌 手機觀看時，推薦將手機「橫置螢幕」並開啟全螢幕以獲得最佳細節視界。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="bg-slate-950/80 border-t border-slate-900/60 py-6 px-4 text-center text-xs text-slate-500 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ShadowG的攝影小屋. 僅供個人模型愛好者交流與作品展示。</p>
+            <p>Designed with <i class="fa-solid fa-heart text-fuchsia-500"></i> using Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         📦 核心 360° 旋轉播放控制引擎 (整合 vanilla JS 控制)
+         ========================================================================== -->
+    <script>
+        const folder = "15thup";   // R2 雲端儲存空間資料夾 (通常角度)
+        const total = 32;          // 總共有 32 張旋轉照片 (1.JPG 至 32.JPG)
+        const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+
+        const viewerStage = document.getElementById("viewer-stage");
+        const loaderScreen = document.getElementById("loader-screen");
+        const loaderProgressBar = document.getElementById("loader-progress-bar");
+        const loaderPercentage = document.getElementById("loader-percentage");
+        const frameRange = document.getElementById("frame-range");
+        const frameCounter = document.getElementById("frame-counter");
+        const btnPlay = document.getElementById("btn-play");
+        const playIcon = document.getElementById("play-icon");
+        const dragTips = document.getElementById("drag-tips");
+
+        let loadedCount = 0;
+        let imageElements = [];
+        let currentIndex = 0;
+
+        // 360 互動拖曳變數
+        let isDragging = false;
+        let startX = 0;
+        let autoPlayInterval = null;
+        let playSpeed = 100; // 自動旋轉的毫秒間隔
+
+        // 啟動圖片預載
+        preloadImages();
+
+        function preloadImages() {
+            // 計算 SVG 圓形進度條周長
+            const radius = 40;
+            const circumference = 2 * Math.PI * radius;
+
+            for (let i = 1; i <= total; i++) {
+                const img = document.createElement("img");
+                img.src = `${baseUrl}/${folder}/${i}.JPG`;
+                img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
+                img.alt = `Frame ${i}`;
+                img.setAttribute("data-index", i - 1);
+                
+                img.onload = () => {
+                    loadedCount++;
+                    const progress = loadedCount / total;
+                    
+                    // 更新環形進度條
+                    const offset = circumference - (progress * circumference);
+                    loaderProgressBar.style.strokeDashoffset = offset;
+                    
+                    // 更新數字
+                    loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+
+                    if (loadedCount === total) {
+                        onPreloadComplete();
+                    }
+                };
+
+                // 當偶發載入失敗時的保護機制
+                img.onerror = () => {
+                    loadedCount++;
+                    if (loadedCount === total) {
+                        onPreloadComplete();
+                    }
+                };
+
+                viewerStage.appendChild(img);
+                imageElements.push(img);
+            }
+        }
+
+        // 預載完畢後的初始化動作
+        function onPreloadComplete() {
+            // 隱藏載入畫面
+            loaderScreen.classList.add("opacity-0");
+            setTimeout(() => {
+                loaderScreen.style.display = "none";
+                viewerStage.classList.remove("hidden");
+            }, 500);
+
+            // 顯示第一張
+            showFrame(0);
+
+            // 開始設定拖曳與播放事件
+            setupInteractEvents();
+        }
+
+        // 切換顯示指定幀
+        function showFrame(index) {
+            // 確保 index 在正確的區段（Loop）
+            currentIndex = (index + total) % total;
+
+            // 切換圖片的 Hidden / Block 狀態
+            imageElements.forEach((img, i) => {
+                if (i === currentIndex) {
+                    img.classList.remove("hidden");
+                    img.classList.add("block");
+                } else {
+                    img.classList.remove("block");
+                    img.classList.add("hidden");
+                }
+            });
+
+            // 連動更新 Slider 與 Counter
+            frameRange.value = currentIndex;
+            frameCounter.textContent = `${currentIndex + 1} / ${total}`;
+        }
+
+        // 滑桿手動切換事件
+        frameRange.oninput = function() {
+            stopAutoPlay();
+            showFrame(parseInt(this.value));
+            hideDragTips();
+        };
+
+        // 拖動與滑動處理邏輯
+        function setupInteractEvents() {
+            // --- 滑鼠事件 ---
+            viewerStage.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                stopAutoPlay();
+                hideDragTips();
+            });
+
+            window.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                const deltaX = e.clientX - startX;
+                
+                // 每滑動 15px 切換一張圖
+                if (Math.abs(deltaX) > 15) {
+                    const step = Math.sign(deltaX);
+                    // 為了使拖曳方向與一般物理慣性一致：向右拖曳顯示上一幀，向左拖曳顯示下一幀
+                    showFrame(currentIndex - step);
+                    startX = e.clientX;
+                }
+            });
+
+            window.addEventListener("mouseup", () => {
+                isDragging = false;
+            });
+
+            // --- 觸控事件 ---
+            viewerStage.addEventListener("touchstart", (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                stopAutoPlay();
+                hideDragTips();
+            });
+
+            viewerStage.addEventListener("touchmove", (e) => {
+                if (!isDragging) return;
+                const deltaX = e.touches[0].clientX - startX;
+
+                if (Math.abs(deltaX) > 10) {
+                    const step = Math.sign(deltaX);
+                    showFrame(currentIndex - step);
+                    startX = e.touches[0].clientX;
+                }
+            });
+
+            viewerStage.addEventListener("touchend", () => {
+                isDragging = false;
+            });
+
+            // --- 滑鼠滾輪事件 ---
+            viewerStage.addEventListener("wheel", (e) => {
+                e.preventDefault();
+                stopAutoPlay();
+                hideDragTips();
+                const step = Math.sign(e.deltaY);
+                showFrame(currentIndex + step);
+            });
+        }
+
+        // 點擊自動播放/暫停按鈕
+        btnPlay.onclick = () => {
+            if (autoPlayInterval) {
+                stopAutoPlay();
+            } else {
+                startAutoPlay();
+                hideDragTips();
+            }
+        };
+
+        function startAutoPlay() {
+            if (autoPlayInterval) return;
+            autoPlayInterval = setInterval(() => {
+                showFrame(currentIndex + 1);
+            }, playSpeed);
+            
+            // 更換按鈕圖標為 pause
+            playIcon.className = "fa-solid fa-pause";
+            btnPlay.classList.remove("bg-violet-600");
+            btnPlay.classList.add("bg-fuchsia-600");
+        }
+
+        function stopAutoPlay() {
+            if (!autoPlayInterval) return;
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            
+            // 更換按鈕圖標為 play
+            playIcon.className = "fa-solid fa-play";
+            btnPlay.classList.remove("bg-fuchsia-600");
+            btnPlay.classList.add("bg-violet-600");
+        }
+
+        // 隱藏中央的提示
+        function hideDragTips() {
+            dragTips.classList.add("opacity-0");
+            setTimeout(() => {
+                dragTips.style.display = "none";
+            }, 700);
+        }
+    </script>
+</body>
 </html>

@@ -37,6 +37,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
+        /* ==========================================================================
+           🎯 全域整體放大 140%
+           ========================================================================== */
+        html {
+            zoom: 1.4; /* 將整體版面放大 140%，帶來更震撼的細節視覺體驗 */
+        }
+
         body {
             background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.99) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
             background-attachment: fixed;
@@ -72,36 +79,54 @@
 </head>
 <body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
 
-    <!-- 導覽列 -->
-    <nav class="w-full glass-panel border-b border-slate-800/60 py-3 px-4 md:px-8 z-30 sticky top-0">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-2 text-slate-400 hover:text-white transition-all group">
-                <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center group-hover:bg-violet-600 group-hover:scale-105 transition-all">
-                    <i class="fa-solid fa-arrow-left text-sm text-white"></i>
-                </div>
-                <span class="text-xs tracking-wider font-semibold uppercase">返回模型展廳</span>
-            </a>
-
-            <!-- 視角切換器 -->
-            <div class="flex items-center bg-slate-950/80 p-1 rounded-xl border border-slate-800">
-                <a href="15thup.html" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-colors">通常角度</a>
-                <span class="px-3 py-1.5 rounded-lg text-xs font-bold bg-violet-600 text-white shadow-md shadow-violet-500/20">低角度仰視 <i class="fa-solid fa-circle-chevron-down ml-0.5"></i></span>
+    <!-- 導覽列：透過響應式 Grid 排版，確保電腦版「返回」靠左、「視角切換」絕對置中 -->
+    <!-- 縮減 py-4 -> py-2 (md:py-2.5) 讓整行變得更加薄且俐落 -->
+    <nav class="w-full glass-panel border-b border-slate-800/60 py-2 md:py-2.5 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-slate-950/20">
+        <!-- 縮減 gap-4 -> gap-2 讓直向排列時更緊湊 -->
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-2 md:gap-4">
+            
+            <!-- 左側：精緻化的返回按鈕 (px-5 py-3 -> px-4 py-1.5, rounded-2xl -> rounded-xl) -->
+            <div class="flex justify-start order-2 md:order-1">
+                <a href="index.html" class="w-full md:w-auto flex items-center justify-center space-x-2.5 px-4 py-1.5 rounded-xl bg-slate-900/90 hover:bg-violet-600/25 border border-slate-800 hover:border-violet-500/40 text-slate-300 hover:text-white shadow-lg transition-all duration-300 active:scale-[0.98] group">
+                    <!-- 縮小內部圖示容器尺寸 w-9 h-9 -> w-7 h-7 -->
+                    <div class="w-7 h-7 rounded-lg bg-slate-850 flex items-center justify-center group-hover:bg-violet-600 group-hover:scale-105 transition-all">
+                        <i class="fa-solid fa-arrow-left text-xs text-white"></i>
+                    </div>
+                    <span class="text-xs tracking-wider font-extrabold uppercase">返回模型展廳</span>
+                </a>
             </div>
+
+            <!-- 正中間：精緻、比例適中的通常/低角度視角切換器 (按鈕 py-2 -> py-1 變薄) -->
+            <div class="flex justify-center order-1 md:order-2">
+                <div class="flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 shadow-xl shadow-violet-950/30">
+                    <!-- 通常角度按鈕 -->
+                    <a href="15thup.html" class="px-4 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60">
+                        通常角度
+                    </a>
+                    
+                    <!-- 低角度仰視按鈕（高亮版） -->
+                    <span class="px-4 py-1 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20 flex items-center gap-1.5 border border-violet-400/10">
+                        低角度仰視 <i class="fa-solid fa-circle-chevron-down text-[10px] animate-pulse text-white"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- 右側：僅用於在大螢幕平衡排版的隱形預留位置 -->
+            <div class="hidden md:block order-3 invisible pointer-events-none">
+                <div class="px-4 py-1">平衡佔位</div>
+            </div>
+            
         </div>
     </nav>
 
     <!-- 主舞台區域 -->
-    <main class="flex-1 max-w-6xl mx-auto w-full px-4 md:px-8 py-8 flex flex-col items-center justify-center">
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 md:px-8 py-4 flex flex-col items-center justify-center">
         
         <!-- 作品標題卡片 -->
-        <div class="text-center mb-6 w-full">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-2.5 tracking-wider uppercase">
-                <i class="fa-solid fa-rotate-right mr-1.5 animate-spin-slow"></i> 3D Interactive View
-            </span>
-            <h1 class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-2 leading-tight">
+        <div class="text-center mb-4 w-full">
+            <h1 class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight">
                 Lemoe Vtuber 瀕臨絕種團 <span class="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400">No.Fifteen 十五號</span>
             </h1>
-            <p class="text-slate-400 text-sm font-medium">十五號 15號 — <span class="text-fuchsia-400 font-semibold">低角度仰視視角</span></p>
         </div>
 
         <!-- 360 旋轉主面板 -->
