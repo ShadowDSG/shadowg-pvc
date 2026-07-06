@@ -8,7 +8,7 @@
     <!-- Google Fonts Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&family=Noto+Sans+TC:wght=300;400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,7 +33,7 @@
         }
     </script>
 
-    <!-- FontAwesome Icons (已升級至 6.5.1 以完美支援全新的 X 商標圖標) -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
@@ -48,10 +48,6 @@
            🎯 背景圖片與全域樣式設定
            ========================================================================== */
         body {
-            /* 這裡已替換為您指定的 R2 雲端儲存空間底下的 banner.jpg 作為網頁背景。
-               前面的 radial-gradient 是一個深色半透明的漸層遮罩，能融入原有的科幻霓虹感，
-               並確保您的文字不會被背景圖干擾，維持絕佳的閱讀對比度。
-            */
             background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
             background-attachment: fixed;
             background-size: cover;
@@ -423,10 +419,10 @@
             { href: "pawa.html", title: "BiCute Bunnies Figure チェンソーマン ーパワーー", img: "153.jpg", brand: "FURYU" },
 
             // ==================== NEONMAX 系列 ====================
-            { href: "YingSwei1.html", title: "応瑞", img: "119.jpg", brand: "NEONMAX" },
+            // 備註：此處已移除與精選重疊的重複資料，改由動態載入
 
             // ==================== STRONGER 系列 ====================
-            { href: "iriasu1.html", title: "イリヤスフィール・フォン・アインツベルン PRISMA Racing ver.", img: "120.jpg", brand: "STRONGER" },
+            // 備註：此處已移除與精選重疊的重複資料，改由動態載入
 
             // ==================== QUESQ 系列 ====================
             { href: "shutenzom1.html", title: "アサシン／酒呑童子 英霊祭裝Ver.", img: "116.jpg", brand: "QUESQ" },
@@ -482,7 +478,7 @@
             // ==================== HOBBYMAX 系列 ====================
             { href: "Xayah.html", title: "英雄聯盟 剎雅", img: "150.jpg", brand: "HOBBYMAX" },
 
-            // ==================== LEMOE 系列 (不設為精選) ====================
+            // ==================== LEMOE 系列 ====================
             { href: "15th.html", title: "Lemoe Vtuber 瀕臨絕種團 No.Fifteen 十五號", img: "155.jpg", brand: "LEMOE" }
         ];
 
@@ -532,16 +528,37 @@
             renderBrandSliders();
             renderFiguresGrid();
             
-            // 設定總計模型數量
+            // 設定總計模型數量 (去重後的實際數量)
             document.getElementById('totalCount').textContent = figuresDataset.length;
         });
 
-        // 渲染品牌圓角滑動過濾按鈕
+        // 渲染品牌圓角滑動過濾按鈕 (動態支援：只計算與顯示當前分類下的品牌)
         function renderBrandSliders() {
             const container = document.getElementById('brandFilterContainer');
             container.innerHTML = '';
 
             Object.entries(brandsConfig).forEach(([key, value]) => {
+                // 核心改進 1：動態計算此品牌在當前分類（例如：精選推薦）及搜尋字詞下的模型數量
+                const brandCount = figuresDataset.filter(figure => {
+                    // 1. 分類篩選 (Pick Up)
+                    if (currentCategory === 'featured' && !figure.featured) return false;
+
+                    // 2. 搜尋文字篩選
+                    if (searchQuery) {
+                        const matchTitle = figure.title.toLowerCase().includes(searchQuery);
+                        const matchBrand = figure.brand.toLowerCase().includes(searchQuery);
+                        const matchHref = figure.href.toLowerCase().includes(searchQuery);
+                        if (!matchTitle && !matchBrand && !matchHref) return false;
+                    }
+
+                    return figure.brand === key;
+                }).length;
+
+                // 核心改進 2：若目前條件下該品牌的數量為 0，則不顯示，使介面維持最乾淨狀態，避免破空畫面
+                if (brandCount === 0) {
+                    return; 
+                }
+
                 const isSelected = currentBrand === key;
                 const button = document.createElement('button');
                 button.className = `flex-none flex items-center space-x-2 px-3.5 py-2 rounded-xl transition-all border duration-300 ${
@@ -567,8 +584,7 @@
 
                 button.appendChild(img);
 
-                // 各廠牌擁有的模型計數標籤
-                const brandCount = figuresDataset.filter(f => f.brand === key).length;
+                // 各廠牌擁有的模型計數標籤 (改為動態顯示數量)
                 const badge = document.createElement('span');
                 badge.className = `text-[10px] px-1.5 py-0.5 rounded ${
                     isSelected ? 'bg-violet-800 text-violet-200' : 'bg-slate-850 text-slate-500'
@@ -626,6 +642,19 @@
                 document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
             }
 
+            // 核心改進 3：完美防呆。切換時如果已選取的品牌在新模式下完全沒有作品，則自動將其重設，防止頁面瞬間變空白
+            if (currentBrand) {
+                const hasModelInNewCategory = figuresDataset.some(f => 
+                    f.brand === currentBrand && 
+                    (category === 'all' || f.featured)
+                );
+                if (!hasModelInNewCategory) {
+                    currentBrand = null;
+                    document.getElementById('btnClearBrand').classList.add('hidden');
+                }
+            }
+
+            renderBrandSliders();
             renderFiguresGrid();
         }
 
@@ -642,6 +671,22 @@
                 btnClear.classList.add('hidden');
             }
 
+            // 搜尋防呆：如果目前選定的品牌在搜尋過濾下無任何對應項目，重設品牌選取
+            if (currentBrand) {
+                const hasModelInSearch = figuresDataset.some(f => {
+                    if (currentCategory === 'featured' && !f.featured) return false;
+                    const matchTitle = f.title.toLowerCase().includes(searchQuery);
+                    const matchBrand = f.brand.toLowerCase().includes(searchQuery);
+                    const matchHref = f.href.toLowerCase().includes(searchQuery);
+                    return f.brand === currentBrand && (!searchQuery || matchTitle || matchBrand || matchHref);
+                });
+                if (!hasModelInSearch) {
+                    currentBrand = null;
+                    document.getElementById('btnClearBrand').classList.add('hidden');
+                }
+            }
+
+            renderBrandSliders();
             renderFiguresGrid();
         }
 
@@ -651,6 +696,7 @@
             input.value = '';
             searchQuery = '';
             document.getElementById('clearSearch').classList.add('hidden');
+            renderBrandSliders();
             renderFiguresGrid();
         }
 
@@ -669,13 +715,13 @@
 
             // 計算出目前符合過濾與搜尋條件的模型陣列
             const filtered = figuresDataset.filter(figure => {
-                // 分類篩選 (Pick Up)
+                // 1. 分類篩選 (Pick Up)
                 if (currentCategory === 'featured' && !figure.featured) return false;
 
-                // 品牌篩選
+                // 2. 品牌篩選
                 if (currentBrand && figure.brand !== currentBrand) return false;
 
-                // 搜尋文字篩選 (匹配標題、大廠、或網頁網址)
+                // 3. 搜尋文字篩選 (匹配標題、大廠、或網頁網址)
                 if (searchQuery) {
                     const matchTitle = figure.title.toLowerCase().includes(searchQuery);
                     const matchBrand = figure.brand.toLowerCase().includes(searchQuery);
