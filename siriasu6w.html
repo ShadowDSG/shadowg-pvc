@@ -1,57 +1,173 @@
-<html>
-	<head>
-		<title>ShadowG的攝影小屋</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body>
-		<div class="page-wrap">
-			<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html" class="active"><span class="icon fa-home"></span></a></li>
-					</ul>
-				</nav>
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>年齡確認 Age Verification - ShadowG的攝影小屋</title>
+    
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        sirius: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // 碧波翠綠
+                            600: '#0d9488',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#021e2b', // 深海碧波暗藍
+                        },
+                        azure: {
+                            400: '#38bdf8', // 映雲天空藍
+                            500: '#0ea5e9',
+                        },
+                        gold: {
+                            400: '#facc15', // 華麗金邊
+                            500: '#eab308',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-			<!-- Main -->
-				<section id="main">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-					<!-- Banner -->
-						<section id="banner">
-							<div class="inner">
-								<h1>ShadowG's studio</h1>
-								<p>此模型只適合十八歲或以上觀看</p>
-								<p>如未滿18歲，請按下方離開鍵</p>
+    <style>
+        /* ==========================================================================
+           🎯 全域整體放大 140% (繼承精緻視覺比例)
+           ========================================================================== */
+        html {
+            zoom: 1.4; /* 將整體版面放大 140% 延續整體展廳規格 */
+        }
 
+        body {
+            /* 青雲映す碧波專屬：晴空、碧波浪花與水面微光的古風漸層 */
+            background-image: 
+                radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 85%, rgba(13, 148, 136, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(2, 30, 43, 0.95) 0%, rgba(1, 7, 15, 0.99) 100%),
+                url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
 
-								<ul class="actions">
-									<li><a href="siriasu6.html" class="button alt scrolly big">我已滿18歲 </a></li>
-									
-									&emsp;&emsp;&emsp;
-									
-									<li><a href="index.html" class="button alt scrolly big">離開 </a></li>
-							
+        /* 磨砂玻璃質感 */
+        .glass-panel {
+            background: rgba(2, 23, 38, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-								</ul>
-							</div>
-						</section>
+        /* 碧海青雲發光陰影 */
+        .neon-shadow-sirius {
+            box-shadow: 0 0 35px rgba(13, 148, 136, 0.15), 0 0 15px rgba(56, 189, 248, 0.1);
+        }
+        
+        .neon-shadow-gold {
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.25);
+        }
+    </style>
+</head>
+<body class="text-teal-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-teal-900 selection:text-white">
 
+    <!-- 頂部簡約導覽列 -->
+    <nav class="w-full glass-panel border-b border-teal-950/40 py-3 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-black/55">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- 左側：攝影小屋標題 -->
+            <a href="index.html" class="flex items-center space-x-2 group">
+                <div class="w-7 h-7 rounded-lg bg-teal-600 flex items-center justify-center group-hover:bg-teal-500 transition-all shadow-md">
+                    <i class="fa-solid fa-camera text-xs text-white"></i>
+                </div>
+                <span class="text-xs tracking-widest font-black uppercase text-white group-hover:text-teal-300 transition-colors">ShadowG的攝影小屋</span>
+            </a>
+            
+            <!-- 右側：主頁按鈕 -->
+            <a href="index.html" class="text-slate-400 hover:text-white text-xs transition-colors flex items-center gap-1.5 font-semibold">
+                <i class="fa-solid fa-house"></i> 返回大廳
+            </a>
+        </div>
+    </nav>
 
-					<!-- Contact -->
+    <!-- 主舞台區域：年齡確認警告牆 -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-8 flex flex-col items-center justify-center">
+        
+        <!-- 警告面板容器 -->
+        <div class="w-full max-w-md glass-panel rounded-3xl p-8 md:p-10 border border-teal-900/40 relative flex flex-col items-center overflow-hidden neon-shadow-sirius">
+            
+            <!-- 裝飾背景燈效 -->
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-teal-500/10 blur-2xl rounded-full"></div>
+            <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-sky-500/10 blur-2xl rounded-full"></div>
 
+            <!-- 1. 年齡限制 18+ 警告圖示 -->
+            <div class="relative w-20 h-20 mb-6 flex items-center justify-center rounded-full border-2 border-gold-400/30 bg-black/60 neon-shadow-gold group-hover:scale-105 transition-transform duration-500">
+                <!-- 內環裝飾 -->
+                <div class="absolute inset-1.5 rounded-full border border-dashed border-gold-400/20"></div>
+                <!-- 核心文字 -->
+                <span class="text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-gold-400 via-amber-200 to-yellow-500">18+</span>
+            </div>
 
-				
-				</section>
-		</div>
+            <!-- 2. 主標題 -->
+            <h2 class="text-xl md:text-2xl font-black text-white text-center mb-1.5 tracking-wide">
+                ShadowG's Studio <span class="text-gold-400 font-extrabold">年齡確認</span>
+            </h2>
+            <div class="w-12 h-0.5 bg-gradient-to-r from-transparent via-teal-500 to-transparent mb-6"></div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+            <!-- 3. 警告文字區塊 -->
+            <div class="space-y-3 mb-8 text-center text-slate-300">
+                <p class="text-sm font-bold leading-relaxed text-slate-100 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-500 animate-pulse text-xs"></i> 
+                    此模型作品只適合十八歲或以上觀看
+                </p>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    本展間包含天狼星細緻服飾之局部特寫展示 (胸 ex)，內容可能涉及部分敏感或成人向模型攝影畫面。
+                </p>
+                <p class="text-xs text-gold-400 font-semibold leading-relaxed">
+                    如未滿 18 歲，請按下方「離開」按鈕返回展廳。
+                </p>
+            </div>
 
-	</body>
+            <!-- 4. 按鈕操控區 -->
+            <div class="w-full flex flex-col gap-3">
+                <!-- 進場按鈕 (滿18歲) -> 修正連結至 siriasu6.html -->
+                <a href="siriasu6.html" class="w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-gradient-to-r from-teal-600 via-emerald-500 to-cyan-500 hover:from-teal-500 hover:to-cyan-400 text-white font-extrabold text-xs tracking-widest uppercase shadow-lg shadow-teal-500/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] group">
+                    <span>我已滿 18 歲，進入展間</span>
+                    <i class="fa-solid fa-circle-check text-xs group-hover:translate-x-0.5 transition-transform"></i>
+                </a>
+                
+                <!-- 離場按鈕 -->
+                <a href="index.html" class="w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800/80 hover:border-slate-700 text-slate-400 hover:text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 active:scale-[0.98]">
+                    <i class="fa-solid fa-circle-xmark text-xs"></i>
+                    <span>離開</span>
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="bg-black/80 border-t border-teal-950/40 py-6 px-4 text-center text-xs text-slate-500 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ShadowG的攝影小屋. 僅供個人模型愛好者交流與作品展示。</p>
+            <p>Designed with <i class="fa-solid fa-heart text-teal-500 animate-pulse"></i> using Tailwind CSS</p>
+        </div>
+    </footer>
+
+</body>
 </html>
