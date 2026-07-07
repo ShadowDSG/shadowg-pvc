@@ -1,173 +1,486 @@
-<html>
-
-    <head>
-        <title>ShadowG的攝影小屋</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=0.5" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-    </head>
-    <body>
-        <div class="page-wrap">
-
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.html" class="active"><span class="icon fa-home"></span></a></li>
-                    </ul>
-                </nav>
-
-            <!-- Main -->
-                <section id="main">
-
-                    <!-- Banner -->
-                        <section id="baner">
-                            
-                                <h1><font color="black">&emsp; イリヤスフィール・フォン・アインツベルン　PRISMA Racing ver. &nbsp;&nbsp;&nbsp;3.半身 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="https://forum.gamer.com.tw/Co.php?bsn=60036&sn=329461"><font color="navy">開箱文連結</u></a>)
-                                   
-                                    <center>(
-                                        <font color="navy"><a href="iriasu1.html">1.全身 </a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="iriasu2.html">2.全身 旗なし</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="iriasu4.html">4.下半身 </a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="iriasu5.html">5.全身 低視點</a>&nbsp;&nbsp;<font color="black">
-
-
-                                            )</h1>
-                                <p></a></p>
-                                <ul class="actions">
-                                   
-                                </ul>
-                            </div>
-                        </section>
-
-                    <!-- Gallery -->
-                        <section id="galleries">
-
-                            <!-- Photo Galleries -->
-                              
-                                    <header class="special">
-                                        <h1></h1>
-                                    </header>
-                                    <DIV style="text-align:center;"><p></p></DIV>
-
-
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-
-    <title>Sample</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>伊莉雅 PRISMA Racing Ver. (半身) 360° 互動展廳 - ShadowG的攝影小屋</title>
     
-
-</head>
-
-<body>
-
-<section id="gallery">
-
-<footer>    
-<div id="circlr"></div>
-
-<script>
-const fileName = window.location.pathname.split("/").pop().replace(".html", "");
-const folder = fileName;
-
-const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
-const total = 36;
-
-const container = document.getElementById("circlr");
-
-for (let i = 1; i <= total; i++) {
-
-    const img = document.createElement("img");
-
-    img.setAttribute(
-        "data-src",
-        `${baseUrl}/${folder}/${i}.jpg`
-    );
-
-    container.appendChild(img);
-}
-</script>
-</section>
-</footer>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.singlePageNav.min.js"></script>
-        <script src="js/circlr.min.js"></script>
-        <script>
-
-            // Prevent console.log from generating errors in IE for the purposes of the demo
-            if ( ! window.console ) console = { log: function(){} };
-
-            // The actual plugin
-            $('.single-page-nav').singlePageNav({
-                offset: $('.single-page-nav').outerHeight(),
-                filter: ':not(.external)',
-                updateHash: true,
-                beforeStart: function() {
-                    console.log('begin scrolling');
-                },
-                onComplete: function() {
-                    console.log('done scrolling');
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
                 }
-            });
-            
-            $(document).ready(function ($) {
+            }
+        }
+    </script>
 
-                // delegate calls to data-toggle="lightbox"
-                $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-                    event.preventDefault();
-                    return $(this).ekkoLightbox({
-                        always_show_close: true
-                    });
-                });
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-            });
+    <style>
+        html {
+            zoom: 1.4; /* 頁面整體等比例放大 1.4 倍 */
+        }
+        body {
+            /* 伊莉雅賽車版專屬：碳纖維格子、極速粉紅霓虹與科技感暗夜賽道風格 */
+            background-image:
+                /* 賽車霓虹光束 */
+                radial-gradient(circle at 10% 20%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 45%),
+                /* 粉色極光魔法微光 */
+                radial-gradient(circle at 50% 15%, rgba(219, 39, 119, 0.08) 0%, transparent 50%),
+                /* 賽車方格微網紋理 (Checkered Mesh) */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect width='12' height='12' fill='%23ec4899' fill-opacity='0.015'/%3E%3Crect x='12' y='12' width='12' height='12' fill='%23ec4899' fill-opacity='0.015'/%3E%3C/svg%3E"),
+                /* 基礎深邃底色 */
+                linear-gradient(135deg, #0a0105 0%, #030006 50%, #010002 100%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
 
-            var crl = circlr('circlr', {
-              scroll : true,
-              loader : 'loader'
-            });
-            
-        </script>
+        /* 磨砂玻璃質感面板 (賽車粉邊框) */
+        .glass-panel {
+            background: rgba(12, 2, 6, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(236, 72, 153, 0.1);
+        }
 
-</body>
-</html>
+        /* 旋轉器拖拽中手勢狀態 */
+        .grabbing {
+            cursor: grabbing !important;
+        }
 
+        /* 圖片疊加平滑轉場 */
+        #imageStack img {
+            transition: opacity 0.05s ease-out;
+            will-change: opacity;
+        }
 
-    <p></p>
-    <p></p>
-    <center><p>圖片有36張，需要點讀取時間</p>
-    <center><p>圖片會閃是還沒讀取完成，轉動一圈後就不會了</p>
-                    
+        /* 隱藏滾動條 */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-                    <!-- Contact -->
-                        <section id="contact">
-                            <!-- Social -->
-                                <div class="social column">
-                                    <h3>About Me</h3>
-                                    <p>2018踏入相機攝影，之前入坑的動機就是為了拍攝PVC，但是去日本的原因，反而兩年都是在拍攝風光較多。2020回國後，開始練習PVC攝影。</p>
-                                    <p>如果你也想加入360旋轉圖的製作，歡迎巴哈直接找我；或者只是想用於你的開箱文中，我也可以上傳主機將網址給你，不會登於我的網頁上。</p>
-                                </div>
+        /* 自定義高質感極簡白色滑桿軌道與 Thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            transition: transform 0.1s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
 
+        /* 賽車賽道黑白格裝飾條 */
+        .checkered-bar {
+            background-image: repeating-linear-gradient(45deg, 
+                #000000 0px, #000000 8px, 
+                #ffffff 8px, #ffffff 16px
+            );
+            background-size: 22px 22px;
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans min-h-screen relative overflow-x-hidden antialiased">
 
-                
-                        </section>
+    <!-- 賽車風馳線條背景裝飾 (左上) -->
+    <div class="absolute left-2 top-[15%] w-48 md:w-72 h-auto opacity-10 pointer-events-none select-none z-0 hidden lg:block">
+        <svg viewBox="0 0 200 100" fill="none" stroke="url(#pinkGradient)" stroke-width="1.5">
+            <path d="M -10 20 L 120 20 A 40 40 0 0 1 160 60 L 160 80 Q 160 100 210 100" />
+            <path d="M 20 40 L 100 40 A 20 20 0 0 1 120 60 L 120 70 Q 120 85 160 85" opacity="0.7"/>
+            <path d="M 50 60 L 80 60 A 10 10 0 0 1 90 70 L 90 80" opacity="0.4"/>
+            <defs>
+                <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ec4899" />
+                    <stop offset="100%" stop-color="#a855f7" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- 科技感賽車轉速圈背景裝飾 (右下) -->
+    <div class="absolute right-2 bottom-[15%] w-60 md:w-80 h-auto opacity-10 pointer-events-none select-none z-0 hidden lg:block animate-pulse" style="animation-duration: 6s;">
+        <svg viewBox="0 0 200 200" fill="none" stroke="url(#cyanGradient)" stroke-width="1">
+            <circle cx="100" cy="100" r="80" stroke-dasharray="10 5 2 5" />
+            <circle cx="100" cy="100" r="65" stroke-dasharray="20 10" opacity="0.8" />
+            <circle cx="100" cy="100" r="50" stroke-dasharray="5 20" opacity="0.5" />
+            <path d="M 100 100 L 150 150" stroke="#06b6d4" stroke-width="2" opacity="0.7" />
+            <defs>
+                <linearGradient id="cyanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#06b6d4" />
+                    <stop offset="100%" stop-color="#ec4899" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <header class="w-full max-w-7xl mx-auto px-4 pt-6 pb-2 flex flex-col md:flex-row items-center justify-between gap-4 z-40 relative">
+        <!-- 返回按鈕 (極簡膠囊造型) -->
+        <a href="index.html" class="flex items-center space-x-2 px-4 py-2 rounded-full bg-black/40 hover:bg-black/60 text-slate-300 hover:text-white border border-white/10 text-xs font-semibold tracking-wide transition-all duration-300">
+            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+            <span>返回模型展廳</span>
+        </a>
+
+        <!-- 姿態選擇膠囊列 (伊莉雅專屬姿態) -->
+        <div class="inline-flex items-center p-1 bg-black/50 border border-white/10 rounded-full text-[11px] font-bold max-w-full overflow-x-auto scrollbar-none gap-1">
+            <a href="iriasu1.html" class="px-4 py-1.5 rounded-full text-slate-400 hover:text-slate-200 transition-colors whitespace-nowrap">1. 全身</a>
+            <a href="iriasu2.html" class="px-4 py-1.5 rounded-full text-slate-400 hover:text-slate-200 transition-colors whitespace-nowrap">2. 全身 旗なし</a>
+            <a href="iriasu3.html" class="px-5 py-1.5 rounded-full bg-gradient-to-r from-pink-600 to-rose-500 text-white font-black shadow-lg shadow-pink-600/30 transition-all duration-300 whitespace-nowrap">3. 半身 👁️</a>
+            <a href="iriasu4.html" class="px-4 py-1.5 rounded-full text-slate-400 hover:text-slate-200 transition-colors whitespace-nowrap">4. 下半身</a>
+            <a href="iriasu5.html" class="px-4 py-1.5 rounded-full text-slate-400 hover:text-slate-200 transition-colors whitespace-nowrap">5. 全身 低視點</a>
         </div>
 
-        <!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.poptrox.min.js"></script>
-            <script src="assets/js/jquery.scrolly.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <script src="assets/js/main.js"></script>
+        <!-- 開箱文連結 (精緻幽粉膠囊造型，置於最右側) -->
+        <a href="https://forum.gamer.com.tw/Co.php?bsn=60036&sn=329461" target="_blank" rel="noopener" class="flex items-center space-x-2 px-4 py-2 rounded-full bg-pink-950/40 hover:bg-pink-900/60 text-pink-300 hover:text-pink-100 border border-pink-500/20 text-xs font-semibold tracking-wide transition-all duration-300 shadow-lg shadow-pink-950/25">
+            <i class="fa-solid fa-book-open text-[10px]"></i>
+            <span>開箱文連結</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+        </a>
+    </header>
 
-    </body>
+    <!-- 展間主結構區 -->
+    <main class="max-w-7xl mx-auto px-4 pt-4 pb-20 relative z-10 flex flex-col items-center">
+
+        <!-- 標題面板 (魔法少女 & 賽車格調) -->
+        <div class="text-center mb-6">
+            <h1 class="text-xl md:text-3xl font-black tracking-wider text-slate-100 flex flex-wrap items-center justify-center gap-2">
+                <span>イリヤスフィール</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-rose-400 font-black">半身</span>
+            </h1>
+        </div>
+
+        <!-- 360度互動主展示區，外框具備賽車粉霓虹描邊 (寬度1080px，橫向4:3) -->
+        <div class="w-full max-w-[1080px] relative">
+            <div class="relative bg-black/90 rounded-2xl overflow-hidden border border-pink-500/30 shadow-[0_0_35px_rgba(236,72,153,0.12),0_0_35px_rgba(6,182,212,0.08)] transition-all duration-500" id="viewerWrapper">
+                
+                <!-- 裝飾邊條：黑白賽車方格線 -->
+                <div class="absolute top-0 inset-x-0 h-1.5 checkered-bar opacity-80 z-20"></div>
+
+                <!-- 預載入遮罩 (解決圖片快取闪爍問題) -->
+                <div id="preloader" class="absolute inset-0 z-30 bg-[#0d0103] flex flex-col items-center justify-center p-6 transition-all duration-500">
+                    <div class="relative w-20 h-20 mb-4 flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-full border-4 border-slate-900"></div>
+                        <div class="absolute inset-0 rounded-full border-4 border-pink-500 border-t-transparent animate-spin"></div>
+                        <i class="fa-solid fa-flag-checkered text-2xl text-pink-500 animate-pulse"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-200 tracking-widest uppercase">PRISMA Race Frame Loading</h3>
+                    <p class="text-[11px] text-slate-400 mt-2 max-w-sm text-center leading-relaxed">
+                        正在下載賽車寫真影格... <span class="text-pink-500 font-semibold" id="loadedProgress">0%</span>
+                    </p>
+                    <div class="w-40 h-1 bg-slate-900 rounded-full mt-4 overflow-hidden">
+                        <div id="loaderProgressBar" class="h-full bg-gradient-to-r from-pink-600 to-rose-500 w-0 transition-all duration-200"></div>
+                    </div>
+                </div>
+
+                <!-- 手機版橫放建議提示標籤 -->
+                <div class="absolute top-4 left-4 z-20 pointer-events-none">
+                    <div class="bg-black/70 border border-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg text-[9px] font-bold text-slate-300 flex items-center space-x-1.5">
+                        <i class="fa-solid fa-mobile-screen-button text-pink-500"></i>
+                        <span>手機版建議橫放觀看</span>
+                    </div>
+                </div>
+
+                <!-- 互動圖片畫布區域 (橫向 4:3 比例) -->
+                <div id="canvas360" class="aspect-[4/3] w-full relative overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing">
+                    <div id="imageStack" class="absolute inset-0 w-full h-full flex items-center justify-center">
+                        <!-- 圖片元素將動態載入 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 整合式底欄控制面板 (白色流暢進度滑桿搭配粉紅控制座) -->
+            <div class="mt-4 bg-black/60 border border-white/5 rounded-2xl p-4 flex items-center justify-between gap-4 text-white">
+                
+                <!-- 左側：播放開關 + 自動旋轉羅盤 -->
+                <div class="flex items-center space-x-3.5">
+                    <!-- 自動旋轉 Play/Pause 按鈕 (高飽和度粉紅底白標) -->
+                    <button id="btnAutoSpin" onclick="toggleAutoSpin()" class="w-10 h-10 rounded-full bg-pink-600 hover:bg-pink-500 flex items-center justify-center transition-all duration-200 shadow-md shadow-pink-600/30 cursor-pointer" title="自動旋轉">
+                        <i class="fa-solid fa-play text-xs text-white" id="btnSpinIcon"></i>
+                    </button>
+                    <!-- 重置/手動引導羅盤圖示 -->
+                    <button onclick="resetFrame()" class="text-slate-400 hover:text-white transition-colors duration-200" title="重設第一幀">
+                        <i class="fa-solid fa-compass text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- 中間：白色流暢進度滑桿 (完美同步旋轉進度) -->
+                <input type="range" id="frameSlider" min="1" max="36" value="1" oninput="onSliderMove(this.value)" class="flex-1 accent-white bg-slate-800 h-1 rounded-lg cursor-pointer">
+
+                <!-- 右側：影格膠囊計數 badge -->
+                <div class="border border-white/10 bg-black/40 px-3 py-1.5 rounded-lg text-xs font-mono tracking-wider text-slate-300" id="frameBadge">
+                    1 / 36
+                </div>
+            </div>
+
+            <!-- 精美資訊卡片區 (賽車娘雙欄風格) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-4 text-left">
+                <!-- 卡片一：關於 SHADOWG -->
+                <div class="flex items-start space-x-4 p-5 bg-black/60 border border-white/5 rounded-2xl">
+                    <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-pink-950/40 border border-pink-500/20 flex items-center justify-center text-pink-400 text-lg">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">關於 SHADOWG</p>
+                        <p class="text-sm text-slate-100 font-bold mt-0.5">PVC 攝影與 360° 製作</p>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2">2018 年踏入相機攝影，初衷是為了紀錄 PVC。曾於日本拍攝風光兩年，2020 年回國後，開始專注練習 PVC 攝影與 360° 旋轉展示製作。</p>
+                    </div>
+                </div>
+
+                <!-- 卡片二：加入旋轉圖製作 / 合作 -->
+                <div class="flex items-start space-x-4 p-5 bg-black/60 border border-white/5 rounded-2xl">
+                    <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-pink-950/40 border border-pink-500/20 flex items-center justify-center text-pink-400 text-lg">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">加入旋轉圖製作 / 合作</p>
+                        <p class="text-sm text-slate-100 font-bold mt-0.5">歡迎與我聯繫聯絡</p>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2">如果你想加入 360 旋轉圖的製作，或希望在您的開箱文中嵌入展示圖，歡迎隨時透過巴哈姆特私訊與我取得聯繫！</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部注意事項說明盒 (粉紅邊框賽車指引設計) -->
+            <div class="w-full mt-4 p-4 bg-[#1f020a]/30 border-l-4 border-pink-600 rounded-r-2xl text-xs space-y-2 text-slate-300 leading-relaxed shadow-lg">
+                <div class="flex items-start space-x-2">
+                    <i class="fa-solid fa-circle-info text-pink-500 mt-0.5"></i>
+                    <div>
+                        <p>📌 轉動時若感覺畫面閃爍，此為初次下載延遲。本網頁已內建<strong class="text-pink-400">完全預載機制</strong>，等上方進度完成後，即可順暢流暢地旋轉。</p>
+                        <p class="mt-1.5">📌 手機觀看時，推薦將手機「橫置螢幕」並開啟全螢幕以獲得最佳細節視界。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="bg-[#030002] border-t border-white/5 py-8 px-4 text-center text-[11px] text-slate-600 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ShadowG的攝影小屋. All rights reserved. 僅供個人模型攝影喜好展示交流。</p>
+            <p>Designed with <i class="fa-solid fa-heart text-pink-600"></i> using Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         📦 360度互動控制核心邏輯 (Pure Vanilla JS)
+         ========================================================================== -->
+    <script>
+        const folder = "iriasu3";
+        const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+        const totalFrames = 36;
+        
+        let loadedImagesCount = 0;
+        let currentFrame = 1; // 1 to 36
+        const imgElements = [];
+        let isGrabbing = false;
+        let startX = 0;
+        let currentX = 0;
+        const sensitivity = 8; // 滑動多少像素切換一張圖片
+
+        // 自動播放控制
+        let autoSpinInterval = null;
+        let isAutoSpinning = false;
+
+        const imageStack = document.getElementById("imageStack");
+        const preloader = document.getElementById("preloader");
+        const loadedProgress = document.getElementById("loadedProgress");
+        const loaderProgressBar = document.getElementById("loaderProgressBar");
+        const frameSlider = document.getElementById("frameSlider");
+        const frameBadge = document.getElementById("frameBadge");
+
+        // 啟動圖片序列快取預載
+        function preloadImages() {
+            for (let i = 1; i <= totalFrames; i++) {
+                const img = document.createElement("img");
+                img.src = `${baseUrl}/${folder}/${i}.jpg`;
+                img.alt = `Pose Frame ${i}`;
+                img.className = `absolute inset-0 w-full h-full object-contain pointer-events-none select-none ${i === 1 ? 'opacity-100 block' : 'opacity-0 hidden'}`;
+                
+                img.onload = () => {
+                    loadedImagesCount++;
+                    const percent = Math.round((loadedImagesCount / totalFrames) * 100);
+                    
+                    // 更新精緻預載器狀態
+                    loadedProgress.textContent = `${percent}%`;
+                    loaderProgressBar.style.width = `${percent}%`;
+
+                    // 所有圖片下載就緒後解鎖主控
+                    if (loadedImagesCount === totalFrames) {
+                        setTimeout(onPreloadFinished, 400);
+                    }
+                };
+
+                img.onerror = () => {
+                    loadedImagesCount++;
+                    if (loadedImagesCount === totalFrames) {
+                        onPreloadFinished();
+                    }
+                };
+
+                imageStack.appendChild(img);
+                imgElements.push(img);
+            }
+        }
+
+        // 預先載入完畢，開啟 3D 展間
+        function onPreloadFinished() {
+            preloader.classList.add("opacity-0", "pointer-events-none");
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 500);
+
+            // 啟動預設的自動旋轉
+            toggleAutoSpin(true);
+        }
+
+        // 變更當前顯示的畫面框
+        function showFrame(frameIndex) {
+            // 邊界防呆（1 - 36 循環）
+            if (frameIndex > totalFrames) {
+                currentFrame = 1;
+            } else if (frameIndex < 1) {
+                currentFrame = totalFrames;
+            } else {
+                currentFrame = frameIndex;
+            }
+
+            // 更新圖片 Stack 中每個圖檔的能見度
+            imgElements.forEach((img, idx) => {
+                if (idx + 1 === currentFrame) {
+                    img.classList.remove("opacity-0", "hidden");
+                    img.classList.add("opacity-100", "block");
+                } else {
+                    img.classList.remove("opacity-100", "block");
+                    img.classList.add("opacity-0", "hidden");
+                }
+            });
+
+            // 更新 Slider 與膠囊 Badge
+            frameSlider.value = currentFrame;
+            frameBadge.textContent = `${currentFrame} / ${totalFrames}`;
+        }
+
+        // 手動操作滑桿時的同步事件
+        function onSliderMove(value) {
+            if (isAutoSpinning) toggleAutoSpin(false); // 手動拖曳時先暫停自動旋轉
+            showFrame(parseInt(value));
+        }
+
+        // 重置回預設首幀視角
+        function resetFrame() {
+            if (isAutoSpinning) toggleAutoSpin(false);
+            showFrame(1);
+        }
+
+        // 滑鼠與觸控事件綁定
+        const canvas360 = document.getElementById("canvas360");
+
+        // 電腦滑鼠拖曳
+        canvas360.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            isGrabbing = true;
+            canvas360.classList.add("grabbing");
+            startX = e.clientX;
+            if (isAutoSpinning) toggleAutoSpin(false); // 開始手動操作時暫停自動旋轉
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!isGrabbing) return;
+            currentX = e.clientX;
+            const deltaX = currentX - startX;
+
+            if (Math.abs(deltaX) >= sensitivity) {
+                const framesToShift = Math.floor(deltaX / sensitivity);
+                showFrame(currentFrame - framesToShift);
+                startX = currentX; // 歸零基準點以求極致流暢
+            }
+        });
+
+        window.addEventListener("mouseup", () => {
+            isGrabbing = false;
+            canvas360.classList.remove("grabbing");
+        });
+
+        // 手機與平板觸控滑動
+        canvas360.addEventListener("touchstart", (e) => {
+            isGrabbing = true;
+            startX = e.touches[0].clientX;
+            if (isAutoSpinning) toggleAutoSpin(false);
+        });
+
+        canvas360.addEventListener("touchmove", (e) => {
+            if (!isGrabbing) return;
+            currentX = e.touches[0].clientX;
+            const deltaX = currentX - startX;
+
+            if (Math.abs(deltaX) >= sensitivity) {
+                const framesToShift = Math.floor(deltaX / sensitivity);
+                showFrame(currentFrame - framesToShift);
+                startX = currentX;
+            }
+        });
+
+        canvas360.addEventListener("touchend", () => {
+            isGrabbing = false;
+        });
+
+        // 支援滑鼠滾輪，極速便利
+        canvas360.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            if (isAutoSpinning) toggleAutoSpin(false);
+            const dir = e.deltaY > 0 ? 1 : -1;
+            showFrame(currentFrame + dir);
+        }, { passive: false });
+
+        // 控制自動旋轉
+        function toggleAutoSpin(forceState = null) {
+            const newState = (forceState !== null) ? forceState : !isAutoSpinning;
+            
+            if (newState) {
+                if (isAutoSpinning) return;
+                isAutoSpinning = true;
+                
+                // 更換按鈕視覺為 "Pause"
+                document.getElementById("btnSpinIcon").className = "fa-solid fa-pause text-xs text-white";
+
+                // 自動每 120ms 移動一格視角
+                autoSpinInterval = setInterval(() => {
+                    showFrame(currentFrame + 1);
+                }, 120);
+            } else {
+                if (!isAutoSpinning) return;
+                isAutoSpinning = false;
+                clearInterval(autoSpinInterval);
+
+                // 還原按鈕為 "Play"
+                document.getElementById("btnSpinIcon").className = "fa-solid fa-play text-xs text-white";
+            }
+        }
+
+        // 初始化
+        window.onload = () => {
+            preloadImages();
+        };
+    </script>
+</body>
 </html>
