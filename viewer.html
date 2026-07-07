@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>載入中... - ShadowG的攝影小屋</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'Noto Sans TC', 'sans-serif'], }, colors: { studio: { 50: '#f5f3ff', 100: '#ede9fe', 800: '#3c096c', 900: '#240046', 950: '#10002b', } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* 這裡把 zoom 改回 1.0，解除比例封印 */
+        html { zoom: 1.0; }
+
+        @media (min-width: 768px) {
+            html { zoom: 1.0; } /* 電腦版也不要強制縮放，交給外框的 % 數來決定 */
+        }
+
+        #drag-tips { bottom: 20px; }
+
+        body { background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.99) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
+        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .neon-shadow-violet { box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 99px; }
+    </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
+
+
+    <div id="age-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-md"></div>
+        
+        <div class="relative bg-[#1a1c29] border border-slate-800 rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl text-center">
+            <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">ShadowG's Studio</h2>
+            <div class="w-12 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full mb-6"></div>
+            
+            <p class="text-sm text-slate-200 font-medium mb-2">此模型內容僅適合 18 歲或以上觀看。</p>
+            <p class="text-xs text-slate-500 mb-8">如未滿 18 歲，請點擊離開按鈕。</p>
+            
+            <div class="flex items-center justify-center gap-4">
+                <button id="btn-age-yes" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-sm font-bold shadow-lg shadow-violet-500/30 hover:scale-105 transition-transform active:scale-95">我已滿 18 歲</button>
+                <button id="btn-age-no" class="px-6 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-sm font-bold hover:bg-slate-700 transition-colors active:scale-95">離開</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <nav class="w-full glass-panel border-b border-slate-800/60 py-2 md:py-2.5 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-slate-950/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-2 md:gap-4">
+            <div class="flex justify-start order-2 md:order-1">
+                <a href="index.html" class="w-full md:w-auto flex items-center justify-center space-x-2.5 px-4 py-1.5 rounded-xl bg-slate-900/90 hover:bg-violet-600/25 border border-slate-800 hover:border-violet-500/40 text-slate-300 hover:text-white shadow-lg transition-all duration-300 active:scale-[0.98] group">
+                    <div class="w-7 h-7 rounded-lg bg-slate-850 flex items-center justify-center group-hover:bg-violet-600 group-hover:scale-105 transition-all">
+                        <i class="fa-solid fa-arrow-left text-xs text-white"></i>
+                    </div>
+                    <span class="text-xs tracking-wider font-extrabold uppercase">返回模型展廳</span>
+                </a>
+            </div>
+
+            <div class="flex justify-center order-1 md:order-2">
+                <div id="angle-switcher" class="flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 shadow-xl shadow-violet-950/30 hidden">
+                    </div>
+            </div>
+
+           <div id="unboxing-link-wrapper" class="hidden md:flex justify-end order-3 min-w-[120px]">
+    <div class="px-4 py-1 invisible pointer-events-none">平衡佔位</div>
+</div>
+        </div>
+    </nav>
+
+   <main class="flex-1 w-full mx-auto px-4 md:px-8 py-4 flex flex-col items-center justify-center">
+        
+        <div class="text-center mb-4 w-full">
+            <h1 id="dynamic-title" class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight">載入中...</h1>
+        </div>
+
+        <div id="viewer-container" class="w-[95%] max-w-[3000px] h-[70vh] md:h-[85vh] bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-violet-600/10 blur-2xl rounded-full"></div>
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-40"></div>
+
+            <div id="loader-screen" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-slate-950/95 transition-opacity duration-500">
+                <div class="relative w-24 h-24 mb-4">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle class="text-slate-800" stroke-width="4" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                        <circle id="loader-progress-bar" class="text-violet-500 transition-all duration-100" stroke-width="5" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                    </svg>
+                    <span id="loader-percentage" class="absolute inset-0 flex items-center justify-center text-lg font-black text-white">0%</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-200 tracking-wider">寫真檔案高畫質預載中...</h3>
+                <p class="text-xs text-slate-500 mt-1.5">載入完畢後即能享有極致順暢的 360° 轉動</p>
+            </div>
+
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden"></div>
+
+            <div class="absolute top-4 left-4 z-10 hidden sm:block">
+                <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm">
+                    <i class="fa-solid fa-mobile-screen-button text-violet-400"></i> 手機版建議橫放觀看
+                </span>
+            </div>
+
+            <div id="drag-tips" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-700 pointer-events-none">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-950/90 border border-slate-800 text-slate-300 gap-2 shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-arrows-left-right animate-pulse text-violet-400"></i> 拖曳、滑動或撥動圖片進行轉動
+                </span>
+            </div>
+        </div>
+
+      <div class="w-[95%] max-w-5xl mt-6 space-y-4">
+            
+            <div class="glass-panel rounded-2xl p-4 flex items-center justify-between gap-4">
+                <button id="btn-play" class="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg shadow-red-500/20 active:scale-95 transition-all" title="自動播放">
+                    <i id="play-icon" class="fa-solid fa-play"></i>
+                </button>
+                <div class="flex-1 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-slate-500 text-sm"></i>
+                    <input id="frame-range" type="range" min="0" max="32" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-slate-400 focus:outline-none" />
+                </div>
+                <span id="frame-counter" class="text-xs font-mono font-bold text-slate-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[50px] text-center">1 / 33</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] text-slate-400 font-bold mb-1 tracking-wider uppercase">關於 SHADOWG</h3>
+                        <h4 class="text-sm text-slate-200 font-bold mb-2">PVC 攝影與 360° 製作</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            2018 年踏入相機攝影，初衷是為了紀錄 PVC。曾於日本拍攝風光兩年，2020 年回國後，開始專注練習 PVC 攝影與 360° 旋轉展示製作。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] text-slate-400 font-bold mb-1 tracking-wider uppercase">加入旋轉圖製作 / 合作</h3>
+                        <h4 class="text-sm text-slate-200 font-bold mb-2">歡迎與我聯繫聯絡</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            如果你想加入 360 旋轉圖的製作，或希望在您的開箱文中嵌入展示圖，歡迎隨時透過巴哈姆特私訊與我取得聯繫！
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-2 bg-red-950/20 border-l-4 border-red-600 p-4 rounded-r-2xl rounded-l-sm flex items-start gap-3">
+                <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5 text-sm shrink-0"></i>
+                <div class="text-xs text-slate-400 leading-relaxed space-y-2">
+                    <p><i class="fa-solid fa-thumbtack text-red-500/80 mr-1.5 -rotate-45"></i> 轉動時若感覺畫面閃爍，此為初次下載延遲。本網頁已內建<span class="text-red-400 font-bold mx-1">完全預載機制</span>，等上方進度完成後，即可順暢流暢地旋轉。</p>
+                    <p><i class="fa-solid fa-thumbtack text-red-500/80 mr-1.5 -rotate-45"></i> 手機觀看時，推薦將手機「<span class="text-slate-200 font-bold mx-1">橫置螢幕</span>」並開啟全螢幕以獲得最佳細節視界。</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-950/80 border-t border-slate-900/60 py-6 px-4 text-center text-xs text-slate-500 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ShadowG的攝影小屋. 僅供個人模型愛好者交流與作品展示。</p>
+            <p>Designed with <i class="fa-solid fa-heart text-fuchsia-500"></i> using Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentFigureId = urlParams.get('id');
+        const currentModeIndex = parseInt(urlParams.get('mode') || "0"); 
+
+        let folder = "";     
+        let total = 0;       
+        const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+
+        const viewerStage = document.getElementById("viewer-stage");
+        const loaderScreen = document.getElementById("loader-screen");
+        const loaderProgressBar = document.getElementById("loader-progress-bar");
+        const loaderPercentage = document.getElementById("loader-percentage");
+        const frameRange = document.getElementById("frame-range");
+        const frameCounter = document.getElementById("frame-counter");
+        const btnPlay = document.getElementById("btn-play");
+        const playIcon = document.getElementById("play-icon");
+        const dragTips = document.getElementById("drag-tips");
+
+        let loadedCount = 0;
+        let imageElements = [];
+        let currentIndex = 0;
+        let isDragging = false;
+        let startX = 0;
+        let autoPlayInterval = null;
+        let playSpeed = 100;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!currentFigureId) {
+                   alert("無效的模型 ID！");
+        window.location.href = 'index.html';
+        return;
+        }
+
+            const figure = figuresDataset.find(f => f.id === currentFigureId);
+            
+        if (!figure) {
+            alert("找不到該模型資料！");
+            window.location.href = 'index.html';
+            return;
+        }
+
+        document.title = `${figure.title} - 360° Figure Studio`;
+        document.getElementById('dynamic-title').innerHTML = figure.title;
+
+        // 處理開箱文連結
+            const unboxingWrapper = document.getElementById('unboxing-link-wrapper');
+        if (figure.reviewLink) {
+            unboxingWrapper.innerHTML = `
+                <a href="${figure.reviewLink}" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900/50 hover:bg-sky-900/40 border border-slate-700/60 hover:border-sky-500/50 text-slate-300 hover:text-sky-300 shadow-lg transition-all duration-300">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span class="text-xs tracking-widest font-bold">開箱文連結</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            `;
+        }
+
+            const angleSwitcher = document.getElementById('angle-switcher');
+        let requires18Plus = false; // 🎯 新增變數：是否需要 18+ 驗證
+            
+        if (figure.modes && figure.modes.length > 0) {
+            angleSwitcher.innerHTML = ''; 
+            angleSwitcher.classList.remove('hidden');
+                    
+            folder = figure.modes[currentModeIndex].folder;
+            total = figure.modes[currentModeIndex].totalFrames || figure.totalFrames;
+                
+            // 🎯 判斷：目前的 Mode 是否標示為 18+，或是整個模型預設就是 18+
+            requires18Plus = figure.modes[currentModeIndex].is18Plus === true || figure.is18Plus === true;
+
+            figure.modes.forEach((mode, index) => {
+                const btn = document.createElement('a');
+            btn.href = `viewer.html?id=${figure.id}&mode=${index}`;
+                        
+            if (index === currentModeIndex) {
+                btn.className = "px-4 py-1 mx-0.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20";
+            } else {
+                btn.className = "px-4 py-1 mx-0.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60";
+            }
+                        
+            btn.textContent = mode.name;
+            angleSwitcher.appendChild(btn);
+        });
+        } else {
+            folder = figure.folder;
+            total = figure.totalFrames;
+            // 🎯 判斷：單一模型是否標示為 18+
+            requires18Plus = figure.is18Plus === true;
+        }
+
+        frameRange.max = total - 1;
+
+        // 🎯 18+ 視窗控制邏輯
+            const ageModal = document.getElementById('age-modal');
+        if (requires18Plus) {
+            // 如果需要驗證，顯示視窗，並暫停背景的捲動
+            ageModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            document.getElementById('btn-age-yes').onclick = () => {
+                ageModal.classList.add('hidden');
+            document.body.style.overflow = ''; // 恢復捲動
+            preloadImages(); // 點擊確認後才開始載入圖片
+        };
+
+        document.getElementById('btn-age-no').onclick = () => {
+            window.location.href = 'https://www.youtube.com/watch?v=F9VBj8noYIM'; // 拒絕則返回首頁
+        };
+        } else {
+            // 不需要驗證，直接載入圖片
+            preloadImages();
+        }
+        });
+
+        function preloadImages() {
+            const radius = 40;
+            const circumference = 2 * Math.PI * radius;
+
+            for (let i = 1; i <= total; i++) {
+                const img = document.createElement("img");
+                
+                // 1. 先嘗試大寫 .JPG
+                img.src = `${baseUrl}/${folder}/${i}.JPG`;
+        img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
+        img.alt = `Frame ${i}`;
+        img.setAttribute("data-index", i - 1);
+                
+        // 2. 增加一個備援機制 (Fallback)
+        img.onerror = () => {
+            // 如果 .JPG 載入失敗，自動換成 .jpg 再試一次
+            if (!img.dataset.triedLower) {
+                        img.src = `${baseUrl}/${folder}/${i}.jpg`;
+        img.dataset.triedLower = "true"; // 標記已經試過小寫了
+        } else {
+            // 如果連 .jpg 都失敗，那就真的找不到了
+            loadedCount++;
+            if (loadedCount === total) onPreloadComplete();
+        }
+        };
+                
+        img.onload = () => {
+            // 🎯 新增：抓取第一張圖片的比例，動態調整展示區寬度
+            if (loadedCount === 0) {
+        const viewerContainer = document.getElementById("viewer-container");
+        // 移除固定的寬高 class，改用 CSS 控制比例
+        viewerContainer.classList.remove("w-[95%]", "max-w-[3000px]", "h-[70vh]", "md:h-[85vh]");
+        viewerContainer.style.maxHeight = "85vh";
+        viewerContainer.style.maxWidth = "95vw";
+        viewerContainer.style.height = "100vh"; // 先撐開高度
+        viewerContainer.style.width = "auto";
+        // 根據原始圖片長寬設定比例
+        viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+        }
+
+        loadedCount++;
+    const progress = loadedCount / total;
+    const offset = circumference - (progress * circumference);
+        loaderProgressBar.style.strokeDashoffset = offset;
+        loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+
+        if (loadedCount === total) onPreloadComplete();
+        };
+
+        viewerStage.appendChild(img);
+        imageElements.push(img);
+        }
+        }
+
+        function onPreloadComplete() {
+            loaderScreen.classList.add("opacity-0");
+            setTimeout(() => {
+                loaderScreen.style.display = "none";
+            viewerStage.classList.remove("hidden");
+        }, 500);
+
+        showFrame(0);
+        setupInteractEvents();
+        }
+
+        function showFrame(index) {
+            currentIndex = (index + total) % total;
+            imageElements.forEach((img, i) => {
+                if (i === currentIndex) {
+                    img.classList.remove("hidden"); img.classList.add("block");
+        } else {
+                    img.classList.remove("block"); img.classList.add("hidden");
+        }
+        });
+        frameRange.value = currentIndex;
+        frameCounter.textContent = `${currentIndex + 1} / ${total}`;
+        }
+
+        frameRange.oninput = function() {
+            stopAutoPlay();
+            showFrame(parseInt(this.value));
+            hideDragTips();
+        };
+
+        function setupInteractEvents() {
+            viewerStage.addEventListener("mousedown", (e) => {
+                isDragging = true; startX = e.clientX; stopAutoPlay(); hideDragTips();
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+                const deltaX = e.clientX - startX;
+        if (Math.abs(deltaX) > 15) {
+            showFrame(currentIndex - Math.sign(deltaX));
+            startX = e.clientX;
+        }
+        });
+
+        window.addEventListener("mouseup", () => { isDragging = false; });
+
+        viewerStage.addEventListener("touchstart", (e) => {
+            isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); hideDragTips();
+        });
+
+        viewerStage.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
+                const deltaX = e.touches[0].clientX - startX;
+        if (Math.abs(deltaX) > 5) {
+            showFrame(currentIndex - Math.sign(deltaX));
+            startX = e.touches[0].clientX;
+        }
+        }, { passive: false });
+
+        viewerStage.addEventListener("touchend", () => { isDragging = false; });
+
+        viewerStage.addEventListener("wheel", (e) => {
+            e.preventDefault(); stopAutoPlay(); hideDragTips();
+        showFrame(currentIndex + Math.sign(e.deltaY));
+        }, { passive: false }); // 修復滾輪捲動問題
+        }
+
+        btnPlay.onclick = () => {
+            if (autoPlayInterval) { stopAutoPlay(); } else { startAutoPlay(); hideDragTips(); }
+        };
+
+            function startAutoPlay() {
+                if (autoPlayInterval) return;
+                autoPlayInterval = setInterval(() => { showFrame(currentIndex + 1); }, playSpeed);
+            playIcon.className = "fa-solid fa-pause";
+            btnPlay.classList.remove("bg-red-600"); 
+            btnPlay.classList.add("bg-rose-700"); // 播放中變深紅色
+            }
+
+            function stopAutoPlay() {
+                if (!autoPlayInterval) return;
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                playIcon.className = "fa-solid fa-play";
+                btnPlay.classList.remove("bg-rose-700"); 
+                btnPlay.classList.add("bg-red-600"); // 暫停變回鮮紅色
+            }
+
+        function hideDragTips() {
+            dragTips.classList.add("opacity-0");
+            setTimeout(() => { dragTips.style.display = "none"; }, 700);
+        }
+    </script>
+</body>
+</html>

@@ -5,109 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>ShadowG的攝影小屋 - 360° Figure Studio</title>
     
-    <!-- Google Fonts Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&family=Noto+Sans+TC:wght=300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
-                    },
-                    colors: {
-                        studio: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            800: '#3c096c',
-                            900: '#240046',
-                            950: '#10002b',
-                        }
-                    }
-                }
-            }
+            theme: { extend: { fontFamily: { sans: ['Inter', 'Noto Sans TC', 'sans-serif'], }, colors: { studio: { 50: '#f5f3ff', 100: '#ede9fe', 800: '#3c096c', 900: '#240046', 950: '#10002b', } } } }
         }
     </script>
-
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
-        /* ==========================================================================
-           🎯 全域整體放大 120%
-           ========================================================================== */
-        html {
-            zoom: 1.2; /* 將整體版面放大 120% */
-        }
-
-        /* ==========================================================================
-           🎯 背景圖片與全域樣式設定
-           ========================================================================== */
-        body {
-            background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* 自訂瀏覽器滾動條 */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-
-        /* 磨砂玻璃質感面板 */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        /* 卡片發光懸停特效 */
-        .glow-card:hover {
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 0.4);
-        }
-
-        /* 環繞背景霓虹光環動畫 */
-        @keyframes orbit {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        .glowing-orb {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            pointer-events: none;
-            animation: orbit 20s linear infinite;
-        }
+        html { zoom: 1.2; }
+        body { background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .glass-panel { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.06); }
+        .glow-card:hover { box-shadow: 0 0 25px rgba(139, 92, 246, 0.25); border-color: rgba(139, 92, 246, 0.4); }
+        @keyframes orbit { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .glowing-orb { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%); transform: translate(-50%, -50%); z-index: 0; pointer-events: none; animation: orbit 20s linear infinite; }
     </style>
 </head>
 <body class="text-slate-100 font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
 
     <div class="glowing-orb"></div>
 
-    <!-- 導覽列 -->
     <nav class="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/60 py-3 px-4 md:px-8">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3 group">
@@ -119,8 +45,6 @@
                     <span class="block text-xs text-slate-400 tracking-widest font-medium">FIGURE 360° PORTFOLIO</span>
                 </div>
             </a>
-
-            <!-- 社群連結 -->
             <div class="flex items-center space-x-3">
                 <a href="https://twitter.com/04Dsg" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-sky-500 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="Twitter / X">
                     <i class="fa-brands fa-x-twitter text-base"></i>
@@ -132,7 +56,6 @@
         </div>
     </nav>
 
-    <!-- 主頁橫幅 Banner -->
     <header class="relative overflow-hidden pt-12 pb-16 px-4 md:px-8">
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-4 tracking-wider uppercase">
@@ -145,7 +68,6 @@
                 這裡主要放置 <span class="text-violet-400 font-semibold">Figure (美少女模型)</span> 的 360 度旋轉寫真。<br>
                 點擊任一模型即可直接進入完整展廳，隨心所欲地拖動觀看模型細節！
             </p>
-            
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#galleries" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-[1.02] transition-all duration-300">
                     <i class="fa-solid fa-images mr-2"></i> 探索模型展間
@@ -157,36 +79,22 @@
         </div>
     </header>
 
-    <!-- 互動主展示區 -->
     <main id="galleries" class="max-w-7xl mx-auto px-4 md:px-8 pb-24 relative z-10">
-        
-        <!-- 搜尋與快篩面板 -->
         <div class="glass-panel rounded-2xl p-6 mb-10 shadow-xl border border-slate-800/80">
             <div class="flex flex-col lg:flex-row gap-6 items-center justify-between">
-                
-                <!-- 搜尋框 -->
                 <div class="w-full lg:max-w-md relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="figureSearch" oninput="filterFigures()" placeholder="搜尋模型名稱、作品系列... (例如：初音, 狂三, saber)" 
-                           class="w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-800 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 text-slate-100 placeholder-slate-500 outline-none transition-all" />
+                    <input type="text" id="figureSearch" oninput="filterFigures()" placeholder="搜尋模型名稱、作品系列... (例如：初音, 狂三, saber)" class="w-full pl-11 pr-4 py-3 bg-slate-950/80 border border-slate-800 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 text-slate-100 placeholder-slate-500 outline-none transition-all" />
                     <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
                         <i class="fa-solid fa-circle-xmark"></i>
                     </button>
                 </div>
-
-                <!-- 快速分類篩選 -->
                 <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end">
                     <span class="text-xs text-slate-400 font-semibold tracking-wider uppercase mr-2">快速檢視:</span>
-                    <button onclick="setFilterCategory('all')" id="btn-cat-all" class="px-4 py-2 rounded-lg text-sm font-medium bg-violet-600 text-white transition-all duration-300">
-                        全部模型
-                    </button>
-                    <button onclick="setFilterCategory('featured')" id="btn-cat-featured" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300">
-                        精選推荐 (Pick Up)
-                    </button>
+                    <button onclick="setFilterCategory('all')" id="btn-cat-all" class="px-4 py-2 rounded-lg text-sm font-medium bg-violet-600 text-white transition-all duration-300">全部模型</button>
+                    <button onclick="setFilterCategory('featured')" id="btn-cat-featured" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300">精選推荐 (Pick Up)</button>
                 </div>
             </div>
-
-            <!-- 品牌雙行滑動篩選器 -->
             <div class="mt-6 pt-6 border-t border-slate-800/60">
                 <div class="flex items-center justify-between mb-3">
                     <span class="text-xs text-slate-400 font-bold tracking-wider uppercase">按品牌大廠篩選：</span>
@@ -194,48 +102,37 @@
                         清除品牌篩選 <i class="fa-solid fa-rotate-left ml-0.5"></i>
                     </button>
                 </div>
-                <!-- 品牌雙行網格滾動 -->
-                <div class="grid grid-rows-2 grid-flow-col auto-cols-max gap-x-3 gap-y-2.5 overflow-x-auto pb-3 scrollbar-thin scroll-smooth" id="brandFilterContainer">
-                    <!-- 動態載入品牌標籤 -->
-                </div>
+                <div class="grid grid-rows-2 grid-flow-col auto-cols-max gap-x-3 gap-y-2.5 overflow-x-auto pb-3 scrollbar-thin scroll-smooth" id="brandFilterContainer"></div>
             </div>
         </div>
 
-        <!-- 展區標題與載入資訊 -->
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-extrabold tracking-tight" id="galleryHeading">全部模型展區</h2>
                 <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-mobile-screen-button mr-1"></i> 手機版使用者，點擊卡片後可將手機橫置以獲得最佳視覺體驗</p>
             </div>
-            <div class="glass-panel px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400">
-                已載入 <span id="displayedCount" class="text-violet-400">0</span> / <span id="totalCount" class="text-slate-400">0</span> 款模型
+            <div class="glass-panel px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400" id="displayStatusBadge">
+                載入中...
             </div>
         </div>
 
-        <!-- 模型照片網格 -->
-        <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-            <!-- 動態生成模型卡片 -->
-        </div>
+        <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"></div>
+        
+        <div id="paginationContainer" class="w-full mt-10"></div>
 
-        <!-- 找不到結果時的空白狀態 -->
         <div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-center">
             <div class="w-16 h-16 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600 mb-4 text-2xl">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <h3 class="text-lg font-bold">找不到相符的模型</h3>
             <p class="text-slate-500 text-sm mt-1 max-w-xs">請嘗試使用其他關鍵字搜尋，或是重設篩選條件。</p>
-            <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 rounded-lg text-sm transition-colors">
-                重設所有篩選
-            </button>
+            <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 rounded-lg text-sm transition-colors">重設所有篩選</button>
         </div>
     </main>
 
-    <!-- 關於與聯繫區塊 -->
     <section id="contact" class="bg-slate-950/80 border-t border-slate-900 py-16 px-4 md:px-8 relative overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="grid md:grid-cols-3 gap-8 items-center">
-                
-                <!-- 介紹卡片 -->
                 <div class="md:col-span-1 text-center md:text-left">
                     <div class="inline-flex w-16 h-16 rounded-2xl bg-violet-600/10 border border-violet-500/20 text-violet-400 items-center justify-center text-2xl mb-4">
                         <i class="fa-solid fa-address-card"></i>
@@ -243,8 +140,6 @@
                     <h3 class="text-2xl font-black mb-2">關於作者</h3>
                     <p class="text-xs text-slate-500 uppercase tracking-widest font-semibold">ShadowG Studio</p>
                 </div>
-
-                <!-- 資訊內文 -->
                 <div class="md:col-span-2 space-y-4 text-slate-400 text-sm leading-relaxed">
                     <p class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/40">
                         <strong class="text-slate-200 block mb-1"><i class="fa-solid fa-camera text-violet-400 mr-1.5"></i> 相機攝影歷程</strong>
@@ -259,7 +154,6 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
     <footer class="bg-slate-950 border-t border-slate-900/80 py-8 px-4 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 ShadowG的攝影小屋. All rights reserved. 僅供個人模型攝影喜好展示交流。</p>
@@ -267,221 +161,9 @@
         </div>
     </footer>
 
-    <!-- ==========================================================================
-         📦 核心資料庫與控制邏輯 (Javascript)
-         ========================================================================== -->
+    <script src="js/data.js"></script>
+
     <script>
-        const figuresDataset = [
-            // ==================== 精選推薦區 (Pick Up / Featured) ====================
-            { href: "makise.html", title: "ドリームテック シュタインズ・ゲート 牧瀬紅莉栖 白衣style", img: "149.jpg", brand: "WAVE", featured: true },
-            { href: "altersora.html", title: "春日野 穹 Ending Ver.", img: "139.jpg", brand: "ALTER", featured: true },
-            { href: "gokusinsukasi01.html", title: "濁心スカジ", img: "138.jpg", brand: "MYETHOS", featured: true },
-            { href: "furanndo.html", title: "フランドール・スカーレット", img: "133.jpg", brand: "ALTER", featured: true },
-            { href: "PA15.html", title: "PA-15 高校心動物語", img: "131.jpg", brand: "GSC", featured: true },
-            { href: "yodayo.html", title: "百鬼あやめ", img: "130.jpg", brand: "KOTOBUKIYA", featured: true },
-            { href: "Ryza.html", title: "ライザリン・シュタウト", img: "125.jpg", brand: "GSC", featured: true },
-            { href: "hokusai1.html", title: "セイバー/葛飾北斎", img: "124.jpg", brand: "GSC", featured: true },
-            { href: "Javelin1.html", title: "ジャベリン ビーチピクニック！Ver.", img: "121.jpg", brand: "ALTER", featured: true },
-            { href: "iriasu1.html", title: "イリヤスフィール・フォン・アインツベルン PRISMA Racing ver.", img: "120.jpg", brand: "STRONGER", featured: true },
-            { href: "YingSwei1.html", title: "応瑞", img: "119.jpg", brand: "NEONMAX", featured: true },
-
-            // ==================== 好微笑系列 (Good Smile Company / GSC) ====================
-            { href: "fuyuko.html", title: "黛冬優子 Neon Light Romancer Ver.", img: "140.jpg", brand: "GSC" },
-            { href: "miku5th.html", title: "初音ミクシンフォニー 5th Anniversary Ver.", img: "128.jpg", brand: "GSC" },
-            { href: "ginkohareki.html", title: "空銀子 和服Ver.", img: "126.jpg", brand: "GSC" },
-            { href: "furanndoru.html", title: "フランドール・スカーレット [AQ]", img: "99.jpg", brand: "GSC" },
-            { href: "mikudress.html", title: "初音未來 Memorial Dress Ver.", img: "94.jpg", brand: "GSC" },
-            { href: "BEATLESS full.html", title: "レイシア 2018 <BLACK MONOLITH>展開Ver.", img: "15.jpg", brand: "GSC" },
-            { href: "chocola.html", title: "POP UP PARADE 巧克力", img: "85.jpg", brand: "GSC" },
-            { href: "vanilla.html", title: "POP UP PARADE 香草", img: "86.jpg", brand: "GSC" },
-            { href: "shutenndouji.html", title: "アサシン/酒呑童子", img: "44.jpg", brand: "GSC" },
-            { href: "okitasouji.html", title: "セイバー/沖田総司", img: "43.jpg", brand: "GSC" },
-            { href: "nero.html", title: "アイドル皇帝/ネロ", img: "49.jpg", brand: "GSC" },
-            { href: "white.html", title: "ノーゲーム・ノーライフ 白", img: "03.jpg", brand: "GSC" },
-            { href: "canncole.html", title: "愛宕 重兵裝Ver.& 高雄 重兵裝Ver.", img: "32.jpg", brand: "GSC" },
-            { href: "takao.html", title: "高雄 重兵裝Ver.", img: "34.jpg", brand: "GSC" },
-            { href: "adago.html", title: "愛宕 重兵裝Ver.", img: "33.jpg", brand: "GSC" },
-            { href: "saber alter huke.html", title: "セイバー・オルタ huke コラボパッケージ", img: "24.jpg", brand: "GSC" },
-            { href: "racing miku sepang.html", title: "レーシングミク 2015 Ver.", img: "71.jpg", brand: "GSC" },
-            { href: "miku race.html", title: "レーシングミク セパンVer.", img: "50.jpg", brand: "GSC" },
-            { href: "eriri.html", title: "澤村・スペンサー・英梨々", img: "48.jpg", brand: "GSC" },
-            { href: "sieru.html", title: "シエル・アランソン", img: "30.jpg", brand: "GSC" },
-            { href: "masasekurisu.html", title: "牧瀬紅莉栖 白衣Ver.", img: "46.jpg", brand: "GSC" },
-            { href: "sinobu.html", title: "忍野忍", img: "31.jpg", brand: "GSC" },
-            { href: "BGS.html", title: "ブラックゴールドソー -animation version-", img: "27.jpg", brand: "GSC" },
-            { href: "DM.html", title: "デッドマスター -animation version-", img: "28.jpg", brand: "GSC" },
-            { href: "caster.html", title: "キャスター [Fate/EXTRA]", img: "70.jpg", brand: "GSC" },
-            { href: "senngoku.html", title: "千石撫子", img: "57.jpg", brand: "GSC" },
-            { href: "saber.html", title: "セイバー ～約束された勝利の劍(エクスカリバー)～", img: "42.jpg", brand: "GSC" },
-            { href: "saber lily.html", title: "セイバー・リリィ ～全て遠き理想鄉(アヴァロン)～", img: "41.jpg", brand: "GSC" },
-
-            // ==================== ALTER 系列 ====================
-            { href: "datumaki.html", title: "戦慄のタツマキ", img: "143.jpg", brand: "ALTER" },
-            { href: "pora.html", title: "ポーラ 水辺のハプニング？Ver.", img: "142.jpg", brand: "ALTER" },
-            { href: "alterraiza1.html", title: "ライザ（ライザリン・シュタウト）", img: "132.jpg", brand: "ALTER" },
-            { href: "miyamotofure1.html", title: "宮本 フレデリカ フレ・慢·拉·模樣Ver.", img: "129.jpg", brand: "ALTER" },
-            { href: "Baltimorewhite.html", title: "ボルチモア", img: "123.jpg", brand: "ALTER" },
-            { href: "GrafZeppelin.html", title: "グラーフ・ツェッペリン 砂浜のウルズVer.", img: "118.jpg", brand: "ALTER" },
-            { href: "siriasu1.html", title: "シリアス 青雲映す碧波Ver.", img: "112.jpg", brand: "ALTER" },
-            { href: "miyamoto1.html", title: "バーサーカー／宮本 武蔵", img: "113.jpg", brand: "ALTER" },
-            { href: "rutorionfan1.html", title: "ル・トリオンファン", img: "110.jpg", brand: "ALTER" },
-            { href: "lala1.html", title: "ララ・サタリン・デビルーク 水着Ver.", img: "107.jpg", brand: "ALTER" },
-            { href: "sofi1.html", title: "ソフィー（ソフィー・ノイエンミュラー）", img: "105.jpg", brand: "ALTER" },
-            { href: "ginko.html", title: "空 銀子 猫耳姉弟子Ver.", img: "103.jpg", brand: "ALTER" },
-            { href: "shokuhoumisaki.html", title: "食蜂操祈", img: "97.jpg", brand: "ALTER" },
-            { href: "sentoruisu.html", title: "セント路易斯 (St. Louis)", img: "96.jpg", brand: "ALTER" },
-            { href: "momo.html", title: "モモ・ベリア・デビルーク -ベビードール Ver.-", img: "39.jpg", brand: "ALTER" },
-            { href: "saber alter mizuki.html", title: "ライダー／アルトリア・ペンドラゴン［オルタ］", img: "16.jpg", brand: "ALTER" },
-            { href: "Jeanne.html", title: "アヴェンジャー／ジャンヌ・ダルク［オルタ］", img: "92.jpg", brand: "ALTER" },
-            { href: "hayami kanade.html", title: "速水 奏 ミスティック・ドーンVer.", img: "10.jpg", brand: "ALTER" },
-            { href: "yami.html", title: "金色的闇 ナースVer.", img: "20.jpg", brand: "ALTER" },
-            { href: "purafuta.html", title: "プラフタ", img: "21.jpg", brand: "ALTER" },
-            { href: "sekasaha.html", title: "スカサハ 部屋着モード", img: "19.jpg", brand: "ALTER" },
-            { href: "rannco.html", title: "神崎 蘭子 薔薇の闇姫Ver.", img: "29.jpg", brand: "ALTER" },
-            { href: "saber alter dress.html", title: "セイバー／アルトリア・ペンドラゴン［オルタ］ ドレスVer.", img: "25.jpg", brand: "ALTER" },
-            { href: "sora.html", title: "春日野 穹 チャインドレスVer.", img: "37.jpg", brand: "ALTER" },
-
-            // ==================== SKYTUBE 系列 ====================
-            { href: "baochai1.html", title: "バオ・チャイ", img: "111.jpg", brand: "SKYTUBE" },
-            { href: "Dai-Yu.html", title: "Dai-Yu ダイ・ユー", img: "77.jpg", brand: "SKYTUBE" },
-            { href: "Chun-Mei.html", title: "春梅 Chun-Mei", img: "75.jpg", brand: "SKYTUBE" },
-            { href: "Jin-Lian.html", title: "金蓮 Jin-Lian 常套式Ver.", img: "73.jpg", brand: "SKYTUBE" },
-            { href: "JinLian.html", title: "金蓮 Jin-Lian", img: "74.jpg", brand: "SKYTUBE" },
-            { href: "Ping-Yi.html", title: "瓶兒 Ping-Yi", img: "76.jpg", brand: "SKYTUBE" },
-            { href: "chie.html", title: "少女のトゲ ちえ", img: "93.jpg", brand: "SKYTUBE" },
-            { href: "himari.html", title: "「お嬢様の花園」天竺葵", img: "81.jpg", brand: "SKYTUBE" },
-            { href: "swan.html", title: "白のオデット＆黒のオディール", img: "01.jpg", brand: "SKYTUBE" },
-            { href: "swan b.html", title: "黑 of オディール", img: "04.jpg", brand: "SKYTUBE" },
-            { href: "swan w.html", title: "白 of オデット", img: "05.jpg", brand: "SKYTUBE" },
-            { href: "sannsi.html", title: "三世村正 ナースver.", img: "80.jpg", brand: "SKYTUBE" },
-            { href: "fuyutsukiwaring.html", title: "冬月茉莉 純白ver.", img: "69.jpg", brand: "SKYTUBE" },
-            { href: "saekiaiwaring.html", title: "フォルト!! A 佐伯藍", img: "68.jpg", brand: "SKYTUBE" },
-            { href: "mimayawaring.html", title: "神和住 真夜テニスウェアver.", img: "90.jpg", brand: "SKYTUBE" },
-            { href: "natuki.html", title: "「ブリリアント・サマー」夏樹沙耶", img: "89.jpg", brand: "SKYTUBE" },
-            { href: "noeru.html", title: "「聖夜の贈りもの」 ノエル・シャ・ノワール", img: "45.jpg", brand: "SKYTUBE" },
-            { href: "rakuenn.html", title: "「楽園の乙女」スージー・サン", img: "78.jpg", brand: "SKYTUBE" },
-            { href: "sioubi.html", title: "「お嬢様のいたずら」鐘火八重", img: "79.jpg", brand: "SKYTUBE" },
-            { href: "himegamiwaring.html", title: "「最果ての白雪姫」姫神六花", img: "88.jpg", brand: "SKYTUBE" },
-
-            // ==================== 壽屋系列 (KOTOBUKIYA) ====================
-            { href: "nanakusa.html", title: "よふかしのうた 七草ナズナ", img: "147.jpg", brand: "KOTOBUKIYA" },
-            { href: "sionn.html", title: "紫咲シオン", img: "137.jpg", brand: "KOTOBUKIYA" },
-            { href: "sennto.html", title: "セントー (Centaur)", img: "22.jpg", brand: "KOTOBUKIYA" },
-            { href: "anaberu2.html", title: "紫陽花的妖精 アナベル", img: "66.jpg", brand: "KOTOBUKIYA" },
-            { href: "dasiy2.html", title: "雛菊の妖精 デイジー", img: "65.jpg", brand: "KOTOBUKIYA" },
-            { href: "aizu.html", title: "アイズ・ヴァレンシュタイン", img: "40.jpg", brand: "KOTOBUKIYA" },
-            { href: "riine.html", title: "電脳妖精アイオーン・リーネ", img: "63.jpg", brand: "KOTOBUKIYA" },
-            { href: "irohahime.html", title: "五郎八姫 Tony Ver.", img: "58.jpg", brand: "KOTOBUKIYA" },
-            { href: "forute.html", title: "ディアドラグーン・フォルテ", img: "35.jpg", brand: "KOTOBUKIYA" },
-            { href: "feari.html", title: "Tony'sヒロインコレクション フリージア", img: "62.jpg", brand: "KOTOBUKIYA" },
-            { href: "sakuya.html", title: "光明的熾天使サクヤ -Mode：セラフィム-", img: "56.jpg", brand: "KOTOBUKIYA" },
-            { href: "anaberu.html", title: "Tony'sヒロインコレクション アナベル", img: "61.jpg", brand: "KOTOBUKIYA" },
-            { href: "maria.html", title: "キルマリア・アイディーン", img: "51.jpg", brand: "KOTOBUKIYA" },
-            { href: "oliwie.html", title: "ダークエンジェル・オリヴィエ", img: "36.jpg", brand: "KOTOBUKIYA" },
-            { href: "daisy.html", title: "デイジー", img: "60.jpg", brand: "KOTOBUKIYA" },
-            { href: "panisu.html", title: "パニス・アンジェリクス", img: "54.jpg", brand: "KOTOBUKIYA" },
-            { href: "kuroyuki.html", title: "アクセル・ワールド 黑雪姫", img: "52.jpg", brand: "KOTOBUKIYA" },
-            { href: "yui.html", title: "篁唯依 -月華-", img: "53.jpg", brand: "KOTOBUKIYA" },
-            { href: "kureha.html", title: "吳羽冬華-クレハ", img: "55.jpg", brand: "KOTOBUKIYA" },
-
-            // ==================== AMAKUNI 系列 ====================
-            { href: "kouhiw01.html", title: "ARMS NOTE 水泳部のコウ快ちゃん white", img: "134.jpg", brand: "AMAKUNI" },
-            { href: "kasima03.html", title: "鹿島 輕裝ver", img: "136.jpg", brand: "AMAKUNI" },
-            { href: "itsusiki.html", title: "一色いろは", img: "135.jpg", brand: "AMAKUNI" },
-            { href: "kouhi.html", title: "ARMS NOTE 水泳部のコウハイちゃん", img: "84.jpg", brand: "AMAKUNI" },
-            { href: "pride.html", title: "七つの大罪 魔王黙示録 傲慢ノ章 ルシファー -スイカ割りノ節- 金色ノ項 通常版", img: "82.jpg", brand: "AMAKUNI" },
-
-            // ==================== ALPHAMAX 系列 ====================
-            { href: "kurumisitagi.html", title: "時崎狂三 ランジェリーVer", img: "83.jpg", brand: "ALPHAMAX" },
-            { href: "rennga.html", title: "愛玩妖精 蓮華", img: "64.jpg", brand: "ALPHAMAX" },
-            { href: "kurumi tokei.html", title: "時崎狂三", img: "38.jpg", brand: "ALPHAMAX" },
-            { href: "sakuya waio.html", title: "シャイニング・アーク サクヤ -Mode:ヴァイオレット-", img: "72.jpg", brand: "ALPHAMAX" },
-
-            // ==================== NATIVE 系列 ====================
-            { href: "marugarete4w.html", title: "マルガレーテ", img: "127.jpg", brand: "NATIVE" },
-            { href: "youseiqueen.html", title: "Dai-Yu ダイ・ユー (Native)", img: "87.jpg", brand: "NATIVE" },
-            { href: "alicewaring.html", title: "アリス of 品評會", img: "02.jpg", brand: "NATIVE" },
-            { href: "arikowaring.html", title: "夜伽の国の亞璃子", img: "91.jpg", brand: "NATIVE" },
-
-            // ==================== MYETHOS 系列 ====================
-            { href: "Ahri.html", title: "Myethos-英雄聯盟 靈魂蓮華 阿璃", img: "152.jpg", brand: "MYETHOS" },
-            { href: "AZD.html", title: "A-Z:[D]", img: "102.jpg", brand: "MYETHOS" },
-
-            // ==================== WAVE 系列 ====================
-            { href: "hakuchou1.html", title: "ドリームテック 白鳥の女の子", img: "100.jpg", brand: "WAVE" },
-
-            // ==================== MEGAHOUSE 系列 ====================
-            { href: "allsunday.html", title: "Playback Memories” ミス・オールサンデー", img: "151.jpg", brand: "MEGAHOUSE" },
-            { href: "habbkoku.html", title: "ワンピース ボア・ハンコック Ver.BB", img: "145.jpg", brand: "MEGAHOUSE" },
-
-            // ==================== FURYU 系列 ====================
-            { href: "makima.html", title: "BiCute Bunnies Figure チェンソーマン ーマキマー", img: "154.jpg", brand: "FURYU" },
-            { href: "pawa.html", title: "BiCute Bunnies Figure チェンソーマン ーパワーー", img: "153.jpg", brand: "FURYU" },
-
-            // ==================== NEONMAX 系列 ====================
-            // 備註：此處已移除與精選重疊的重複資料，改由動態載入
-
-            // ==================== STRONGER 系列 ====================
-            // 備註：此處已移除與精選重疊的重複資料，改由動態載入
-
-            // ==================== QUESQ 系列 ====================
-            { href: "shutenzom1.html", title: "アサシン／酒呑童子 英霊祭裝Ver.", img: "116.jpg", brand: "QUESQ" },
-
-            // ==================== UCI 系列 ====================
-            { href: "UCINANA.html", title: "ToLOVEる－とらぶる－ダークネス ナナ・アスタ・デビルーク ダークネス", img: "101.jpg", brand: "UCI" },
-
-            // ==================== PLUSONE 系列 ====================
-            { href: "Astolfo.html", title: "ジャンヌ・ダルク＆アストルフォ TYPE-MOON Racing ver.", img: "98.jpg", brand: "PLUSONE" },
-
-            // ==================== SPIRITALE 系列 ====================
-            { href: "mikusakura.html", title: "櫻未來～桜妖精ver", img: "95.jpg", brand: "SPIRITALE" },
-
-            // ==================== ESTREAM 系列 ====================
-            { href: "amilia black.html", title: "エミリア -Crystal Dress Ver-", img: "12.jpg", brand: "ESTREAM" },
-
-            // ==================== VERTEX 系列 ====================
-            { href: "rinsia.html", title: "第3村人 リンシア", img: "18.jpg", brand: "VERTEX" },
-
-            // ==================== FNEX 系列 ====================
-            { href: "Albedo.html", title: "オーバーロード アルベド", img: "67.jpg", brand: "FNEX" },
-
-            // ==================== KADOKAWA 系列 ====================
-            { href: "saber alter kimono.html", title: "セイバーオルタ 着物Ver.", img: "11.jpg", brand: "KADOKAWA" },
-
-            // ==================== ANIPLEX 系列 ====================
-            { href: "saber haregi.html", title: "saber 晴れ着", img: "23.jpg", brand: "ANIPLEX" },
-
-            // ==================== DAIKI 系列 ====================
-            { href: "sie1.html", title: "美咲詩絵 「夏草」", img: "108.jpg", brand: "DAIKI" },
-
-            // ==================== BROCCOLI 系列 ====================
-            { href: "kurumi.html", title: "デート・ア・ライブⅡ「時崎 狂三」", img: "09.jpg", brand: "BROCCOLI" },
-
-            // ==================== PLUM 系列 ====================
-            { href: "arisa.html", title: "アリサ・イリーニチナ・アミエーラ", img: "47.jpg", brand: "PLUM" },
-
-            // ==================== FLARE 系列 ====================
-            { href: "sakuya teacher.html", title: "サクヤ -女教師Ver.-", img: "59.jpg", brand: "FLARE" },
-
-            // ==================== CBF 系列 ====================
-            { href: "miraboreasu1.html", title: "黑龍 - ミラボレアス", img: "109.jpg", brand: "CBF" },
-
-            // ==================== BELLFINE 系列 ====================
-            { href: "nejire.html", title: "波動ねじれ ヒーロースーツ", img: "148.jpg", brand: "BELLFINE" },
-
-            // ==================== POP 系列 ====================
-            { href: "sigure.html", title: "時雨羽衣 しぐれうい", img: "141.jpg", brand: "POP" },
-
-            // ==================== F NEX 系列 ====================
-            { href: "Hancock.html", title: "Maximum 波雅·漢考克", img: "144.jpg", brand: "FNEX" },
-
-            // ==================== HOBBYMAX 系列 ====================
-            { href: "Xayah.html", title: "英雄聯盟 剎雅", img: "150.jpg", brand: "HOBBYMAX" },
-
-            // ==================== LEMOE 系列 ====================
-            { href: "15th.html", title: "Lemoe Vtuber 瀕臨絕種團 No.Fifteen 十五號", img: "155.jpg", brand: "LEMOE" }
-        ];
-
         const brandsConfig = {
             "GSC": { name: "Good Smile Company", img: "GSC.png" },
             "ALTER": { name: "ALTER", img: "ALTER.png" },
@@ -516,122 +198,65 @@
             "LEMOE": { name: "Lemoe Figure", img: "LEMOE.png" }
         };
 
-        // 應用篩選控制狀態
-        let currentCategory = 'all'; // 'all' (全部), 'featured' (精選)
-        let currentBrand = null;     // 當前過濾的品牌
-        let searchQuery = '';        // 當前搜尋文字
-    </script>
+        let currentCategory = 'all';
+        let currentBrand = null;
+        let searchQuery = '';
+        
+        // 🎯 分頁設定變數
+        let currentPage = 1;
+        const itemsPerPage = 25;
 
-    <script>
-        // 網頁載入完成後的初使化邏輯
         window.addEventListener('DOMContentLoaded', () => {
             renderBrandSliders();
-            renderFiguresGrid();
-            
-            // 設定總計模型數量 (去重後的實際數量)
-            document.getElementById('totalCount').textContent = figuresDataset.length;
+        renderFiguresGrid();
         });
 
-        // 渲染品牌圓角滑動過濾按鈕 (動態支援：只計算與顯示當前分類下的品牌)
         function renderBrandSliders() {
             const container = document.getElementById('brandFilterContainer');
             container.innerHTML = '';
-
             Object.entries(brandsConfig).forEach(([key, value]) => {
-                // 核心改進 1：動態計算此品牌在當前分類（例如：精選推薦）及搜尋字詞下的模型數量
-                const brandCount = figuresDataset.filter(figure => {
-                    // 1. 分類篩選 (Pick Up)
-                    if (currentCategory === 'featured' && !figure.featured) return false;
-
-                    // 2. 搜尋文字篩選
-                    if (searchQuery) {
-                        const matchTitle = figure.title.toLowerCase().includes(searchQuery);
-                        const matchBrand = figure.brand.toLowerCase().includes(searchQuery);
-                        const matchHref = figure.href.toLowerCase().includes(searchQuery);
-                        if (!matchTitle && !matchBrand && !matchHref) return false;
-                    }
-
-                    return figure.brand === key;
-                }).length;
-
-                // 核心改進 2：若目前條件下該品牌的數量為 0，則不顯示，使介面維持最乾淨狀態，避免破空畫面
-                if (brandCount === 0) {
-                    return; 
-                }
-
                 const isSelected = currentBrand === key;
                 const button = document.createElement('button');
-                button.className = `flex-none flex items-center space-x-2 px-3.5 py-2 rounded-xl transition-all border duration-300 ${
-                    isSelected 
-                        ? 'bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-500/25 scale-[1.02]' 
-                        : 'bg-slate-900 hover:bg-slate-800 border-slate-800/80 text-slate-300 hover:text-white'
-                }`;
-                button.onclick = () => selectBrand(key);
+            button.className = `flex-none flex items-center space-x-2 px-3.5 py-2 rounded-xl transition-all border duration-300 ${ isSelected ? 'bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-500/25 scale-[1.02]' : 'bg-slate-900 hover:bg-slate-800 border-slate-800/80 text-slate-300 hover:text-white' }`;
+            button.onclick = () => selectBrand(key);
 
-                // 廠牌 Logo 圖片（有錯誤防毀機制）
                 const img = document.createElement('img');
-                img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/brand/${value.img}`;
-                img.alt = value.name;
-                img.className = "h-4 object-contain max-w-[65px] brightness-90 contrast-125 filter group-hover:brightness-100";
-                img.onerror = () => {
-                    // 若 CDN 載入失敗，以文字代替圖檔避免破圖
-                    img.style.display = 'none';
-                    const fallbackText = document.createElement('span');
-                    fallbackText.className = "text-xs font-bold";
-                    fallbackText.textContent = key;
-                    button.prepend(fallbackText);
-                };
+            img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/brand/${value.img}`;
+            img.alt = value.name;
+            img.className = "h-4 object-contain max-w-[65px] brightness-90 contrast-125 filter group-hover:brightness-100";
+            img.onerror = () => { img.style.display = 'none'; const fallbackText = document.createElement('span'); fallbackText.className = "text-xs font-bold"; fallbackText.textContent = key; button.prepend(fallbackText); };
 
-                button.appendChild(img);
-
-                // 各廠牌擁有的模型計數標籤 (改為動態顯示數量)
+        button.appendChild(img);
+                const brandCount = figuresDataset.filter(f => f.brand === key).length;
                 const badge = document.createElement('span');
-                badge.className = `text-[10px] px-1.5 py-0.5 rounded ${
-                    isSelected ? 'bg-violet-800 text-violet-200' : 'bg-slate-850 text-slate-500'
-                }`;
-                badge.textContent = brandCount;
-
-                button.appendChild(badge);
-                container.appendChild(button);
-            });
+        badge.className = `text-[10px] px-1.5 py-0.5 rounded ${ isSelected ? 'bg-violet-800 text-violet-200' : 'bg-slate-850 text-slate-500' }`;
+        badge.textContent = brandCount;
+        button.appendChild(badge);
+        container.appendChild(button);
+        });
         }
 
-        // 品牌篩選器觸發
         function selectBrand(brandKey) {
-            if (currentBrand === brandKey) {
-                currentBrand = null; // 重複點擊則取消篩選
-            } else {
-                currentBrand = brandKey;
-            }
-            
-            // 切換清除品牌按鈕顯示狀態
+            currentBrand = (currentBrand === brandKey) ? null : brandKey;
             const btnClear = document.getElementById('btnClearBrand');
-            if (currentBrand) {
-                btnClear.classList.remove('hidden');
-            } else {
-                btnClear.classList.add('hidden');
-            }
-
+            if (currentBrand) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
+            currentPage = 1; // 🎯 切換條件時重設為第一頁
             renderBrandSliders();
             renderFiguresGrid();
         }
 
-        // 清除品牌篩選
         function clearBrandFilter() {
             currentBrand = null;
             document.getElementById('btnClearBrand').classList.add('hidden');
+            currentPage = 1; // 🎯 切換條件時重設為第一頁
             renderBrandSliders();
             renderFiguresGrid();
         }
 
-        // 設定分類（精選推薦 / 全部）
         function setFilterCategory(category) {
             currentCategory = category;
-            
-            // 變更按鈕點亮狀態
             const btnAll = document.getElementById('btn-cat-all');
             const btnFeatured = document.getElementById('btn-cat-featured');
-            
             if (category === 'all') {
                 btnAll.className = "px-4 py-2 rounded-lg text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
                 btnFeatured.className = "px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
@@ -641,145 +266,166 @@
                 btnFeatured.className = "px-4 py-2 rounded-lg text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
                 document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
             }
-
-            // 核心改進 3：完美防呆。切換時如果已選取的品牌在新模式下完全沒有作品，則自動將其重設，防止頁面瞬間變空白
-            if (currentBrand) {
-                const hasModelInNewCategory = figuresDataset.some(f => 
-                    f.brand === currentBrand && 
-                    (category === 'all' || f.featured)
-                );
-                if (!hasModelInNewCategory) {
-                    currentBrand = null;
-                    document.getElementById('btnClearBrand').classList.add('hidden');
-                }
-            }
-
-            renderBrandSliders();
+            currentPage = 1; // 🎯 切換條件時重設為第一頁
             renderFiguresGrid();
         }
 
-        // 搜尋輸入監聽
         function filterFigures() {
             const input = document.getElementById('figureSearch');
             searchQuery = input.value.trim().toLowerCase();
-            
-            // 顯示或隱藏清除搜尋叉叉按鈕
             const btnClear = document.getElementById('clearSearch');
-            if (searchQuery.length > 0) {
-                btnClear.classList.remove('hidden');
-            } else {
-                btnClear.classList.add('hidden');
-            }
-
-            // 搜尋防呆：如果目前選定的品牌在搜尋過濾下無任何對應項目，重設品牌選取
-            if (currentBrand) {
-                const hasModelInSearch = figuresDataset.some(f => {
-                    if (currentCategory === 'featured' && !f.featured) return false;
-                    const matchTitle = f.title.toLowerCase().includes(searchQuery);
-                    const matchBrand = f.brand.toLowerCase().includes(searchQuery);
-                    const matchHref = f.href.toLowerCase().includes(searchQuery);
-                    return f.brand === currentBrand && (!searchQuery || matchTitle || matchBrand || matchHref);
-                });
-                if (!hasModelInSearch) {
-                    currentBrand = null;
-                    document.getElementById('btnClearBrand').classList.add('hidden');
-                }
-            }
-
-            renderBrandSliders();
+            if (searchQuery.length > 0) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
+            currentPage = 1; // 🎯 搜尋時重設為第一頁
             renderFiguresGrid();
         }
 
-        // 清除搜尋文字
         function clearSearchInput() {
-            const input = document.getElementById('figureSearch');
-            input.value = '';
+            document.getElementById('figureSearch').value = '';
             searchQuery = '';
             document.getElementById('clearSearch').classList.add('hidden');
-            renderBrandSliders();
+            currentPage = 1; // 🎯 清除時重設為第一頁
             renderFiguresGrid();
         }
 
-        // 重設所有篩選條件
-        function resetAllFilters() {
-            clearSearchInput();
-            clearBrandFilter();
-            setFilterCategory('all');
+        function resetAllFilters() { clearSearchInput(); clearBrandFilter(); setFilterCategory('all'); }
+
+        // 🎯 建立分頁按鈕 UI
+        function renderPagination(totalFilteredItems) {
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = '';
+            
+            const totalPages = Math.ceil(totalFilteredItems / itemsPerPage);
+            if (totalPages <= 1) return; // 只有一頁就不用顯示分頁
+
+            const nav = document.createElement('nav');
+            nav.className = "flex justify-center items-center space-x-2";
+
+            // 上一頁按鈕
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+            prevBtn.className = `w-10 h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === 1 ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+            renderFiguresGrid();
+            scrollToTop();
+        }
+        };
+        nav.appendChild(prevBtn);
+
+        // 頁碼按鈕
+        for (let i = 1; i <= totalPages; i++) {
+            const pageBtn = document.createElement('button');
+            pageBtn.textContent = i;
+            if (i === currentPage) {
+                pageBtn.className = "w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white font-bold shadow-lg shadow-violet-500/30 flex items-center justify-center scale-105";
+        } else {
+                pageBtn.className = "w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex items-center justify-center text-sm font-medium";
+                pageBtn.onclick = () => {
+                    currentPage = i;
+                    renderFiguresGrid();
+                    scrollToTop();
+        };
+        }
+            nav.appendChild(pageBtn);
         }
 
-        // 核心網格卡片生成渲染器
-        function renderFiguresGrid() {
-            const grid = document.getElementById('galleryGrid');
-            const emptyState = document.getElementById('emptyState');
-            grid.innerHTML = '';
+            // 下一頁按鈕
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+        nextBtn.className = `w-10 h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === totalPages ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderFiguresGrid();
+                scrollToTop();
+        }
+        };
+        nav.appendChild(nextBtn);
 
-            // 計算出目前符合過濾與搜尋條件的模型陣列
-            const filtered = figuresDataset.filter(figure => {
-                // 1. 分類篩選 (Pick Up)
-                if (currentCategory === 'featured' && !figure.featured) return false;
+        container.appendChild(nav);
+        }
 
-                // 2. 品牌篩選
-                if (currentBrand && figure.brand !== currentBrand) return false;
+            // 🎯 輔助函數：換頁後自動滾動到展區頂端
+    function scrollToTop() {
+        const gallerySection = document.getElementById('galleries');
+        window.scrollTo({ top: gallerySection.offsetTop - 80, behavior: 'smooth' });
+        }
 
-                // 3. 搜尋文字篩選 (匹配標題、大廠、或網頁網址)
-                if (searchQuery) {
-                    const matchTitle = figure.title.toLowerCase().includes(searchQuery);
-                    const matchBrand = figure.brand.toLowerCase().includes(searchQuery);
-                    const matchHref = figure.href.toLowerCase().includes(searchQuery);
-                    if (!matchTitle && !matchBrand && !matchHref) return false;
-                }
+    function renderFiguresGrid() {
+        const grid = document.getElementById('galleryGrid');
+        const emptyState = document.getElementById('emptyState');
+        const statusBadge = document.getElementById('displayStatusBadge');
+        grid.innerHTML = '';
 
-                return true;
-            });
+        const filtered = figuresDataset.filter(figure => {
+            if (currentCategory === 'featured' && !figure.featured) return false;
+            if (currentBrand && figure.brand !== currentBrand) return false;
+            if (searchQuery) {
+                const matchTitle = figure.title.toLowerCase().includes(searchQuery);
+                const matchBrand = figure.brand.toLowerCase().includes(searchQuery);
+                if (!matchTitle && !matchBrand) return false;
+        }
+            return true;
+        });
 
-            // 如果找不到匹配項目
-            if (filtered.length === 0) {
-                grid.classList.add('hidden');
-                emptyState.classList.remove('hidden');
-                document.getElementById('displayedCount').textContent = 0;
-                return;
-            }
+        if (filtered.length === 0) {
+            grid.classList.add('hidden'); emptyState.classList.remove('hidden');
+            document.getElementById('paginationContainer').innerHTML = ''; // 隱藏分頁
+            statusBadge.innerHTML = `找不到模型`;
+            return;
+        }
 
-            grid.classList.remove('hidden');
-            emptyState.classList.add('hidden');
-            document.getElementById('displayedCount').textContent = filtered.length;
+        grid.classList.remove('hidden'); emptyState.classList.add('hidden');
+            
+        // 🎯 分頁資料切割邏輯
+            const totalItems = filtered.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+        if (currentPage > totalPages) currentPage = totalPages; // 安全檢查
 
-            // 開始動態生卡片元素
-            filtered.forEach((figure, index) => {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = filtered.slice(startIndex, endIndex); // 擷取當前頁需要的資料
+
+        // 🎯 更新載入狀態文字
+            const displayEnd = Math.min(endIndex, totalItems);
+        statusBadge.innerHTML = `顯示第 <span class="text-violet-400 font-bold mx-1">${startIndex + 1} - ${displayEnd}</span> 款 (共 <span class="text-slate-300">${totalItems}</span> 款)`;
+
+            pageData.forEach(figure => {
                 const card = document.createElement('div');
                 card.className = "group relative bg-slate-900/40 border border-slate-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-1.5 glow-card cursor-pointer";
                 
-                // 🎯 點擊卡片直接進入對應模型的 360° 完整旋轉展廳，無須任何預覽彈窗
-                card.onclick = () => {
-                    window.location.href = figure.href;
+                card.onclick = () => { 
+            // 如果資料庫裡有填寫 customUrl，就優先跳轉過去；否則走預設的 viewer.html
+    if (figure.customUrl && figure.customUrl.trim() !== "") {
+        window.location.href = figure.customUrl;
+                } else {
+        window.location.href = `viewer.html?id=${figure.id}`; 
+                }
                 };
 
-                // 縮圖外層容器（維持 4:5 黃金比例）
                 const thumbContainer = document.createElement('div');
                 thumbContainer.className = "aspect-[4/5] relative bg-slate-950 overflow-hidden w-full flex items-center justify-center";
 
                 const img = document.createElement('img');
                 img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${figure.img}`;
-                img.alt = figure.title;
-                img.loading = "lazy";
+                img.alt = figure.title; img.loading = "lazy";
                 img.className = "object-cover w-full h-full transform transition-all duration-700 group-hover:scale-110";
                 
-                // 卡片懸停特效與 360° 跳轉按鈕提示
                 const overlay = document.createElement('div');
                 overlay.className = "absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end justify-center pb-4";
                 
                 const hoverIndicator = document.createElement('div');
                 hoverIndicator.className = "transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center space-x-1.5 bg-violet-600/90 text-white text-xs px-2.5 py-1 rounded-full font-bold uppercase shadow-lg shadow-violet-500/20";
                 hoverIndicator.innerHTML = '<i class="fa-solid fa-rotate text-[10px] animate-spin-slow"></i> <span>進入 360°</span>';
-                
                 overlay.appendChild(hoverIndicator);
 
-                // 卡片上小巧的大廠名稱 Badge
                 const brandBadge = document.createElement('span');
                 brandBadge.className = "absolute top-3 left-3 px-2 py-0.5 rounded text-[9px] font-bold tracking-wider uppercase bg-slate-950/80 border border-slate-800 text-slate-300 z-10 backdrop-blur-sm";
                 brandBadge.textContent = figure.brand;
 
-                // PickUp 精選標籤
                 let pickUpBadge = '';
                 if (figure.featured) {
                     pickUpBadge = document.createElement('span');
@@ -787,25 +433,20 @@
                     pickUpBadge.innerHTML = '<i class="fa-solid fa-star text-[8px] mr-0.5"></i> PICKUP';
                 }
 
-                thumbContainer.appendChild(img);
-                thumbContainer.appendChild(overlay);
-                thumbContainer.appendChild(brandBadge);
+                thumbContainer.appendChild(img); thumbContainer.appendChild(overlay); thumbContainer.appendChild(brandBadge);
                 if (pickUpBadge) thumbContainer.appendChild(pickUpBadge);
 
-                // 標題資訊
                 const infoContainer = document.createElement('div');
                 infoContainer.className = "p-3.5";
-
                 const title = document.createElement('h3');
                 title.className = "text-xs md:text-sm font-semibold text-slate-200 line-clamp-2 leading-snug group-hover:text-violet-400 transition-colors";
                 title.textContent = figure.title;
-
-                infoContainer.appendChild(title);
-                card.appendChild(thumbContainer);
-                card.appendChild(infoContainer);
-
+                infoContainer.appendChild(title); card.appendChild(thumbContainer); card.appendChild(infoContainer);
                 grid.appendChild(card);
-            });
+        });
+
+        // 🎯 渲染分頁按鈕
+            renderPagination(totalItems);
         }
     </script>
 </body>
