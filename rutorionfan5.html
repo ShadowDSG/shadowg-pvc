@@ -1,171 +1,520 @@
-<html>
-
-    <head>
-        <title>ShadowG的攝影小屋</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=0.5" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-    </head>
-    <body>
-        <div class="page-wrap">
-
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.html" class="active"><span class="icon fa-home"></span></a></li>
-                    </ul>
-                </nav>
-
-            <!-- Main -->
-                <section id="main">
-
-                    <!-- Banner -->
-                        <section id="baner">
-                            
-                                <h1><font color="black">&emsp; ル・トリオンファン &nbsp;&nbsp;&nbsp;マントなし&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a href="https://forum.gamer.com.tw/Co.php?bsn=60036&sn=325662"><font color="navy">開箱文連結</u></a>)
-                                   
-                                    <center>(
-                                        <font color="navy"><a href="rutorionfan1.html">儀裝Ver.</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="rutorionfan2.html">儀裝Ver.半身</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="rutorionfan3.html">輕裝Ver.</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="rutorionfan4.html">輕裝Ver.2</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="rutorionfan6.html">顔</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="rutorionfan7.html">半身</a>&nbsp;&nbsp;<font color="black">/
-                                        <font color="navy">&nbsp;&nbsp;<a href="rutorionfan8.html">半身2</a></font>
-                                            )</h1>
-                                <p></a></p>
-                                <ul class="actions">
-                                   
-                                </ul>
-                            </div>
-                        </section>
-
-                    <!-- Gallery -->
-                        <section id="galleries">
-
-                            <!-- Photo Galleries -->
-                              
-                                    <header class="special">
-                                        <h1></h1>
-                                    </header>
-                                    <DIV style="text-align:center;"><p></p></DIV>
-
-
-
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-
-    <title>Sample</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ル・トリオンファン マントなし - ShadowG的攝影小屋</title>
     
-
-</head>
-
-<body>
-
-<section id="gallery">
-
-<footer>    
-<div id="circlr"></div>
-
-<script>
-const fileName = window.location.pathname.split("/").pop().replace(".html", "");
-const folder = fileName;
-
-const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
-const total = 36;
-
-const container = document.getElementById("circlr");
-
-for (let i = 1; i <= total; i++) {
-
-    const img = document.createElement("img");
-
-    img.setAttribute(
-        "data-src",
-        `${baseUrl}/${folder}/${i}.jpg`
-    );
-
-    container.appendChild(img);
-}
-</script>
-</section>
-</footer>
-
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.singlePageNav.min.js"></script>
-        <script src="js/circlr.min.js"></script>
-        <script>
-
-            // Prevent console.log from generating errors in IE for the purposes of the demo
-            if ( ! window.console ) console = { log: function(){} };
-
-            // The actual plugin
-            $('.single-page-nav').singlePageNav({
-                offset: $('.single-page-nav').outerHeight(),
-                filter: ':not(.external)',
-                updateHash: true,
-                beforeStart: function() {
-                    console.log('begin scrolling');
-                },
-                onComplete: function() {
-                    console.log('done scrolling');
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        iris: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            500: '#38bdf8', // 鳶尾聖光藍
+                            600: '#0284c7',
+                            850: '#0b1329', // 聖殿深海藍
+                            900: '#070a1e',
+                            950: '#030511', // 極黑夜幕
+                        },
+                        royalGold: {
+                            400: '#fbbf24', // 宮廷華麗金
+                            500: '#f59e0b',
+                        }
+                    }
                 }
-            });
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* ==========================================================================
+           🎯 全域整體放大 140% (繼承精緻視覺比例)
+           ========================================================================== */
+        html {
+            zoom: 1.4; /* 將整體版面放大 140% 延續整體展廳規格 */
+        }
+
+        body {
+            /* 自由鳶尾專屬：聖殿白金光輝、水波光暈與皇家深藍的典雅古風漸層 */
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(251, 191, 36, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(11, 19, 41, 0.96) 0%, rgba(3, 5, 17, 0.99) 100%),
+                url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 磨砂玻璃質感 */
+        .glass-panel {
+            background: rgba(11, 21, 41, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 聖殿輝芒：天藍與金黃雙色霓虹發光陰影 */
+        .neon-shadow-iris {
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.12), 0 0 15px rgba(251, 191, 36, 0.06);
+        }
+
+        /* 自訂滾動條 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030511;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 99px;
+        }
+        
+        /* 滾動條隱藏，用於控制列 */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-sky-900 selection:text-white">
+
+    <!-- 導覽列 -->
+    <nav class="w-full glass-panel border-b border-iris-950/40 py-2 md:py-2.5 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-black/55">
+        <div class="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-4">
             
-            $(document).ready(function ($) {
+            <!-- 左側：精緻返回按鈕 -->
+            <div class="flex justify-start w-full xl:w-auto">
+                <a href="index.html" class="w-full xl:w-auto flex items-center justify-center space-x-2.5 px-4 py-1.5 rounded-xl bg-slate-900/60 hover:bg-iris-950/40 border border-slate-800/60 hover:border-sky-500/30 text-slate-300 hover:text-white shadow-lg transition-all duration-300 active:scale-[0.98] group">
+                    <div class="w-7 h-7 rounded-lg bg-slate-950 flex items-center justify-center group-hover:bg-sky-600 group-hover:scale-105 transition-all">
+                        <i class="fa-solid fa-arrow-left text-xs text-white"></i>
+                    </div>
+                    <span class="text-xs tracking-wider font-extrabold uppercase">返回模型展廳</span>
+                </a>
+            </div>
 
-                // delegate calls to data-toggle="lightbox"
-                $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-                    event.preventDefault();
-                    return $(this).ekkoLightbox({
-                        always_show_close: true
-                    });
-                });
-
-            });
-
-            var crl = circlr('circlr', {
-              scroll : true,
-              loader : 'loader'
-            });
-            
-        </script>
-
-</body>
-</html>
-
-
-    <p></p>
-    <p></p>
-    <center><p>圖片有36張，需要點讀取時間</p>
-    <center><p>圖片會閃是還沒讀取完成，轉動一圈後就不會了</p>
+            <!-- 正中間：高質感八維度視角切換控制台 (支援橫向滑動) -->
+            <div class="flex items-center max-w-full overflow-x-auto scrollbar-none bg-black/85 p-1 rounded-xl border border-iris-950/60 shadow-xl shadow-black/40">
+                <div class="flex flex-nowrap gap-1">
+                    <!-- 1. 儀裝Ver.全身 -->
+                    <a href="rutorionfan1.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        1. 儀裝Ver.全身
+                    </a>
                     
+                    <!-- 2. 儀裝Ver.半身 -->
+                    <a href="rutorionfan2.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        2. 儀裝Ver.半身
+                    </a>
+                    
+                    <!-- 3. 輕裝Ver. -->
+                    <a href="rutorionfan3.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        3. 輕裝Ver.
+                    </a>
+                    
+                    <!-- 4. 輕裝Ver.2 -->
+                    <a href="rutorionfan4.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        4. 輕裝Ver.2
+                    </a>
 
-                    <!-- Contact -->
-                        <section id="contact">
-                            <!-- Social -->
-                                <div class="social column">
-                                    <h3>About Me</h3>
-                                    <p>2018踏入相機攝影，之前入坑的動機就是為了拍攝PVC，但是去日本的原因，反而兩年都是在拍攝風光較多。2020回國後，開始練習PVC攝影。</p>
-                                    <p>如果你也想加入360旋轉圖的製作，歡迎巴哈直接找我；或者只是想用於你的開箱文中，我也可以上傳主機將網址給你，不會登於我的網頁上。</p>
-                                </div>
+                    <!-- 5. マントなし (當前頁面高亮) -->
+                    <span class="px-3.5 py-1.5 rounded-lg text-[10px] font-extrabold bg-gradient-to-r from-sky-600 via-blue-500 to-indigo-500 text-white shadow-lg shadow-sky-500/20 flex items-center gap-1 border border-white/10 whitespace-nowrap">
+                        5. マントなし <i class="fa-solid fa-eye text-[8px] animate-pulse"></i>
+                    </span>
 
+                    <!-- 6. 顔 -->
+                    <a href="rutorionfan6.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        6. 顔
+                    </a>
 
-                
-                        </section>
+                    <!-- 7. 半身 -->
+                    <a href="rutorionfan7.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        7. 半身
+                    </a>
+
+                    <!-- 8. 半身2 -->
+                    <a href="rutorionfan8.html" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap">
+                        8. 半身2
+                    </a>
+                </div>
+            </div>
+
+            <!-- 右側：在大螢幕平衡排版的隱形預留位置 -->
+            <div class="hidden xl:block invisible pointer-events-none w-[150px]">
+                <div class="text-xs">平衡佔位</div>
+            </div>
+            
+        </div>
+    </nav>
+
+    <!-- 主舞台區域 - 外層容器已放寬至 max-w-7xl -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-8 py-4 flex flex-col items-center justify-center">
+        
+        <!-- 作品標題與開箱外鏈 -->
+        <div class="text-center mb-4 w-full">
+            <h1 class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight flex flex-wrap items-center justify-center gap-2">
+                <span>ル・トリオンファン</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 font-extrabold">- マントなし</span>
+            </h1>
         </div>
 
-        <!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.poptrox.min.js"></script>
-            <script src="assets/js/jquery.scrolly.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <script src="assets/js/main.js"></script>
+        <!-- 360 旋轉主面板 - 寬度設定為 1080px 且呈現橫置 4:3 比例 -->
+        <div class="w-full max-w-[1080px] aspect-[4/3] bg-slate-950/80 rounded-3xl border border-sky-900/30 relative flex items-center justify-center overflow-hidden neon-shadow-iris group">
+            
+            <!-- 聖光底座背景燈效 -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-sky-600/5 blur-2xl rounded-full"></div>
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-transparent via-sky-500 to-transparent opacity-30"></div>
 
-    </body>
+            <!-- 科技感載入畫面 (Preloader) -->
+            <div id="loader-screen" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#030611]/95 transition-opacity duration-500">
+                <div class="relative w-24 h-24 mb-4">
+                    <!-- 環形旋轉條 -->
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle class="text-slate-900" stroke-width="4" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                        <circle id="loader-progress-bar" class="text-sky-400 transition-all duration-100" stroke-width="5" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                    </svg>
+                    <!-- 中間數字 -->
+                    <span id="loader-percentage" class="absolute inset-0 flex items-center justify-center text-lg font-black text-white">0%</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-200 tracking-wider">自由鳶尾のマントなし美態描繪中 (預載中)...</h3>
+                <p class="text-xs text-slate-500 mt-1.5">載入完畢後即可享有極致順暢的 360° 轉動</p>
+            </div>
+
+            <!-- 360° 圖片渲染容器 (橫向 4:3 完美貼合) -->
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden">
+                <!-- 圖片由 JS 動態生成並塞入此處 -->
+            </div>
+
+            <!-- 手機橫置提示 -->
+            <div class="absolute top-4 left-4 z-10 hidden sm:block">
+                <span class="inline-flex items-center px-2 py-1 rounded bg-slate-950/90 border border-iris-950/40 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm">
+                    <i class="fa-solid fa-mobile-screen-button text-sky-400"></i> 手機版建議橫放觀看
+                </span>
+            </div>
+
+            <!-- 互動操作導引提示 -->
+            <div id="drag-tips" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-700 pointer-events-none">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-950/95 border border-iris-950/40 text-slate-200 gap-2 shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-arrows-left-right animate-pulse text-sky-400"></i> 左右拖曳或滑動以自由旋轉
+                </span>
+            </div>
+        </div>
+
+        <!-- 控制與操控面板 - 寬度設定為 1080px -->
+        <div class="w-full max-w-[1080px] mt-6 space-y-4">
+            
+            <!-- 手動控制與自動播放工具列 -->
+            <div class="glass-panel rounded-2xl p-4 flex items-center justify-between gap-4">
+                <button id="btn-play" class="w-10 h-10 rounded-xl bg-sky-600 hover:bg-sky-500 text-white flex items-center justify-center shadow-lg shadow-sky-500/20 active:scale-95 transition-all" title="自動播放">
+                    <i id="play-icon" class="fa-solid fa-play"></i>
+                </button>
+                <div class="flex-1 flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-sky-500/60 text-sm animate-pulse"></i>
+                    <input id="frame-range" type="range" min="0" max="35" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-500 focus:outline-none" />
+                </div>
+                <span id="frame-counter" class="text-xs font-mono font-bold text-slate-300 bg-black/80 px-2 py-1 rounded-md border border-iris-950/60 min-w-[50px] text-center">1 / 36</span>
+            </div>
+
+            <!-- 雙排卡片：開箱文外鏈 & 協力感謝 -->
+            <div class="grid sm:grid-cols-2 gap-4">
+                
+                <!-- 開箱連結卡片 -->
+                <a href="https://forum.gamer.com.tw/Co.php?bsn=60036&sn=325662" target="_blank" rel="noopener" class="glass-panel p-4 rounded-2xl flex items-center justify-between group hover:border-sky-500/30 transition-all duration-300 glow-card">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-600/10 border border-sky-500/20 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-newspaper text-base"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-500 font-bold uppercase tracking-wider">巴哈姆特 推薦推薦</span>
+                            <span class="block text-sm font-bold text-slate-200">看原作者圖文開箱</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500 group-hover:text-sky-300 transition-colors"></i>
+                </a>
+
+                <!-- 網友感謝與聯絡卡片 -->
+                <div class="glass-panel p-4 rounded-2xl flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-600/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-slate-500 font-bold uppercase tracking-wider">PVC 攝影 & 360° 製作</span>
+                        <span class="block text-sm font-bold text-slate-200">由 <span class="text-sky-400">ShadowG 的攝影小屋</span> 製作</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 說明提示條 -->
+            <div class="bg-slate-900/40 border border-iris-950/40 p-4 rounded-2xl flex items-start gap-3">
+                <i class="fa-solid fa-circle-info text-sky-400 mt-0.5 text-sm"></i>
+                <div class="text-xs text-slate-400 leading-relaxed space-y-1">
+                    <p>📌 轉動時若感覺畫面閃爍，此為初次下載延遲。本網頁已內建**完全預載機制**，等上方進度完成後，即可順暢流利地旋轉。</p>
+                    <p>📌 本作品共包含 36 張高清晰度旋轉影格，等進度條加載完畢後即會開始自動播放。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="bg-black/80 border-t border-iris-950/40 py-6 px-4 text-center text-xs text-slate-500 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ShadowG的攝影小屋. 僅供個人模型愛好者交流與作品展示。</p>
+            <p>Designed with <i class="fa-solid fa-heart text-sky-500 animate-pulse"></i> using Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         📦 核心 360° 旋轉播放控制引擎
+         ========================================================================== -->
+    <script>
+        // 設定展示檔案夾：5. マントなし 對應資料夾 "rutorionfan5"
+        const folder = "rutorionfan5";   
+        const total = 36;          // 總共有 36 張旋轉照片 (1.jpg 至 36.jpg)
+        const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+
+        const viewerStage = document.getElementById("viewer-stage");
+        const loaderScreen = document.getElementById("loader-screen");
+        const loaderProgressBar = document.getElementById("loader-progress-bar");
+        const loaderPercentage = document.getElementById("loader-percentage");
+        const frameRange = document.getElementById("frame-range");
+        const frameCounter = document.getElementById("frame-counter");
+        const btnPlay = document.getElementById("btn-play");
+        const playIcon = document.getElementById("play-icon");
+        const dragTips = document.getElementById("drag-tips");
+
+        let loadedCount = 0;
+        let imageElements = [];
+        let currentIndex = 0;
+
+        // 360 互動拖曳與播放變數
+        let isDragging = false;
+        let startX = 0;
+        let autoPlayInterval = null;
+        let playSpeed = 100; // 自動旋轉的毫秒間隔
+
+        // 啟動圖片預載
+        preloadImages();
+
+        function preloadImages() {
+            // 計算 SVG 圓形進度條周長
+            const radius = 40;
+            const circumference = 2 * Math.PI * radius;
+
+            for (let i = 1; i <= total; i++) {
+                const img = document.createElement("img");
+                img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_35px_rgba(0,0,0,0.95)]";
+                img.alt = `Frame ${i}`;
+                img.setAttribute("data-index", i - 1);
+                img.referrerPolicy = "no-referrer"; // 繞過 R2 的 Referer 盜鏈阻擋
+
+                // 核心修正：一定要先定義好事件監聽，最後再指定 src，避免快取載入過快漏掉 onload
+                img.onload = () => {
+                    loadedCount++;
+                    const progress = loadedCount / total;
+                    
+                    // 更新環形進度條
+                    const offset = circumference - (progress * circumference);
+                    loaderProgressBar.style.strokeDashoffset = offset;
+                    
+                    // 更新百分比文字
+                    loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+
+                    if (loadedCount === total) {
+                        onPreloadComplete();
+                    }
+                };
+
+                // 偶發載入失敗時的防護與容錯，依然要計數並推動進度條
+                img.onerror = () => {
+                    loadedCount++;
+                    const progress = loadedCount / total;
+                    
+                    const offset = circumference - (progress * circumference);
+                    loaderProgressBar.style.strokeDashoffset = offset;
+                    loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+
+                    if (loadedCount === total) {
+                        onPreloadComplete();
+                    }
+                };
+
+                // 最後設定 src，啟動瀏覽器下載執行
+                img.src = `${baseUrl}/${folder}/${i}.jpg`;
+
+                viewerStage.appendChild(img);
+                imageElements.push(img);
+            }
+        }
+
+        // 預載完畢後的初始化
+        function onPreloadComplete() {
+            // 隱藏載入畫面
+            loaderScreen.classList.add("opacity-0");
+            setTimeout(() => {
+                loaderScreen.style.display = "none";
+                viewerStage.classList.remove("hidden");
+            }, 500);
+
+            // 預設顯示第一張
+            showFrame(0);
+
+            // 綁定互動事件
+            setupInteractEvents();
+
+            // 預設啟動自動旋轉
+            startAutoPlay();
+        }
+
+        // 切換顯示特定幀
+        function showFrame(index) {
+            // 環狀循環索引機制
+            currentIndex = (index + total) % total;
+
+            // 切換圖片的可見度狀態
+            imageElements.forEach((img, i) => {
+                if (i === currentIndex) {
+                    img.classList.remove("hidden");
+                    img.classList.add("block");
+                } else {
+                    img.classList.remove("block");
+                    img.classList.add("hidden");
+                }
+            });
+
+            // 連動 UI 元件：更新滑動條與計數器
+            frameRange.value = currentIndex;
+            frameCounter.textContent = `${currentIndex + 1} / ${total}`;
+        }
+
+        // 拖曳滑軌切換幀數
+        frameRange.oninput = function() {
+            stopAutoPlay();
+            showFrame(parseInt(this.value));
+            hideDragTips();
+        };
+
+        // 綁定滑鼠、觸控與滾輪事件
+        function setupInteractEvents() {
+            // --- 滑鼠拖曳 ---
+            viewerStage.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                stopAutoPlay();
+                hideDragTips();
+            });
+
+            window.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                const deltaX = e.clientX - startX;
+                
+                // 拖曳敏感度：每滑動 15px 切換一張
+                if (Math.abs(deltaX) > 15) {
+                    const step = Math.sign(deltaX);
+                    // 物理慣性方向修正：向右拖曳往回轉，向左拖曳往前轉
+                    showFrame(currentIndex - step);
+                    startX = e.clientX;
+                }
+            });
+
+            window.addEventListener("mouseup", () => {
+                isDragging = false;
+            });
+
+            // --- 觸控滑動 (行動端) ---
+            viewerStage.addEventListener("touchstart", (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                stopAutoPlay();
+                hideDragTips();
+            });
+
+            viewerStage.addEventListener("touchmove", (e) => {
+                if (!isDragging) return;
+                const deltaX = e.touches[0].clientX - startX;
+
+                if (Math.abs(deltaX) > 10) {
+                    const step = Math.sign(deltaX);
+                    showFrame(currentIndex - step);
+                    startX = e.touches[0].clientX;
+                }
+            });
+
+            viewerStage.addEventListener("touchend", () => {
+                isDragging = false;
+            });
+
+            // --- 滑鼠滾輪 ---
+            viewerStage.addEventListener("wheel", (e) => {
+                e.preventDefault();
+                stopAutoPlay();
+                hideDragTips();
+                const step = Math.sign(e.deltaY);
+                showFrame(currentIndex + step);
+            }, { passive: false });
+        }
+
+        // 播放按鈕事件處理
+        btnPlay.onclick = () => {
+            if (autoPlayInterval) {
+                stopAutoPlay();
+            } else {
+                startAutoPlay();
+                hideDragTips();
+            }
+        };
+
+        // 啟動自動旋轉播放
+        function startAutoPlay() {
+            if (autoPlayInterval) return;
+            autoPlayInterval = setInterval(() => {
+                showFrame(currentIndex + 1);
+            }, playSpeed);
+            
+            // UI 切換為暫停狀態，配色改為晴空藍
+            playIcon.className = "fa-solid fa-pause";
+            btnPlay.classList.remove("bg-sky-600");
+            btnPlay.classList.add("bg-sky-500");
+        }
+
+        // 停止自動播放
+        function stopAutoPlay() {
+            if (!autoPlayInterval) return;
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            
+            // UI 切換回播放狀態，配回聖殿藍
+            playIcon.className = "fa-solid fa-play";
+            btnPlay.classList.remove("bg-sky-500");
+            btnPlay.classList.add("bg-sky-600");
+        }
+
+        // 漸隱拖曳指引提示
+        function hideDragTips() {
+            if (dragTips.style.display === "none") return;
+            dragTips.classList.add("opacity-0");
+            setTimeout(() => {
+                dragTips.style.display = "none";
+            }, 700);
+        }
+    </script>
+</body>
 </html>
