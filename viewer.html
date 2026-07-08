@@ -24,7 +24,8 @@
 
         #drag-tips { bottom: 20px; }
 
-        body { background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.99) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
+        /* 調整遮罩：將原本 90% 降至 75%，底部 99% 降至 90%，並使用較亮的 slate-800 做為頂部光源色 */
+        body { background-image: radial-gradient(circle at top, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
         .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
         .neon-shadow-violet { box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
         ::-webkit-scrollbar { width: 6px; }
@@ -65,8 +66,9 @@
                 </a>
             </div>
 
+            <!-- 優化：加入 gap-2 與 p-1.5，加強整體切換面板的圓潤與寬度視覺 -->
             <div class="flex justify-center order-1 md:order-2">
-                <div id="angle-switcher" class="flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 shadow-xl shadow-violet-950/30 hidden">
+                <div id="angle-switcher" class="flex items-center gap-2 bg-slate-950/90 p-1.5 rounded-xl border border-slate-800/80 shadow-xl shadow-violet-950/30 hidden">
                     </div>
             </div>
 
@@ -82,7 +84,8 @@
             <h1 id="dynamic-title" class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight">載入中...</h1>
         </div>
 
-        <div id="viewer-container" class="w-[95%] max-w-[3000px] h-[70vh] md:h-[85vh] bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
+        <!-- 這裡將觀景窗佔的版面初始 classes 與限制放大為 1.1 倍 (w-[95%] -> w-[98%], h-[70vh] -> h-[77vh], md:h-[85vh] -> md:h-[93.5vh]) -->
+        <div id="viewer-container" class="w-[98%] max-w-[3300px] h-[77vh] md:h-[93.5vh] bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-violet-600/10 blur-2xl rounded-full"></div>
             <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-40"></div>
 
@@ -98,7 +101,8 @@
                 <p class="text-xs text-slate-500 mt-1.5">載入完畢後即能享有極致順暢的 360° 轉動</p>
             </div>
 
-            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden"></div>
+            <!-- 加入 transform-origin: center center 以確保 Zoom In 軸心完美居中 -->
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: transform 0.05s ease-out, filter 0.05s ease-out;"></div>
 
             <div class="absolute top-4 left-4 z-10 hidden sm:block">
                 <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm">
@@ -115,15 +119,35 @@
 
       <div class="w-[95%] max-w-5xl mt-6 space-y-4">
             
-            <div class="glass-panel rounded-2xl p-4 flex items-center justify-between gap-4">
-                <button id="btn-play" class="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg shadow-red-500/20 active:scale-95 transition-all" title="自動播放">
-                    <i id="play-icon" class="fa-solid fa-play"></i>
-                </button>
-                <div class="flex-1 flex items-center gap-3">
-                    <i class="fa-solid fa-compass text-slate-500 text-sm"></i>
-                    <input id="frame-range" type="range" min="0" max="32" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-slate-400 focus:outline-none" />
+            <!-- 控制器面板整合包（Zoom 條在最上方、接著為 Frame 旋轉條） -->
+            <div class="glass-panel rounded-2xl p-4 md:p-5 space-y-4">
+                
+                <!-- 第一行：細節縮放 (Zoom In) 控制區 - 置中 (已將 max-w-md 調整為 max-w-lg 以稍微拉長拉條) -->
+                <div class="flex justify-center items-center w-full">
+                    <div class="w-full max-w-lg flex items-center justify-between gap-3 bg-slate-900/40 p-2 rounded-xl border border-slate-800/50">
+                        <div class="flex-1 flex items-center gap-3">
+                            <i class="fa-solid fa-magnifying-glass-plus text-slate-500 text-sm" title="細節縮放 (Zoom In)"></i>
+                            <input id="zoom-range" type="range" min="1.0" max="3.0" value="1.0" step="0.05" class="w-full h-1.5 bg-slate-850 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
+                        </div>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <span id="zoom-counter" class="text-[11px] font-mono font-bold text-violet-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[42px] text-center">1.0x</span>
+                            <button id="btn-zoom-reset" class="px-2 py-1 bg-slate-800 hover:bg-slate-750 border border-slate-700/60 text-[10px] font-bold text-slate-300 hover:text-white rounded-md active:scale-95 transition-all" title="還原縮放">重設</button>
+                        </div>
+                    </div>
                 </div>
-                <span id="frame-counter" class="text-xs font-mono font-bold text-slate-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[50px] text-center">1 / 33</span>
+
+                <!-- 第二行：自動播放與圖片進度拉條（原來的旋轉角度列） -->
+                <div class="flex items-center justify-between gap-4 pt-3 border-t border-slate-800/60">
+                    <button id="btn-play" class="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg shadow-red-500/20 active:scale-95 transition-all shrink-0" title="自動播放">
+                        <i id="play-icon" class="fa-solid fa-play"></i>
+                    </button>
+                    <div class="flex-1 flex items-center gap-3">
+                        <i class="fa-solid fa-compass text-slate-500 text-sm" title="旋轉角度"></i>
+                        <input id="frame-range" type="range" min="0" max="32" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-slate-400 focus:outline-none" />
+                    </div>
+                    <span id="frame-counter" class="text-xs font-mono font-bold text-slate-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[50px] text-center shrink-0">1 / 33</span>
+                </div>
+
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -186,11 +210,18 @@
         const loaderScreen = document.getElementById("loader-screen");
         const loaderProgressBar = document.getElementById("loader-progress-bar");
         const loaderPercentage = document.getElementById("loader-percentage");
+        
+        // 取得控制項與拉條元素
         const frameRange = document.getElementById("frame-range");
         const frameCounter = document.getElementById("frame-counter");
         const btnPlay = document.getElementById("btn-play");
         const playIcon = document.getElementById("play-icon");
         const dragTips = document.getElementById("drag-tips");
+
+        // 新增：縮放拉條（已移除 EV 曝光拉條）
+        const zoomRange = document.getElementById("zoom-range");
+        const zoomCounter = document.getElementById("zoom-counter");
+        const btnZoomReset = document.getElementById("btn-zoom-reset");
 
         let loadedCount = 0;
         let imageElements = [];
@@ -199,6 +230,9 @@
         let startX = 0;
         let autoPlayInterval = null;
         let playSpeed = 100;
+
+        // 新增效果變數
+        let currentZoom = 1.0;
 
         window.addEventListener('DOMContentLoaded', () => {
             if (!currentFigureId) {
@@ -247,10 +281,11 @@
                 const btn = document.createElement('a');
             btn.href = `viewer.html?id=${figure.id}&mode=${index}`;
                         
+            // 🎯 縮減按鈕左右內邊距，改為 px-4 md:px-6，使整體格尺寸更為精緻
             if (index === currentModeIndex) {
-                btn.className = "px-4 py-1 mx-0.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20";
+                btn.className = "px-4 md:px-6 py-1.5 mx-0.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20 whitespace-nowrap text-center transition-all";
             } else {
-                btn.className = "px-4 py-1 mx-0.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60";
+                btn.className = "px-4 md:px-6 py-1.5 mx-0.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap text-center";
             }
                         
             btn.textContent = mode.name;
@@ -314,20 +349,20 @@
         };
                 
         img.onload = () => {
-            // 🎯 新增：抓取第一張圖片的比例，動態調整展示區寬度
+            // 🎯 新增：抓取第一張圖片的比例，動態調整展示區寬度 (這裡也更新了 1.1 倍的最大寬高限制)
             if (loadedCount === 0) {
         const viewerContainer = document.getElementById("viewer-container");
         // 移除固定的寬高 class，改用 CSS 控制比例
-        viewerContainer.classList.remove("w-[95%]", "max-w-[3000px]", "h-[70vh]", "md:h-[85vh]");
-        viewerContainer.style.maxHeight = "85vh";
-        viewerContainer.style.maxWidth = "95vw";
+        viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
+        viewerContainer.style.maxHeight = "93.5vh"; // 原先為 85vh，放大 1.1 倍為 93.5vh
+        viewerContainer.style.maxWidth = "98vw";    // 原先為 95vw，放大 1.1 倍調整為 98vw 貼合極致視覺
         viewerContainer.style.height = "100vh"; // 先撐開高度
         viewerContainer.style.width = "auto";
         // 根據原始圖片長寬設定比例
         viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
         }
 
-        loadedCount++;
+            loadedCount++;
     const progress = loadedCount / total;
     const offset = circumference - (progress * circumference);
         loaderProgressBar.style.strokeDashoffset = offset;
@@ -350,6 +385,7 @@
 
         showFrame(0);
         setupInteractEvents();
+        setupVisualEffectEvents(); // 註冊縮放與曝光效果
         }
 
         function showFrame(index) {
@@ -406,6 +442,33 @@
             e.preventDefault(); stopAutoPlay(); hideDragTips();
         showFrame(currentIndex + Math.sign(e.deltaY));
         }, { passive: false }); // 修復滾輪捲動問題
+        }
+
+        // 🎯 縮放控制核心邏輯 (已移除 EV 曝光控制)
+        function setupVisualEffectEvents() {
+            // 動態更新 CSS transforms
+            function updateStageEffects() {
+                // 套用縮放
+                viewerStage.style.transform = `scale(${currentZoom})`;
+            }
+
+            // 監聽縮放滑條
+            zoomRange.oninput = function() {
+                currentZoom = parseFloat(this.value);
+                zoomCounter.textContent = `${currentZoom.toFixed(1)}x`;
+                updateStageEffects();
+            };
+
+            // 縮放重設按鈕
+            btnZoomReset.onclick = function() {
+                currentZoom = 1.0;
+                zoomRange.value = "1.0";
+                zoomCounter.textContent = "1.0x";
+                updateStageEffects();
+            };
+
+            // 初始化套用一次
+            updateStageEffects();
         }
 
         btnPlay.onclick = () => {
