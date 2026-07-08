@@ -1215,20 +1215,7 @@ const figuresDataset = [
     "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
-    "modes": [
-      {
-        "name": "全身",
-        "folder": "Jeanne",
-        "totalFrames": 36,
-        "is18Plus": false
-      },
-      {
-        "name": null,
-        "folder": null,
-        "totalFrames": 0,
-        "is18Plus": false
-      }
-    ]
+    "modes": null
   },
   {
     "id": "hayami_kanade",
