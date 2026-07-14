@@ -6,8 +6,8 @@ const figuresDataset = [
     "brand": "WAVE",
     "featured": true,
     "folder": "makise",
-    "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/makise",
+    "totalFrames": 32,
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
     "modes": null
@@ -20,7 +20,7 @@ const figuresDataset = [
     "featured": true,
     "folder": "altersora",
     "totalFrames": 33,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/altersora",
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69656",
     "is18Plus": false,
     "modes": null
@@ -33,10 +33,35 @@ const figuresDataset = [
     "featured": true,
     "folder": "gokusinsukasi01",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/gokusinsukasi01",
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69508",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": "完整-色光",
+        "folder": "gokusinsukasi01",
+        "totalFrames": 32,
+        "is18Plus": false
+      },
+      {
+        "name": "海嗣單獨-色光 ",
+        "folder": "gokusinsukasi02",
+        "totalFrames": 33,
+        "is18Plus": false
+      },
+      {
+        "name": "人物全身-色光",
+        "folder": "gokusinsukasi03",
+        "totalFrames": 33,
+        "is18Plus": false
+      },
+      {
+        "name": "人物半身-平光",
+        "folder": "gokusinsukasi04",
+        "totalFrames": 32,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "furanndo",
@@ -46,10 +71,23 @@ const figuresDataset = [
     "featured": true,
     "folder": "furanndo",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/furanndohigh",
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68899&tnum=1",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": "整體 - 高畫質",
+        "folder": "furanndohigh",
+        "totalFrames": 33,
+        "is18Plus": false
+      },
+      {
+        "name": "身體特寫 - 高畫質",
+        "folder": "furanndo2high",
+        "totalFrames": 33,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "PA15",
@@ -58,8 +96,8 @@ const figuresDataset = [
     "brand": "GSC",
     "featured": true,
     "folder": "PA15",
-    "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/PA15",
+    "totalFrames": 33,
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68624",
     "is18Plus": false,
     "modes": null
@@ -71,8 +109,8 @@ const figuresDataset = [
     "brand": "KOTOBUKIYA",
     "featured": true,
     "folder": "yodayo",
-    "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/yodayo",
+    "totalFrames": 34,
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=67704",
     "is18Plus": false,
     "modes": null
@@ -84,8 +122,8 @@ const figuresDataset = [
     "brand": "GSC",
     "featured": true,
     "folder": "Ryza",
-    "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/Ryza",
+    "totalFrames": 33,
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
     "modes": null
@@ -98,10 +136,59 @@ const figuresDataset = [
     "featured": true,
     "folder": "rutorionfan1",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/rutorionfan1",
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": "儀裝Ver.全身",
+        "folder": "rutorionfan1",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "儀裝Ver.半身",
+        "folder": "rutorionfan2",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "輕裝Ver.",
+        "folder": "rutorionfan3",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "輕裝Ver.2 ",
+        "folder": "rutorionfan4",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "マントなし ",
+        "folder": "rutorionfan5",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "顔 ",
+        "folder": "rutorionfan6",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "半身",
+        "folder": "rutorionfan7",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "半身2 ",
+        "folder": "rutorionfan8",
+        "totalFrames": 36,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "hokusai1",
@@ -111,10 +198,47 @@ const figuresDataset = [
     "featured": true,
     "folder": "hokusai1",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/hokusai1",
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": "全身",
+        "folder": "hokusai1",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "上身",
+        "folder": "hokusai2",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "高角度",
+        "folder": "hokusai3",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "下身",
+        "folder": "hokusai4",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "脫着物",
+        "folder": "hokusai5",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "着物",
+        "folder": "hokusai6",
+        "totalFrames": 36,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "Javelin1",
@@ -124,10 +248,35 @@ const figuresDataset = [
     "featured": true,
     "folder": "Javelin1",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/Javelin1",
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": " 全身",
+        "folder": "Javelin1",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": " 顏",
+        "folder": "Javelin2",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "半身",
+        "folder": "Javelin3",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "身體",
+        "folder": "Javelin4",
+        "totalFrames": 36,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "iriasu1",
@@ -137,10 +286,41 @@ const figuresDataset = [
     "featured": true,
     "folder": "iriasu1",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/iriasu1",
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": "全身 ",
+        "folder": "iriasu1",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "全身 旗なし",
+        "folder": "iriasu2",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "半身",
+        "folder": "iriasu3",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "下半身",
+        "folder": "iriasu4",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "全身 低視點",
+        "folder": "iriasu5",
+        "totalFrames": 36,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "hakuchou1",
@@ -194,10 +374,47 @@ const figuresDataset = [
     "featured": true,
     "folder": "siriasu1",
     "totalFrames": 36,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/siriasu1",
+    "customUrl": "",
     "reviewLink": "",
     "is18Plus": false,
-    "modes": null
+    "modes": [
+      {
+        "name": "全身",
+        "folder": "siriasu1",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "上身",
+        "folder": "siriasu2",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "下身",
+        "folder": "siriasu3",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "臉、顏",
+        "folder": "siriasu4",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "臉、顏 角度2 ",
+        "folder": "siriasu5",
+        "totalFrames": 36,
+        "is18Plus": false
+      },
+      {
+        "name": "胸 ex ",
+        "folder": "siriasu6",
+        "totalFrames": 36,
+        "is18Plus": true
+      }
+    ]
   },
   {
     "id": "15th",
@@ -207,7 +424,7 @@ const figuresDataset = [
     "featured": false,
     "folder": "15thup",
     "totalFrames": 32,
-    "customUrl": "https://shadowg-pvc.g0953398466.workers.dev/15thup",
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61907",
     "is18Plus": false,
     "modes": [
