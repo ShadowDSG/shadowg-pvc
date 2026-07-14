@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>載入中... - ShadowG的攝影小屋</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -15,45 +15,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
-        /* 這裡把 zoom 改回 1.0，解除比例封印 */
-        html { zoom: 1.0; }
-
-        @media (min-width: 768px) {
-            html { zoom: 1.0; } /* 電腦版也不要強制縮放，交給外框的 % 數來決定 */
+        html {
+            zoom: 1.0;
         }
 
-        #drag-tips { bottom: 20px; }
+        @media (min-width: 768px) {
+            html {
+                zoom: 1.0;
+            }
+        }
 
-        /* 調整遮罩：將原本 90% 降至 75%，底部 99% 降至 90%，並使用較亮的 slate-800 做為頂部光源色 */
-        body { background-image: radial-gradient(circle at top, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg'); background-attachment: fixed; background-size: cover; background-position: center; }
-        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .neon-shadow-violet { box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 99px; }
+        #drag-tips {
+            bottom: 20px;
+        }
+
+        body {
+            background-image: radial-gradient(circle at top, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .neon-shadow-violet {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 99px;
+        }
+
+        #viewer-container:fullscreen {
+            background-color: #020617;
+        }
     </style>
 </head>
 <body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
 
-
     <div id="age-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-md"></div>
-        
         <div class="relative bg-[#1a1c29] border border-slate-800 rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl text-center">
             <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">ShadowG's Studio</h2>
             <div class="w-12 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full mb-6"></div>
-            
             <p class="text-sm text-slate-200 font-medium mb-2">此模型內容僅適合 18 歲或以上觀看。</p>
             <p class="text-xs text-slate-500 mb-8">如未滿 18 歲，請點擊離開按鈕。</p>
-            
             <div class="flex items-center justify-center gap-4">
                 <button id="btn-age-yes" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-sm font-bold shadow-lg shadow-violet-500/30 hover:scale-105 transition-transform active:scale-95">我已滿 18 歲</button>
                 <button id="btn-age-no" class="px-6 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-sm font-bold hover:bg-slate-700 transition-colors active:scale-95">離開</button>
             </div>
         </div>
     </div>
-
-
 
     <nav class="w-full glass-panel border-b border-slate-800/60 py-2 md:py-2.5 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-slate-950/20">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-2 md:gap-4">
@@ -65,27 +90,40 @@
                     <span class="text-xs tracking-wider font-extrabold uppercase">返回模型展廳</span>
                 </a>
             </div>
-
-            <!-- 優化：加入 gap-2 與 p-1.5，加強整體切換面板的圓潤與寬度視覺 -->
             <div class="flex justify-center order-1 md:order-2">
                 <div id="angle-switcher" class="flex items-center gap-2 bg-slate-950/90 p-1.5 rounded-xl border border-slate-800/80 shadow-xl shadow-violet-950/30 hidden">
-                    </div>
+                </div>
             </div>
-
-           <div id="unboxing-link-wrapper" class="hidden md:flex justify-end order-3 min-w-[120px]">
-    <div class="px-4 py-1 invisible pointer-events-none">平衡佔位</div>
-</div>
+            <div id="unboxing-link-wrapper" class="hidden md:flex justify-end order-3 min-w-[120px]">
+                <div class="px-4 py-1 invisible pointer-events-none">平衡佔位</div>
+            </div>
         </div>
     </nav>
 
-   <main class="flex-1 w-full mx-auto px-4 md:px-8 py-4 flex flex-col items-center justify-center">
-        
+    <main class="flex-1 w-full mx-auto px-4 md:px-8 py-4 flex flex-col items-center justify-center">
+
         <div class="text-center mb-4 w-full">
             <h1 id="dynamic-title" class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight">載入中...</h1>
         </div>
 
-        <!-- 這裡將觀景窗佔的版面初始 classes 與限制放大為 1.1 倍 (w-[95%] -> w-[98%], h-[70vh] -> h-[77vh], md:h-[85vh] -> md:h-[93.5vh]) -->
         <div id="viewer-container" class="w-[98%] max-w-[3300px] h-[77vh] md:h-[93.5vh] bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
+
+            <!-- 全螢幕放大鏡倍率控制 (預設值由 2.5 調整為 1.5) -->
+            <div id="fullscreen-mag-control" class="hidden absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900/85 px-4 py-2.5 rounded-2xl border border-slate-700/80 backdrop-blur-md flex items-center gap-3 shadow-2xl transition-all">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
+                <input id="fs-zoom-range" type="range" min="1.5" max="5.0" value="1.5" step="0.5" class="w-32 h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
+                <span id="fs-zoom-counter" class="text-xs font-mono font-bold text-violet-400 min-w-[36px] text-center">1.5x</span>
+            </div>
+
+            <button id="btn-fullscreen" class="absolute top-4 right-4 z-50 w-11 h-11 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-95" title="切換全螢幕">
+                <i id="fullscreen-icon" class="fa-solid fa-expand text-lg"></i>
+            </button>
+
+            <!-- 放大預覽框 (圓圈大小調整為 2 倍，將 w-56 h-56 改為 w-[448px] h-[448px]) -->
+            <div id="magnifier-lens" class="hidden absolute pointer-events-none border border-white/20 shadow-[0_0_25px_rgba(0,0,0,0.8)] rounded-full w-[448px] h-[448px] z-40 bg-slate-950 overflow-hidden">
+                <img id="mag-img" class="absolute max-w-none" src="" alt="">
+            </div>
+
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-violet-600/10 blur-2xl rounded-full"></div>
             <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-40"></div>
 
@@ -101,11 +139,10 @@
                 <p class="text-xs text-slate-500 mt-1.5">載入完畢後即能享有極致順暢的 360° 轉動</p>
             </div>
 
-            <!-- 加入 transform-origin: center center 以確保 Zoom In 軸心完美居中 -->
-            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: transform 0.05s ease-out, filter 0.05s ease-out;"></div>
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: filter 0.05s ease-out;"></div>
 
-            <div class="absolute top-4 left-4 z-10 hidden sm:block">
-                <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm">
+            <div class="absolute top-4 left-4 z-10 hidden sm:block pointer-events-none">
+                <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm shadow-md">
                     <i class="fa-solid fa-mobile-screen-button text-violet-400"></i> 手機版建議橫放觀看
                 </span>
             </div>
@@ -117,26 +154,24 @@
             </div>
         </div>
 
-      <div class="w-[95%] max-w-5xl mt-6 space-y-4">
-            
-            <!-- 控制器面板整合包（Zoom 條在最上方、接著為 Frame 旋轉條） -->
+        <div class="w-[95%] max-w-5xl mt-6 space-y-4">
+
             <div class="glass-panel rounded-2xl p-4 md:p-5 space-y-4">
-                
-                <!-- 第一行：細節縮放 (Zoom In) 控制區 - 置中 (已將 max-w-md 調整為 max-w-lg 以稍微拉長拉條) -->
+
                 <div class="flex justify-center items-center w-full">
                     <div class="w-full max-w-lg flex items-center justify-between gap-3 bg-slate-900/40 p-2 rounded-xl border border-slate-800/50">
                         <div class="flex-1 flex items-center gap-3">
-                            <i class="fa-solid fa-magnifying-glass-plus text-slate-500 text-sm" title="細節縮放 (Zoom In)"></i>
-                            <input id="zoom-range" type="range" min="1.0" max="3.0" value="1.0" step="0.05" class="w-full h-1.5 bg-slate-850 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
+                            <i class="fa-solid fa-magnifying-glass text-slate-500 text-sm" title="放大鏡倍率"></i>
+                            <!-- 一般面板放大鏡倍率控制 (預設值由 2.5 調整為 1.5) -->
+                            <input id="zoom-range" type="range" min="1.5" max="5.0" value="1.5" step="0.5" class="w-full h-1.5 bg-slate-850 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
                         </div>
                         <div class="flex items-center gap-1.5 shrink-0">
-                            <span id="zoom-counter" class="text-[11px] font-mono font-bold text-violet-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[42px] text-center">1.0x</span>
-                            <button id="btn-zoom-reset" class="px-2 py-1 bg-slate-800 hover:bg-slate-750 border border-slate-700/60 text-[10px] font-bold text-slate-300 hover:text-white rounded-md active:scale-95 transition-all" title="還原縮放">重設</button>
+                            <span id="zoom-counter" class="text-[11px] font-mono font-bold text-violet-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[42px] text-center">1.5x</span>
+                            <button id="btn-zoom-reset" class="px-2 py-1 bg-slate-800 hover:bg-slate-750 border border-slate-700/60 text-[10px] font-bold text-slate-300 hover:text-white rounded-md active:scale-95 transition-all" title="還原倍率">重設</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- 第二行：自動播放與圖片進度拉條（原來的旋轉角度列） -->
                 <div class="flex items-center justify-between gap-4 pt-3 border-t border-slate-800/60">
                     <button id="btn-play" class="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg shadow-red-500/20 active:scale-95 transition-all shrink-0" title="自動播放">
                         <i id="play-icon" class="fa-solid fa-play"></i>
@@ -149,7 +184,7 @@
                 </div>
 
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
                     <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
@@ -182,7 +217,7 @@
                 <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5 text-sm shrink-0"></i>
                 <div class="text-xs text-slate-400 leading-relaxed space-y-2">
                     <p><i class="fa-solid fa-thumbtack text-red-500/80 mr-1.5 -rotate-45"></i> 轉動時若感覺畫面閃爍，此為初次下載延遲。本網頁已內建<span class="text-red-400 font-bold mx-1">完全預載機制</span>，等上方進度完成後，即可順暢流暢地旋轉。</p>
-                    <p><i class="fa-solid fa-thumbtack text-red-500/80 mr-1.5 -rotate-45"></i> 手機觀看時，推薦將手機「<span class="text-slate-200 font-bold mx-1">橫置螢幕</span>」並開啟全螢幕以獲得最佳細節視界。</p>
+                    <p><i class="fa-solid fa-thumbtack text-red-500/80 mr-1.5 -rotate-45"></i> 游標移入畫面即可觀看細節放大，手機觀看時推薦「<span class="text-slate-200 font-bold mx-1">橫置螢幕</span>」並點擊右上角進入全螢幕以獲得最佳視界。</p>
                 </div>
             </div>
 
@@ -200,28 +235,39 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const currentFigureId = urlParams.get('id');
-        const currentModeIndex = parseInt(urlParams.get('mode') || "0"); 
+        const currentModeIndex = parseInt(urlParams.get('mode') || "0");
 
-        let folder = "";     
-        let total = 0;       
+        let folder = "";
+        let total = 0;
         const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
 
+        const viewerContainer = document.getElementById("viewer-container");
         const viewerStage = document.getElementById("viewer-stage");
         const loaderScreen = document.getElementById("loader-screen");
         const loaderProgressBar = document.getElementById("loader-progress-bar");
         const loaderPercentage = document.getElementById("loader-percentage");
-        
-        // 取得控制項與拉條元素
+
         const frameRange = document.getElementById("frame-range");
         const frameCounter = document.getElementById("frame-counter");
         const btnPlay = document.getElementById("btn-play");
         const playIcon = document.getElementById("play-icon");
         const dragTips = document.getElementById("drag-tips");
 
-        // 新增：縮放拉條（已移除 EV 曝光拉條）
+        // 下方面板的放大鏡控制拉條
         const zoomRange = document.getElementById("zoom-range");
         const zoomCounter = document.getElementById("zoom-counter");
         const btnZoomReset = document.getElementById("btn-zoom-reset");
+
+        // 全螢幕專屬控制
+        const fsMagControl = document.getElementById("fullscreen-mag-control");
+        const fsZoomRange = document.getElementById("fs-zoom-range");
+        const fsZoomCounter = document.getElementById("fs-zoom-counter");
+
+        // 全螢幕按鈕與放大鏡 DOM
+        const btnFullscreen = document.getElementById("btn-fullscreen");
+        const fullscreenIcon = document.getElementById("fullscreen-icon");
+        const magnifierLens = document.getElementById("magnifier-lens");
+        const magImg = document.getElementById("mag-img");
 
         let loadedCount = 0;
         let imageElements = [];
@@ -230,96 +276,83 @@
         let startX = 0;
         let autoPlayInterval = null;
         let playSpeed = 100;
-
-        // 新增效果變數
-        let currentZoom = 1.0;
+        let magMultiplier = parseFloat(zoomRange.value); // 這邊會動態抓取 HTML 上的初始值 1.5
 
         window.addEventListener('DOMContentLoaded', () => {
             if (!currentFigureId) {
-                   alert("無效的模型 ID！");
-        window.location.href = 'index.html';
-        return;
-        }
+                alert("無效的模型 ID！");
+                window.location.href = 'index.html';
+                return;
+            }
 
             const figure = figuresDataset.find(f => f.id === currentFigureId);
-            
-        if (!figure) {
-            alert("找不到該模型資料！");
-            window.location.href = 'index.html';
-            return;
-        }
 
-        document.title = `${figure.title} - 360° Figure Studio`;
-        document.getElementById('dynamic-title').innerHTML = figure.title;
+            if (!figure) {
+                alert("找不到該模型資料！");
+                window.location.href = 'index.html';
+                return;
+            }
 
-        // 處理開箱文連結
+            document.title = `${figure.title} - 360° Figure Studio`;
+            document.getElementById('dynamic-title').innerHTML = figure.title;
+
             const unboxingWrapper = document.getElementById('unboxing-link-wrapper');
-        if (figure.reviewLink) {
-            unboxingWrapper.innerHTML = `
-                <a href="${figure.reviewLink}" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900/50 hover:bg-sky-900/40 border border-slate-700/60 hover:border-sky-500/50 text-slate-300 hover:text-sky-300 shadow-lg transition-all duration-300">
-                    <i class="fa-solid fa-book-open text-xs"></i>
-                    <span class="text-xs tracking-widest font-bold">開箱文連結</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-            `;
-        }
+            if (figure.reviewLink) {
+                unboxingWrapper.innerHTML = `
+                        <a href="${figure.reviewLink}" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900/50 hover:bg-sky-900/40 border border-slate-700/60 hover:border-sky-500/50 text-slate-300 hover:text-sky-300 shadow-lg transition-all duration-300">
+                            <i class="fa-solid fa-book-open text-xs"></i>
+                            <span class="text-xs tracking-widest font-bold">開箱文連結</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    `;
+            }
 
             const angleSwitcher = document.getElementById('angle-switcher');
-        let requires18Plus = false; // 🎯 新增變數：是否需要 18+ 驗證
-            
-        if (figure.modes && figure.modes.length > 0) {
-            angleSwitcher.innerHTML = ''; 
-            angleSwitcher.classList.remove('hidden');
-                    
-            folder = figure.modes[currentModeIndex].folder;
-            total = figure.modes[currentModeIndex].totalFrames || figure.totalFrames;
-                
-            // 🎯 判斷：目前的 Mode 是否標示為 18+，或是整個模型預設就是 18+
-            requires18Plus = figure.modes[currentModeIndex].is18Plus === true || figure.is18Plus === true;
+            let requires18Plus = false;
 
-            figure.modes.forEach((mode, index) => {
-                const btn = document.createElement('a');
-            btn.href = `viewer.html?id=${figure.id}&mode=${index}`;
-                        
-            // 🎯 縮減按鈕左右內邊距，改為 px-4 md:px-6，使整體格尺寸更為精緻
-            if (index === currentModeIndex) {
-                btn.className = "px-4 md:px-6 py-1.5 mx-0.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20 whitespace-nowrap text-center transition-all";
+            if (figure.modes && figure.modes.length > 0) {
+                angleSwitcher.innerHTML = '';
+                angleSwitcher.classList.remove('hidden');
+
+                folder = figure.modes[currentModeIndex].folder;
+                total = figure.modes[currentModeIndex].totalFrames || figure.totalFrames;
+                requires18Plus = figure.modes[currentModeIndex].is18Plus === true || figure.is18Plus === true;
+
+                figure.modes.forEach((mode, index) => {
+                    const btn = document.createElement('a');
+                    btn.href = `viewer.html?id=${figure.id}&mode=${index}`;
+                    if (index === currentModeIndex) {
+                        btn.className = "px-4 md:px-6 py-1.5 mx-0.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20 whitespace-nowrap text-center transition-all";
+                    } else {
+                        btn.className = "px-4 md:px-6 py-1.5 mx-0.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap text-center";
+                    }
+                    btn.textContent = mode.name;
+                    angleSwitcher.appendChild(btn);
+                });
             } else {
-                btn.className = "px-4 md:px-6 py-1.5 mx-0.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap text-center";
+                folder = figure.folder;
+                total = figure.totalFrames;
+                requires18Plus = figure.is18Plus === true;
             }
-                        
-            btn.textContent = mode.name;
-            angleSwitcher.appendChild(btn);
-        });
-        } else {
-            folder = figure.folder;
-            total = figure.totalFrames;
-            // 🎯 判斷：單一模型是否標示為 18+
-            requires18Plus = figure.is18Plus === true;
-        }
 
-        frameRange.max = total - 1;
+            frameRange.max = total - 1;
 
-        // 🎯 18+ 視窗控制邏輯
             const ageModal = document.getElementById('age-modal');
-        if (requires18Plus) {
-            // 如果需要驗證，顯示視窗，並暫停背景的捲動
-            ageModal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+            if (requires18Plus) {
+                ageModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
 
-            document.getElementById('btn-age-yes').onclick = () => {
-                ageModal.classList.add('hidden');
-            document.body.style.overflow = ''; // 恢復捲動
-            preloadImages(); // 點擊確認後才開始載入圖片
-        };
-
-        document.getElementById('btn-age-no').onclick = () => {
-            window.location.href = 'https://www.youtube.com/watch?v=F9VBj8noYIM'; // 拒絕則返回首頁
-        };
-        } else {
-            // 不需要驗證，直接載入圖片
-            preloadImages();
-        }
+                document.getElementById('btn-age-yes').onclick = () => {
+                    ageModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    preloadImages();
+                };
+                document.getElementById('btn-age-no').onclick = () => {
+                    window.location.href = 'https://www.youtube.com/watch?v=F9VBj8noYIM';
+                };
+            } else {
+                preloadImages();
+            }
         });
 
         function preloadImages() {
@@ -328,64 +361,57 @@
 
             for (let i = 1; i <= total; i++) {
                 const img = document.createElement("img");
-                
-                // 1. 先嘗試大寫 .JPG
+
                 img.src = `${baseUrl}/${folder}/${i}.JPG`;
-        img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
-        img.alt = `Frame ${i}`;
-        img.setAttribute("data-index", i - 1);
-                
-        // 2. 增加一個備援機制 (Fallback)
-        img.onerror = () => {
-            // 如果 .JPG 載入失敗，自動換成 .jpg 再試一次
-            if (!img.dataset.triedLower) {
+                img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
+                img.alt = `Frame ${i}`;
+                img.setAttribute("data-index", i - 1);
+
+                img.onerror = () => {
+                    if (!img.dataset.triedLower) {
                         img.src = `${baseUrl}/${folder}/${i}.jpg`;
-        img.dataset.triedLower = "true"; // 標記已經試過小寫了
-        } else {
-            // 如果連 .jpg 都失敗，那就真的找不到了
-            loadedCount++;
-            if (loadedCount === total) onPreloadComplete();
-        }
-        };
-                
-        img.onload = () => {
-            // 🎯 新增：抓取第一張圖片的比例，動態調整展示區寬度 (這裡也更新了 1.1 倍的最大寬高限制)
-            if (loadedCount === 0) {
-        const viewerContainer = document.getElementById("viewer-container");
-        // 移除固定的寬高 class，改用 CSS 控制比例
-        viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
-        viewerContainer.style.maxHeight = "93.5vh"; // 原先為 85vh，放大 1.1 倍為 93.5vh
-        viewerContainer.style.maxWidth = "98vw";    // 原先為 95vw，放大 1.1 倍調整為 98vw 貼合極致視覺
-        viewerContainer.style.height = "100vh"; // 先撐開高度
-        viewerContainer.style.width = "auto";
-        // 根據原始圖片長寬設定比例
-        viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
-        }
+                        img.dataset.triedLower = "true";
+                    } else {
+                        loadedCount++;
+                        if (loadedCount === total) onPreloadComplete();
+                    }
+                };
 
-            loadedCount++;
-    const progress = loadedCount / total;
-    const offset = circumference - (progress * circumference);
-        loaderProgressBar.style.strokeDashoffset = offset;
-        loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+                img.onload = () => {
+                    if (loadedCount === 0) {
+                        viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
+                        viewerContainer.style.maxHeight = "93.5vh";
+                        viewerContainer.style.maxWidth = "98vw";
+                        viewerContainer.style.height = "100vh";
+                        viewerContainer.style.width = "auto";
+                        viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+                    }
 
-        if (loadedCount === total) onPreloadComplete();
-        };
+                    loadedCount++;
+                    const progress = loadedCount / total;
+                    const offset = circumference - (progress * circumference);
+                    loaderProgressBar.style.strokeDashoffset = offset;
+                    loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
 
-        viewerStage.appendChild(img);
-        imageElements.push(img);
-        }
+                    if (loadedCount === total) onPreloadComplete();
+                };
+
+                viewerStage.appendChild(img);
+                imageElements.push(img);
+            }
         }
 
         function onPreloadComplete() {
             loaderScreen.classList.add("opacity-0");
             setTimeout(() => {
                 loaderScreen.style.display = "none";
-            viewerStage.classList.remove("hidden");
-        }, 500);
+                viewerStage.classList.remove("hidden");
+            }, 500);
 
-        showFrame(0);
-        setupInteractEvents();
-        setupVisualEffectEvents(); // 註冊縮放與曝光效果
+            showFrame(0);
+            setupInteractEvents();
+            setupMagnifierSettings();
+            setupFullscreenAndMagnifier();
         }
 
         function showFrame(index) {
@@ -393,15 +419,20 @@
             imageElements.forEach((img, i) => {
                 if (i === currentIndex) {
                     img.classList.remove("hidden"); img.classList.add("block");
-        } else {
+                } else {
                     img.classList.remove("block"); img.classList.add("hidden");
-        }
-        });
-        frameRange.value = currentIndex;
-        frameCounter.textContent = `${currentIndex + 1} / ${total}`;
+                }
+            });
+            frameRange.value = currentIndex;
+            frameCounter.textContent = `${currentIndex + 1} / ${total}`;
+
+            // 讓放大鏡即時更新來源
+            if (magImg) {
+                magImg.src = imageElements[currentIndex].src;
+            }
         }
 
-        frameRange.oninput = function() {
+        frameRange.oninput = function () {
             stopAutoPlay();
             showFrame(parseInt(this.value));
             hideDragTips();
@@ -410,87 +441,166 @@
         function setupInteractEvents() {
             viewerStage.addEventListener("mousedown", (e) => {
                 isDragging = true; startX = e.clientX; stopAutoPlay(); hideDragTips();
-        });
+                magnifierLens.classList.add("hidden");
+            });
 
-        window.addEventListener("mousemove", (e) => {
-            if (!isDragging) return;
+            window.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
                 const deltaX = e.clientX - startX;
-        if (Math.abs(deltaX) > 15) {
-            showFrame(currentIndex - Math.sign(deltaX));
-            startX = e.clientX;
-        }
-        });
+                if (Math.abs(deltaX) > 15) {
+                    showFrame(currentIndex - Math.sign(deltaX));
+                    startX = e.clientX;
+                }
+            });
 
-        window.addEventListener("mouseup", () => { isDragging = false; });
+            window.addEventListener("mouseup", () => { isDragging = false; });
 
-        viewerStage.addEventListener("touchstart", (e) => {
-            isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); hideDragTips();
-        });
+            viewerStage.addEventListener("touchstart", (e) => {
+                isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); hideDragTips();
+                magnifierLens.classList.add("hidden");
+            });
 
-        viewerStage.addEventListener("touchmove", (e) => {
-            if (!isDragging) return;
+            viewerStage.addEventListener("touchmove", (e) => {
+                if (!isDragging) return;
                 const deltaX = e.touches[0].clientX - startX;
-        if (Math.abs(deltaX) > 5) {
-            showFrame(currentIndex - Math.sign(deltaX));
-            startX = e.touches[0].clientX;
+                if (Math.abs(deltaX) > 5) {
+                    showFrame(currentIndex - Math.sign(deltaX));
+                    startX = e.touches[0].clientX;
+                }
+            }, { passive: false });
+
+            viewerStage.addEventListener("touchend", () => { isDragging = false; });
+
+            viewerStage.addEventListener("wheel", (e) => {
+                e.preventDefault(); stopAutoPlay(); hideDragTips();
+                showFrame(currentIndex + Math.sign(e.deltaY));
+            }, { passive: false });
         }
-        }, { passive: false });
 
-        viewerStage.addEventListener("touchend", () => { isDragging = false; });
-
-        viewerStage.addEventListener("wheel", (e) => {
-            e.preventDefault(); stopAutoPlay(); hideDragTips();
-        showFrame(currentIndex + Math.sign(e.deltaY));
-        }, { passive: false }); // 修復滾輪捲動問題
-        }
-
-        // 🎯 縮放控制核心邏輯 (已移除 EV 曝光控制)
-        function setupVisualEffectEvents() {
-            // 動態更新 CSS transforms
-            function updateStageEffects() {
-                // 套用縮放
-                viewerStage.style.transform = `scale(${currentZoom})`;
+        function setupMagnifierSettings() {
+            // 同步更新兩個拉條的數值
+            function updateMagMultiplier(val) {
+                magMultiplier = parseFloat(val);
+                zoomRange.value = val;
+                fsZoomRange.value = val;
+                const text = `${magMultiplier.toFixed(1)}x`;
+                zoomCounter.textContent = text;
+                fsZoomCounter.textContent = text;
             }
 
-            // 監聽縮放滑條
-            zoomRange.oninput = function() {
-                currentZoom = parseFloat(this.value);
-                zoomCounter.textContent = `${currentZoom.toFixed(1)}x`;
-                updateStageEffects();
+            zoomRange.oninput = function () { updateMagMultiplier(this.value); };
+            fsZoomRange.oninput = function () { updateMagMultiplier(this.value); };
+
+            // 重設按鈕現在會回歸至預設的 1.5x
+            btnZoomReset.onclick = function () { updateMagMultiplier(1.5); };
+        }
+
+        function setupFullscreenAndMagnifier() {
+
+            // 全螢幕切換按鈕事件
+            btnFullscreen.onclick = () => {
+                if (!document.fullscreenElement) {
+                    viewerContainer.requestFullscreen().catch(err => {
+                        alert(`無法進入全螢幕模式: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
             };
 
-            // 縮放重設按鈕
-            btnZoomReset.onclick = function() {
-                currentZoom = 1.0;
-                zoomRange.value = "1.0";
-                zoomCounter.textContent = "1.0x";
-                updateStageEffects();
-            };
+            // 監聽全螢幕狀態改變，顯示專屬拉條與更換圖示
+            document.addEventListener("fullscreenchange", () => {
+                if (document.fullscreenElement) {
+                    fullscreenIcon.classList.remove("fa-expand");
+                    fullscreenIcon.classList.add("fa-compress");
+                    viewerStage.style.cursor = "crosshair";
+                    fsMagControl.classList.remove("hidden"); // 顯示全螢幕專屬拉條
+                } else {
+                    fullscreenIcon.classList.remove("fa-compress");
+                    fullscreenIcon.classList.add("fa-expand");
+                    magnifierLens.classList.add("hidden");
+                    viewerStage.style.cursor = "grab";
+                    fsMagControl.classList.add("hidden"); // 隱藏全螢幕專屬拉條
+                }
+            });
 
-            // 初始化套用一次
-            updateStageEffects();
+            // 放大鏡移動邏輯
+            viewerStage.addEventListener("mousemove", (e) => {
+                // 如果正在拖曳，隱藏放大鏡
+                if (isDragging) {
+                    magnifierLens.classList.add("hidden");
+                    return;
+                }
+
+                const img = imageElements[currentIndex];
+                magImg.src = img.src;
+
+                const rect = viewerStage.getBoundingClientRect();
+                const natW = img.naturalWidth;
+                const natH = img.naturalHeight;
+
+                const baseW = viewerStage.offsetWidth;
+                const baseH = viewerStage.offsetHeight;
+
+                const ratio = Math.min(baseW / natW, baseH / natH);
+
+                const renderW = natW * ratio;
+                const renderH = natH * ratio;
+
+                const offsetX = (rect.width - renderW) / 2;
+                const offsetY = (rect.height - renderH) / 2;
+
+                const rx = e.clientX - rect.left - offsetX;
+                const ry = e.clientY - rect.top - offsetY;
+
+                // 若游標超出了圖片本體範圍，隱藏放大鏡
+                if (rx < 0 || rx > renderW || ry < 0 || ry > renderH) {
+                    magnifierLens.classList.add('hidden');
+                    return;
+                }
+
+                magnifierLens.classList.remove('hidden');
+
+                const containerRect = viewerContainer.getBoundingClientRect();
+                const lensX = e.clientX - containerRect.left;
+                const lensY = e.clientY - containerRect.top;
+
+                // 透過 offsetWidth 和 offsetHeight 自動動態計算大圈圈 (448px) 的居中位置
+                magnifierLens.style.left = `${lensX - magnifierLens.offsetWidth / 2}px`;
+                magnifierLens.style.top = `${lensY - magnifierLens.offsetHeight / 2}px`;
+
+                magImg.style.width = `${renderW * magMultiplier}px`;
+                magImg.style.height = `${renderH * magMultiplier}px`;
+
+                magImg.style.left = `${-(rx * magMultiplier) + magnifierLens.offsetWidth / 2}px`;
+                magImg.style.top = `${-(ry * magMultiplier) + magnifierLens.offsetHeight / 2}px`;
+            });
+
+            viewerStage.addEventListener("mouseleave", () => {
+                magnifierLens.classList.add('hidden');
+            });
         }
 
         btnPlay.onclick = () => {
             if (autoPlayInterval) { stopAutoPlay(); } else { startAutoPlay(); hideDragTips(); }
         };
 
-            function startAutoPlay() {
-                if (autoPlayInterval) return;
-                autoPlayInterval = setInterval(() => { showFrame(currentIndex + 1); }, playSpeed);
+        function startAutoPlay() {
+            if (autoPlayInterval) return;
+            autoPlayInterval = setInterval(() => { showFrame(currentIndex + 1); }, playSpeed);
             playIcon.className = "fa-solid fa-pause";
-            btnPlay.classList.remove("bg-red-600"); 
-            btnPlay.classList.add("bg-rose-700"); // 播放中變深紅色
-            }
+            btnPlay.classList.remove("bg-red-600");
+            btnPlay.classList.add("bg-rose-700");
+        }
 
-            function stopAutoPlay() {
-                if (!autoPlayInterval) return;
-                clearInterval(autoPlayInterval);
-                autoPlayInterval = null;
-                playIcon.className = "fa-solid fa-play";
-                btnPlay.classList.remove("bg-rose-700"); 
-                btnPlay.classList.add("bg-red-600"); // 暫停變回鮮紅色
-            }
+        function stopAutoPlay() {
+            if (!autoPlayInterval) return;
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            playIcon.className = "fa-solid fa-play";
+            btnPlay.classList.remove("bg-rose-700");
+            btnPlay.classList.add("bg-red-600");
+        }
 
         function hideDragTips() {
             dragTips.classList.add("opacity-0");
