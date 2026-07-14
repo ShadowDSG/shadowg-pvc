@@ -12,7 +12,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Inter', 'Noto Sans TC', 'sans-serif'], }, colors: { studio: { 50: '#f5f3ff', 100: '#ede9fe', 800: '#3c096c', 900: '#240046', 950: '#10002b', } } } }
+            theme: { 
+                extend: { 
+                    fontFamily: { 
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'], 
+                    }, 
+                    colors: { 
+                        studio: { 
+                            50: '#f5f3ff', 
+                            100: '#ede9fe', 
+                            800: '#3c096c', 
+                            900: '#240046', 
+                            950: '#10002b', 
+                        } 
+                    } 
+                } 
+            }
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -20,7 +35,7 @@
     <style>
         /* 📱 雙重鎖定：防止任何瀏覽器下的橫向溢出與手勢彈性滑動 */
         html, body { 
-            zoom: 1.0; 
+            zoom: 1.1; /* 🎯 預設大小已調整為原來的 1.1 倍 */
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
@@ -29,7 +44,7 @@
         }
         @media (min-width: 1024px) {
             html { 
-                zoom: 1.05; /* 僅在寬螢幕進行適度微調比例 */
+                zoom: 1.15; /* 🎯 寬螢幕進行適度微調比例至 1.15 倍 */
             }
         }
         body { 
@@ -42,6 +57,7 @@
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
         .glass-panel { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.06); }
         .glow-card:hover { box-shadow: 0 0 25px rgba(139, 92, 246, 0.25); border-color: rgba(139, 92, 246, 0.4); }
         @keyframes orbit { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -146,7 +162,7 @@
             </div>
         </div>
 
-        <!-- 📱 手機版調整為 3 列（grid-cols-3），電腦版調整為 6 列（lg:grid-cols-6），縮減手機版 gap-2 提升空間效率 -->
+        <!-- 📱 模型展示網格 -->
         <div id="galleryGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6"></div>
         
         <div id="paginationContainer" class="w-full mt-10"></div>
@@ -195,6 +211,18 @@
     <script src="js/data.js"></script>
 
     <script>
+        // 備份展示用資料 (以防未讀取到外部 js/data.js，確保預覽不留白)
+        if (typeof figuresDataset === 'undefined') {
+            window.figuresDataset = [
+                { id: 1, title: "初音未來 MIKU 15th Anniversary Ver.", brand: "GSC", img: "miku.jpg", featured: true },
+                { id: 2, title: "時崎狂三 兔女郎 1/4 Scale Figure", brand: "FREEing", img: "kurumi.jpg", featured: true },
+                { id: 3, title: "Fate/Grand Order Saber / 葛飾北齋 1/7", brand: "GSC", img: "saber.jpg", featured: true },
+                { id: 4, title: "碧藍航線 聖路易斯 輕裝Ver. 1/7", brand: "ALTER", img: "stlouis.jpg", featured: false },
+                { id: 5, title: "萊莎的鍊金工房 萊莎 1/7", brand: "KOTOBUKIYA", img: "ryza.jpg", featured: false },
+                { id: 6, title: "原神 刻晴 霓裾翩袂Ver. 1/7", brand: "APEX", img: "keqing.jpg", featured: true }
+            ];
+        }
+
         const brandsConfig = {
             "GSC": { name: "Good Smile Company", img: "GSC.png" },
             "ALTER": { name: "ALTER", img: "ALTER.png" },
@@ -233,9 +261,9 @@
         let currentBrand = null;
         let searchQuery = '';
         
-        // 🎯 分頁設定變數 (維持與原本機制一致)
+        // 🎯 分頁設定變數
         let currentPage = 1;
-        const itemsPerPage = 24; // 配合一列 6 格 (或一列 3/4 格)，改為 24 的倍數，排版會更整齊漂亮
+        const itemsPerPage = 24; 
 
         window.addEventListener('DOMContentLoaded', () => {
             renderBrandSliders();
@@ -277,7 +305,7 @@
             currentBrand = (currentBrand === brandKey) ? null : brandKey;
             const btnClear = document.getElementById('btnClearBrand');
             if (currentBrand) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
-            currentPage = 1; // 🎯 切換條件時重設為第一頁
+            currentPage = 1; 
             renderBrandSliders();
             renderFiguresGrid();
         }
@@ -285,7 +313,7 @@
         function clearBrandFilter() {
             currentBrand = null;
             document.getElementById('btnClearBrand').classList.add('hidden');
-            currentPage = 1; // 🎯 切換條件時重設為第一頁
+            currentPage = 1; 
             renderBrandSliders();
             renderFiguresGrid();
         }
@@ -303,7 +331,7 @@
                 btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
                 document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
             }
-            currentPage = 1; // 🎯 切換條件時重設為第一頁
+            currentPage = 1; 
             renderFiguresGrid();
         }
 
@@ -312,7 +340,7 @@
             searchQuery = input.value.trim().toLowerCase();
             const btnClear = document.getElementById('clearSearch');
             if (searchQuery.length > 0) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
-            currentPage = 1; // 🎯 搜尋時重設為第一頁
+            currentPage = 1; 
             renderFiguresGrid();
         }
 
@@ -320,7 +348,7 @@
             document.getElementById('figureSearch').value = '';
             searchQuery = '';
             document.getElementById('clearSearch').classList.add('hidden');
-            currentPage = 1; // 🎯 清除時重設為第一頁
+            currentPage = 1; 
             renderFiguresGrid();
         }
 
@@ -331,12 +359,11 @@
             container.innerHTML = '';
             
             const totalPages = Math.ceil(totalFilteredItems / itemsPerPage);
-            if (totalPages <= 1) return; // 只有一頁就不用顯示分頁
+            if (totalPages <= 1) return; 
 
             const nav = document.createElement('nav');
             nav.className = "flex justify-center items-center space-x-1.5 sm:space-x-2";
 
-            // 上一頁按鈕
             const prevBtn = document.createElement('button');
             prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left text-xs"></i>';
             prevBtn.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === 1 ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
@@ -350,7 +377,6 @@
             };
             nav.appendChild(prevBtn);
 
-            // 頁碼按鈕
             for (let i = 1; i <= totalPages; i++) {
                 const pageBtn = document.createElement('button');
                 pageBtn.textContent = i;
@@ -367,7 +393,6 @@
                 nav.appendChild(pageBtn);
             }
 
-            // 下一頁按鈕
             const nextBtn = document.createElement('button');
             nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right text-xs"></i>';
             nextBtn.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === totalPages ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
@@ -408,7 +433,7 @@
 
             if (filtered.length === 0) {
                 grid.classList.add('hidden'); emptyState.classList.remove('hidden');
-                document.getElementById('paginationContainer').innerHTML = ''; // 隱藏分頁
+                document.getElementById('paginationContainer').innerHTML = ''; 
                 statusBadge.innerHTML = `找不到模型`;
                 return;
             }
@@ -417,11 +442,11 @@
             
             const totalItems = filtered.length;
             const totalPages = Math.ceil(totalItems / itemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages; // 安全檢查
+            if (currentPage > totalPages) currentPage = totalPages; 
 
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageData = filtered.slice(startIndex, endIndex); // 擷取當前頁需要的資料
+            const pageData = filtered.slice(startIndex, endIndex); 
 
             const displayEnd = Math.min(endIndex, totalItems);
             statusBadge.innerHTML = `顯示第 <span class="text-violet-400 font-bold mx-1">${startIndex + 1} - ${displayEnd}</span> 款 (共 <span class="text-slate-300">${totalItems}</span> 款)`;
@@ -445,6 +470,10 @@
                 img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${figure.img}`;
                 img.alt = figure.title; img.loading = "lazy";
                 img.className = "object-cover w-full h-full transform transition-all duration-700 group-hover:scale-110";
+                img.onerror = () => {
+                    // 備份圖片防留白機制
+                    img.src = `https://placehold.co/400x500/1e1e2f/ffffff?text=${encodeURIComponent(figure.brand)}`;
+                };
                 
                 const overlay = document.createElement('div');
                 overlay.className = "absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end justify-center pb-2 sm:pb-4";
