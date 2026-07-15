@@ -9,7 +9,7 @@ const figuresDataset = [
     "totalFrames": 32,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -23,7 +23,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69656",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -76,7 +76,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68899&tnum=1",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -103,7 +103,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68624",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -117,7 +117,7 @@ const figuresDataset = [
     "totalFrames": 34,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=67704",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -130,8 +130,8 @@ const figuresDataset = [
     "folder": "Ryza",
     "totalFrames": 33,
     "customUrl": "",
-    "reviewLink": "",
-    "credit": null,
+    "reviewLink": "https://forum.gamer.com.tw/Co.php?bsn=60036&sn=329928",
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -439,7 +439,7 @@ const figuresDataset = [
     "totalFrames": 32,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61907",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -466,7 +466,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61496",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -663,7 +663,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62090&tnum=1",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -962,7 +962,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>LIN</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1092,9 +1092,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "datumaki",
     "totalFrames": 36,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -1106,9 +1106,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "pora",
     "totalFrames": 36,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -1120,9 +1120,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "alterraiza1",
     "totalFrames": 33,
-    "customUrl": null,
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68679",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1153,9 +1153,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "miyamotofure1",
     "totalFrames": 33,
-    "customUrl": null,
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=67275",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1180,9 +1180,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "Baltimorewhite",
     "totalFrames": 36,
-    "customUrl": null,
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=66083",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1209,7 +1209,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=65890",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1308,7 +1308,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62859",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1341,7 +1341,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62391&tnum=1",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1380,7 +1380,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1401,7 +1401,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61585",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1969,7 +1969,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -1988,9 +1988,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "sionn",
     "totalFrames": 36,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -2242,7 +2242,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69321",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2283,7 +2283,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2314,9 +2314,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "itsusiki",
     "totalFrames": 36,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -2479,9 +2479,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "Ahri",
     "totalFrames": 32,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -2493,9 +2493,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "allsunday",
     "totalFrames": 32,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>habbkoku</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -2509,7 +2509,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2530,7 +2530,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2551,7 +2551,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2611,7 +2611,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62278",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2636,9 +2636,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "Astolfo",
     "totalFrames": 33,
-    "customUrl": null,
+    "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61765",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2671,7 +2671,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62529&tnum=2",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>YaMao洋帽叔叔</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2708,9 +2708,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "mikusakura",
     "totalFrames": 36,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>劫以煉仙佛</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -2776,9 +2776,9 @@ const figuresDataset = [
     "featured": false,
     "folder": "Albedo",
     "totalFrames": 41,
-    "customUrl": null,
-    "reviewLink": null,
-    "credit": null,
+    "customUrl": "",
+    "reviewLink": "",
+    "credit": "由巴哈網友 <span class='text-red-400'>LIN</span> 提供",
     "is18Plus": false,
     "modes": null
   },
@@ -2926,7 +2926,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2947,7 +2947,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>軟腳瞎蝦</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2974,7 +2974,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -2995,7 +2995,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
-    "credit": null,
+    "credit": "由巴哈網友 <span class='text-red-400'>星際天農</span> 提供",
     "is18Plus": false,
     "modes": [
       {
