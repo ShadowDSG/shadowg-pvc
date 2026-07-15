@@ -217,7 +217,7 @@
 
             <!-- 自訂資訊欄位 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
+                <div id="about-card" class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
                     <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
                         <i class="fa-solid fa-camera"></i>
                     </div>
@@ -327,6 +327,34 @@
         let isPseudoFullscreen = false; // 是否處於 iOS 虛擬全螢幕狀態
 
         window.addEventListener('DOMContentLoaded', () => {
+
+            // 1. 確保先抓到資料
+            const figure = figuresDataset.find(f => String(f.id) === String(currentFigureId));
+    
+        // 2. 獲取 DOM 元素
+    const aboutCard = document.getElementById('about-card');
+
+        // 3. 進行替換 (確保 figure 存在且有 credit)
+        if (figure && figure.credit && aboutCard) {
+            aboutCard.innerHTML = `
+                <div class="w-10 h-10 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div>
+                    <h3 class="text-[10px] text-slate-400 font-bold mb-1 tracking-wider uppercase">360° 旋轉寫真協力</h3>
+                    <h4 class="text-sm text-slate-200 font-bold mb-2">本次攝影協力</h4>
+                    <div class="text-xs text-slate-400 leading-relaxed">
+                        ${figure.credit} 提供
+                    </div>
+                </div>
+            `;
+        
+            // 加上一點視覺區隔
+            aboutCard.classList.remove('hover:border-slate-700');
+            aboutCard.classList.add('border-violet-500/30', 'bg-violet-950/10');
+        }
+
+
             if (!currentFigureId) {
                 showCustomError("無效的模型 ID！");
                 return;
@@ -339,7 +367,9 @@
                 ];
             }
 
-            const figure = figuresDataset.find(f => String(f.id) === String(currentFigureId));
+          
+
+           
 
             if (!figure) {
                 showCustomError("找不到該模型資料，將為您導回大廳。");
