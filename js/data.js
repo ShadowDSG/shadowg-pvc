@@ -9,6 +9,7 @@ const figuresDataset = [
     "totalFrames": 32,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -22,6 +23,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69656",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -35,6 +37,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69508",
+    "credit": "由巴哈網友 <span class='text-red-400'>鋼鐵丹尼 Danny Wu</span> 提供",
     "is18Plus": false,
     "modes": [
       {
@@ -73,6 +76,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68899&tnum=1",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -99,6 +103,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68624",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -112,6 +117,7 @@ const figuresDataset = [
     "totalFrames": 34,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=67704",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -125,6 +131,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -138,6 +145,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -200,6 +208,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -250,6 +259,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -288,6 +298,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -332,6 +343,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62249&subbsn=0&page=1&gothis=323087#323087",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -376,6 +388,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -426,6 +439,7 @@ const figuresDataset = [
     "totalFrames": 32,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61907",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -452,6 +466,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61496",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -508,6 +523,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -521,6 +537,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/Co.php?bsn=60036&sn=329428",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -577,6 +594,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/Co.php?bsn=60036&sn=323232",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -603,6 +621,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=66991",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -623,6 +642,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=66413",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -643,6 +663,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62090&tnum=1",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -675,6 +696,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=59400",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -713,6 +735,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=56420",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -739,6 +762,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -752,6 +776,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -765,6 +790,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -778,6 +804,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -791,6 +818,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -804,6 +832,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -817,6 +846,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -849,6 +879,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -862,6 +893,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -875,6 +907,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -888,6 +921,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -914,6 +948,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -927,6 +962,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -947,6 +983,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -960,6 +997,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -973,6 +1011,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -986,6 +1025,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -999,6 +1039,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1025,6 +1066,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1038,6 +1080,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1051,6 +1094,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1064,6 +1108,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1077,6 +1122,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=68679",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1109,6 +1155,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=67275",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1135,6 +1182,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=66083",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1161,6 +1209,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=65890",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1181,6 +1230,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/Co.php?bsn=60036&sn=326340",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1225,6 +1275,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1257,6 +1308,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62859",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1289,6 +1341,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62391&tnum=1",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1327,6 +1380,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1347,6 +1401,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61585",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1379,6 +1434,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=57338",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1405,6 +1461,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=57108",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1431,6 +1488,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1444,6 +1502,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=52641",
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1457,6 +1516,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1470,6 +1530,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1483,6 +1544,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1496,6 +1558,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1522,6 +1585,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1535,6 +1599,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=63713",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1597,6 +1662,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1610,6 +1676,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1623,6 +1690,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1636,6 +1704,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1649,6 +1718,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1662,6 +1732,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=59257",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1694,6 +1765,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1707,6 +1779,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=51505",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1739,6 +1812,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1752,6 +1826,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1796,6 +1871,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": true,
     "modes": null
   },
@@ -1809,6 +1885,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": true,
     "modes": null
   },
@@ -1822,6 +1899,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1835,6 +1913,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1848,6 +1927,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1861,6 +1941,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1874,6 +1955,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": true,
     "modes": null
   },
@@ -1887,6 +1969,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -1907,6 +1990,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1920,6 +2004,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1933,6 +2018,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1946,6 +2032,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1959,6 +2046,7 @@ const figuresDataset = [
     "totalFrames": 43,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1972,6 +2060,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1985,6 +2074,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -1998,6 +2088,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2011,6 +2102,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2024,6 +2116,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2037,6 +2130,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2050,6 +2144,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2063,6 +2158,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2076,6 +2172,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2089,6 +2186,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2102,6 +2200,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2115,6 +2214,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2128,6 +2228,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2141,6 +2242,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=69321",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2167,6 +2269,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2180,6 +2283,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2212,6 +2316,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2225,6 +2330,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2238,6 +2344,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2251,6 +2358,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2264,6 +2372,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2277,6 +2386,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2290,6 +2400,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=66539&tnum=1",
+    "credit": null,
     "is18Plus": true,
     "modes": [
       {
@@ -2328,6 +2439,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2341,6 +2453,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": true,
     "modes": null
   },
@@ -2354,6 +2467,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": true,
     "modes": null
   },
@@ -2367,6 +2481,7 @@ const figuresDataset = [
     "totalFrames": 32,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2380,6 +2495,7 @@ const figuresDataset = [
     "totalFrames": 32,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2393,6 +2509,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2413,6 +2530,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2433,6 +2551,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2453,6 +2572,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=65111",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2491,6 +2611,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62278",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2517,6 +2638,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=61765",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2549,6 +2671,7 @@ const figuresDataset = [
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=62529&tnum=2",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2587,6 +2710,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2600,6 +2724,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=55186",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2626,6 +2751,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2652,6 +2778,7 @@ const figuresDataset = [
     "totalFrames": 41,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2665,6 +2792,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2678,6 +2806,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2691,6 +2820,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2735,6 +2865,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2748,6 +2879,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": null,
+    "credit": null,
     "is18Plus": false,
     "modes": null
   },
@@ -2761,6 +2893,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=57554",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2793,6 +2926,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2813,6 +2947,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2839,6 +2974,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2859,6 +2995,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": "",
     "reviewLink": "",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -2879,6 +3016,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "customUrl": null,
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036&snA=63331",
+    "credit": null,
     "is18Plus": false,
     "modes": [
       {
