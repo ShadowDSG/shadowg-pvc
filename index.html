@@ -1,525 +1,445 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth overflow-x-hidden max-w-full">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>ShadowG的攝影小屋 - 360° Figure Studio</title>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>ShadowG的攝影小屋 - 360° Figure Studio</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+				<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
-                    },
-                    colors: {
-                        studio: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            800: '#3c096c',
-                            900: '#240046',
-                            950: '#10002b',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+					<script src="https://cdn.tailwindcss.com"></script>
+					<script>
+						tailwind.config = {
+						theme: {
+						extend: {
+						fontFamily: {
+						sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+						},
+						colors: {
+						studio: {
+						50: '#f5f3ff',
+						100: '#ede9fe',
+						800: '#3c096c',
+						900: '#240046',
+						950: '#10002b',
+						}
+						}
+						}
+						}
+						}
+					</script>
+					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <style>
-        /* 📱 雙重鎖定：防止任何瀏覽器下的橫向溢出與手勢彈性滑動 */
-        html, body {
-            zoom: 1.1;
-            max-width: 100%;
-            overflow-x: hidden;
-            position: relative;
-            overscroll-behavior-x: none;
-        }
+					<style>
+						/* 📱 雙重鎖定：防止任何瀏覽器下的橫向溢出與手勢彈性滑動 */
+						html, body {
+						zoom: 1.1;
+						max-width: 100%;
+						overflow-x: hidden;
+						position: relative;
+						overscroll-behavior-x: none;
+						}
 
-        @media (min-width: 1024px) {
-            html {
-                zoom: 1.15;
-            }
-        }
+						@media (min-width: 1024px) {
+						html {
+						zoom: 1.15;
+						}
+						}
 
-        body {
-            background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
+						body {
+						background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+						background-attachment: fixed;
+						background-size: cover;
+						background-position: center;
+						}
 
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
+						::-webkit-scrollbar {
+						width: 6px;
+						height: 6px;
+						}
 
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
+						::-webkit-scrollbar-track {
+						background: #0f172a;
+						}
 
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 9999px;
-        }
+						::-webkit-scrollbar-thumb {
+						background: #334155;
+						border-radius: 9999px;
+						}
 
-            ::-webkit-scrollbar-thumb:hover {
-                background: #475569;
-            }
+						::-webkit-scrollbar-thumb:hover {
+						background: #475569;
+						}
 
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
+						.glass-panel {
+						background: rgba(15, 23, 42, 0.65);
+						backdrop-filter: blur(12px);
+						border: 1px solid rgba(255, 255, 255, 0.06);
+						}
 
-        .glow-card:hover {
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 0.4);
-        }
+						.glow-card:hover {
+						box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+						border-color: rgba(139, 92, 246, 0.4);
+						}
 
-        @keyframes orbit {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
+						@keyframes orbit {
+						0% {
+						transform: translate(-50%, -50%) rotate(0deg);
+						}
 
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
+						100% {
+						transform: translate(-50%, -50%) rotate(360deg);
+						}
+						}
 
-        .glowing-orb {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            pointer-events: none;
-            animation: orbit 20s linear infinite;
-        }
+						.glowing-orb {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						width: 500px;
+						height: 500px;
+						background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+						transform: translate(-50%, -50%);
+						z-index: 0;
+						pointer-events: none;
+						animation: orbit 20s linear infinite;
+						}
+					</style>
+				</head>
+	<body class="text-slate-100 font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
 
-        #brandFilterContainer {
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-x: contain;
-        }
+		<div class="absolute inset-0 overflow-hidden pointer-events-none z-0 max-w-full">
+			<div class="glowing-orb"></div>
+		</div>
 
-            #brandFilterContainer::-webkit-scrollbar {
-                height: 4px;
-            }
-    </style>
-</head>
-<body class="text-slate-100 font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
+		<nav class="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/60 py-3 px-6 sm:px-8 md:px-12">
+			<div class="max-w-7xl mx-auto flex items-center justify-between">
+				<a href="index.html" class="flex items-center space-x-3 group">
+					<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-violet-500/20 group-hover:scale-105 transition-all duration-300">
+						<i class="fa-solid fa-camera-rotate text-lg"></i>
+					</div>
+					<div>
+						<span class="text-base md:text-lg font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-fuchsia-400 group-hover:opacity-90 transition-opacity">ShadowG's Studio</span>
+						<span class="block text-[10px] text-slate-400 tracking-widest font-medium">FIGURE 360° PORTFOLIO</span>
+					</div>
+				</a>
+				<div class="flex items-center space-x-3">
+					<a href="https://three60manager.onrender.com/manager.html" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-emerald-500 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="後台上傳管理">
+						<i class="fa-solid fa-cloud-arrow-up text-base"></i>
+					</a>
 
-    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0 max-w-full">
-        <div class="glowing-orb"></div>
-    </div>
+					<a href="https://twitter.com/04Dsg" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-sky-500 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="Twitter / X">
+						<i class="fa-brands fa-x-twitter text-base"></i>
+					</a>
 
-    <nav class="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/60 py-3 px-6 sm:px-8 md:px-12">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-violet-500/20 group-hover:scale-105 transition-all duration-300">
-                    <i class="fa-solid fa-camera-rotate text-lg"></i>
-                </div>
-                <div>
-                    <span class="text-base md:text-lg font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-fuchsia-400 group-hover:opacity-90 transition-opacity">ShadowG's Studio</span>
-                    <span class="block text-[10px] text-slate-400 tracking-widest font-medium">FIGURE 360° PORTFOLIO</span>
-                </div>
-            </a>
-            <div class="flex items-center space-x-3">
-                <a href="https://twitter.com/04Dsg" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-sky-500 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="Twitter / X">
-                    <i class="fa-brands fa-x-twitter text-base"></i>
-                </a>
-                <a href="https://home.gamer.com.tw/profile/index.php?&owner=G0953398466" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-violet-600 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="巴哈姆特小屋">
-                    <i class="fa-solid fa-user text-base"></i>
-                </a>
-            </div>
-        </div>
-    </nav>
+					<a href="https://home.gamer.com.tw/profile/index.php?&owner=G0953398466" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-violet-600 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="巴哈姆特小屋">
+						<i class="fa-solid fa-user text-base"></i>
+					</a>
+				</div>
+			</div>
+		</nav>
 
-    <header class="relative overflow-hidden pt-10 pb-12 px-6 sm:px-8 md:px-12">
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-4 tracking-wider uppercase">
-                <i class="fa-solid fa-circle-nodes mr-1.5 animate-pulse"></i> 360度立體環繞攝影
-            </span>
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight mb-5 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">
-                ShadowG 的攝影小屋
-            </h1>
-            <p class="text-sm md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-6">
-                這裡主要放置 <span class="text-violet-400 font-semibold">Figure (美少女模型)</span> 的 360 度旋轉寫真。<br class="hidden sm:inline">
+		<header class="relative overflow-hidden pt-10 pb-12 px-6 sm:px-8 md:px-12">
+			<div class="max-w-5xl mx-auto text-center relative z-10">
+				<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20 mb-4 tracking-wider uppercase">
+					<i class="fa-solid fa-circle-nodes mr-1.5 animate-pulse"></i> 360度立體環繞攝影
+				</span>
+				<h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight mb-5 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">
+					ShadowG 的攝影小屋
+				</h1>
+				<p class="text-sm md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-6">
+					這裡主要放置 <span class="text-violet-400 font-semibold">Figure (美少女模型)</span> 的 360 度旋轉寫真。<br class="hidden sm:inline">
                 點擊任一模型即可直接進入完整展廳，隨心所欲地拖動觀看模型細節！
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="#galleries" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-[1.02] transition-all duration-300 text-sm">
-                    <i class="fa-solid fa-images mr-2"></i> 探索模型展間
-                </a>
-                <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 text-slate-300 transition-all duration-300 text-sm">
-                    關於我 / 合作聯繫
-                </a>
-            </div>
-        </div>
-    </header>
+				<div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+					<a href="#galleries" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-[1.02] transition-all duration-300 text-sm">
+						<i class="fa-solid fa-images mr-2"></i> 探索模型展間
+					</a>
+					<a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 text-slate-300 transition-all duration-300 text-sm">
+						關於我 / 合作聯繫
+					</a>
+				</div>
+			</div>
+		</header>
 
-    <main id="galleries" class="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 pb-24 relative z-10">
-        <div class="glass-panel rounded-2xl p-4 md:p-6 mb-8 shadow-xl border border-slate-800/80">
-            <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
-                <div class="w-full lg:max-w-md relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="figureSearch" oninput="filterFigures()" placeholder="搜尋模型名稱、作品系列... (例如：初音, 狂三, saber)" class="w-full pl-11 pr-10 py-2.5 sm:py-3 bg-slate-950/80 border border-slate-800 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 text-slate-100 placeholder-slate-500 text-xs sm:text-sm outline-none transition-all" />
-                    <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
-                        <i class="fa-solid fa-circle-xmark"></i>
-                    </button>
-                </div>
-                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-start lg:justify-end">
-                    <span class="text-[10px] sm:text-xs text-slate-400 font-semibold tracking-wider uppercase mr-1">快速檢視:</span>
-                    <button onclick="setFilterCategory('all')" id="btn-cat-all" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300">全部模型</button>
-                    <button onclick="setFilterCategory('featured')" id="btn-cat-featured" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300">精選推薦 (Pick Up)</button>
-                </div>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-800/60">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-[10px] sm:text-xs text-slate-400 font-bold tracking-wider uppercase">按品牌大廠篩選：</span>
-                    <button onclick="clearBrandFilter()" id="btnClearBrand" class="text-[10px] sm:text-xs text-violet-400 hover:text-violet-300 font-medium transition-colors hidden">
-                        清除品牌篩選 <i class="fa-solid fa-rotate-left ml-0.5"></i>
-                    </button>
-                </div>
-                <div class="grid grid-rows-2 grid-flow-col auto-cols-max gap-x-2 gap-y-2 overflow-x-auto pb-3 scrollbar-thin scroll-smooth" id="brandFilterContainer"></div>
-            </div>
-        </div>
+		<main id="galleries" class="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 pb-24 relative z-10">
+			<div class="glass-panel rounded-2xl p-4 md:p-6 mb-8 shadow-xl border border-slate-800/80">
+				<div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+					<div class="w-full lg:max-w-md relative">
+						<i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+						<input type="text" id="figureSearch" oninput="filterFigures()" placeholder="搜尋名稱、作品或品牌... (例如：初音, ALTER, GSC)" class="w-full pl-11 pr-10 py-2.5 sm:py-3 bg-slate-950/80 border border-slate-800 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 text-slate-100 placeholder-slate-500 text-xs sm:text-sm outline-none transition-all" />
+						<button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+							<i class="fa-solid fa-circle-xmark"></i>
+						</button>
+					</div>
+					<div class="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-start lg:justify-end">
+						<span class="text-[10px] sm:text-xs text-slate-400 font-semibold tracking-wider uppercase mr-1">快速檢視:</span>
+						<button onclick="setFilterCategory('all')" id="btn-cat-all" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300">全部模型</button>
+						<button onclick="setFilterCategory('featured')" id="btn-cat-featured" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300">精選推薦 (Pick Up)</button>
 
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-            <div>
-                <h2 class="text-lg md:text-2xl font-extrabold tracking-tight" id="galleryHeading">全部模型展區</h2>
-                <p class="text-[10px] sm:text-xs text-slate-400 mt-1"><i class="fa-solid fa-mobile-screen-button mr-1"></i> 手機版使用者，推薦將手機橫置以獲得最佳沉浸式視覺</p>
-            </div>
-            <div class="glass-panel px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-semibold text-slate-400 self-start sm:self-auto" id="displayStatusBadge">
-                載入中...
-            </div>
-        </div>
+						<div class="flex items-center bg-slate-950/80 border border-slate-800 rounded-lg p-1 ml-0 sm:ml-2">
+							<button onclick="setViewMode('large')" id="view-large" class="w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center text-white bg-violet-600 shadow transition-colors" title="大圖示">
+								<i class="fa-solid fa-border-all"></i>
+							</button>
+							<button onclick="setViewMode('small')" id="view-small" class="w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="小圖示">
+								<i class="fa-solid fa-table-cells"></i>
+							</button>
+							<button onclick="setViewMode('list')" id="view-list" class="w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="詳細資料">
+								<i class="fa-solid fa-list-ul"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        <!-- 📱 模型展示網格 -->
-        <div id="galleryGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6"></div>
+			<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+				<div>
+					<h2 class="text-lg md:text-2xl font-extrabold tracking-tight" id="galleryHeading">全部模型展區</h2>
+					<p class="text-[10px] sm:text-xs text-slate-400 mt-1">
+						<i class="fa-solid fa-mobile-screen-button mr-1"></i> 手機版使用者，推薦將手機橫置以獲得最佳沉浸式視覺
+					</p>
+				</div>
+				<div class="glass-panel px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-semibold text-slate-400 self-start sm:self-auto" id="displayStatusBadge">
+					載入中...
+				</div>
+			</div>
 
-        <div id="paginationContainer" class="w-full mt-10"></div>
+			<div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6"></div>
 
-        <div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-center">
-            <div class="w-16 h-16 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600 mb-4 text-2xl">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <h3 class="text-lg font-bold">找不到相符的模型</h3>
-            <p class="text-slate-500 text-sm mt-1 max-w-xs">請嘗試使用其他關鍵字搜尋，或是重設篩選條件。</p>
-            <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 rounded-lg text-sm transition-colors">重設所有篩選</button>
-        </div>
-    </main>
+			<div id="paginationContainer" class="w-full mt-10"></div>
 
-    <section id="contact" class="bg-slate-950/80 border-t border-slate-900 py-16 px-6 sm:px-8 md:px-12 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto relative z-10">
-            <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="md:col-span-1 text-center md:text-left">
-                    <div class="inline-flex w-16 h-16 rounded-2xl bg-violet-600/10 border border-violet-500/20 text-violet-400 items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-address-card"></i>
-                    </div>
-                    <h3 class="text-2xl font-black mb-2">關於作者</h3>
-                    <p class="text-xs text-slate-500 uppercase tracking-widest font-semibold">ShadowG Studio</p>
-                </div>
-                <div class="md:col-span-2 space-y-4 text-slate-400 text-sm leading-relaxed">
-                    <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/40">
-                        <strong class="text-slate-200 block mb-1"><i class="fa-solid fa-camera text-violet-400 mr-1.5"></i> 相機攝影歷程</strong>
-                        自 2018 年踏入相機攝影領域，當初入坑的初心與動機就是為了拍攝自己心愛的 PVC 模型。雖然期間造訪日本的兩年間主力在風光攝影，但 2020 年回國後，重新開啟並沉浸於精緻的模型 PVC 3D 旋轉及靜態攝影。
-                    </div>
-                    <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/40">
-                        <strong class="text-slate-200 block mb-1"><i class="fa-solid fa-handshake text-violet-400 mr-1.5"></i> 合作與交流</strong>
-                        如果你也對 360 度旋轉圖的拍攝與網頁動態製作感興趣，非常歡迎直接透過巴哈姆特與我交流！若你只是希望我有償或無償為你的模型開箱文提供 360° 度網態支援，我也能協助上傳專屬主機提供嵌入代碼給你（且不會列入我的公開大廳網頁中）。
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+			<div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-center">
+				<div class="w-16 h-16 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600 mb-4 text-2xl">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</div>
+				<h3 class="text-lg font-bold">找不到相符的模型</h3>
+				<p class="text-slate-500 text-sm mt-1 max-w-xs">請嘗試使用其他關鍵字搜尋，或是重設篩選條件。</p>
+				<button onclick="resetAllFilters()" class="mt-4 px-4 py-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 rounded-lg text-sm transition-colors">重設所有篩選</button>
+			</div>
+		</main>
 
-    <footer class="bg-slate-950 border-t border-slate-900/80 py-8 px-6 sm:px-8 md:px-12 text-center text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© 2026 ShadowG的攝影小屋. All rights reserved. 僅供個人模型攝影喜好展示交流。</p>
-            <p>Designed with <i class="fa-solid fa-heart text-fuchsia-500"></i> using Tailwind CSS</p>
-        </div>
-    </footer>
+		<section id="contact" class="bg-slate-950/80 border-t border-slate-900 py-16 px-6 sm:px-8 md:px-12 relative overflow-hidden">
+			<div class="max-w-4xl mx-auto relative z-10">
+				<div class="grid md:grid-cols-3 gap-8 items-center">
+					<div class="md:col-span-1 text-center md:text-left">
+						<div class="inline-flex w-16 h-16 rounded-2xl bg-violet-600/10 border border-violet-500/20 text-violet-400 items-center justify-center text-2xl mb-4">
+							<i class="fa-solid fa-address-card"></i>
+						</div>
+						<h3 class="text-2xl font-black mb-2">關於作者</h3>
+						<p class="text-xs text-slate-500 uppercase tracking-widest font-semibold">ShadowG Studio</p>
+					</div>
+					<div class="md:col-span-2 space-y-4 text-slate-400 text-sm leading-relaxed">
+						<div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/40">
+							<strong class="text-slate-200 block mb-1">
+								<i class="fa-solid fa-camera text-violet-400 mr-1.5"></i> 相機攝影歷程
+							</strong>
+							自 2018 年踏入相機攝影領域，當初入坑的初心與動機就是為了拍攝自己心愛的 PVC 模型。雖然期間造訪日本的兩年間主力在風光攝影，但 2020 年回國後，重新開啟並沉浸於精緻的模型 PVC 3D 旋轉及靜態攝影。
+						</div>
+						<div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/40">
+							<strong class="text-slate-200 block mb-1">
+								<i class="fa-solid fa-handshake text-violet-400 mr-1.5"></i> 合作與交流
+							</strong>
+							如果你也對 360 度旋轉圖的拍攝與網頁動態製作感興趣，非常歡迎直接透過巴哈姆特與我交流！若你只是希望我有償或無償為你的模型開箱文提供 360° 度網態支援，我也能協助上傳專屬主機提供嵌入代碼給你（且不會列入我的公開大廳網頁中）。
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <script src="js/data.js"></script>
+		<footer class="bg-slate-950 border-t border-slate-900/80 py-8 px-6 sm:px-8 md:px-12 text-center text-xs text-slate-500">
+			<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+				<p>© 2026 ShadowG的攝影小屋. All rights reserved. 僅供個人模型攝影喜好展示交流。</p>
+				<p>
+					Designed with <i class="fa-solid fa-heart text-fuchsia-500"></i> using Tailwind CSS
+				</p>
+			</div>
+		</footer>
 
-    <script type="module">
-        // 1. 引入 Firebase 模組
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+		<script src="js/data.js"></script>
 
-        // 2. 貼上你的 Firebase 設定
-        const firebaseConfig = {
-            apiKey: "AIzaSyBVmV57KOKBgd0UJs-N-eqWu8dJGn7J-kk",
-            authDomain: "figurestudio-bdd7f.firebaseapp.com",
-            projectId: "figurestudio-bdd7f",
-            storageBucket: "figurestudio-bdd7f.firebasestorage.app",
-            messagingSenderId: "280890475667",
-            appId: "1:280890475667:web:27adeec7d4191974213966"
-        };
+		<script type="module">
+			// 💡 補回 Firebase 連線所需的模組與設定檔
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+			import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+			const firebaseConfig = {
+			apiKey: "AIzaSyBVmV57KOKBgd0UJs-N-eqWu8dJGn7J-kk",
+			authDomain: "figurestudio-bdd7f.firebaseapp.com",
+			projectId: "figurestudio-bdd7f",
+			storageBucket: "figurestudio-bdd7f.firebasestorage.app",
+			messagingSenderId: "280890475667",
+			appId: "1:280890475667:web:27adeec7d4191974213966"
+			};
 
-        // 建立全域的資料陣列
-        window.figuresDataset = [];
+			const app = initializeApp(firebaseConfig);
+			const db = getFirestore(app);
 
-        const brandsConfig = {
-            "GSC": { name: "Good Smile Company", img: "GSC.png" },
-            "ALTER": { name: "ALTER", img: "ALTER.png" },
-            "SKYTUBE": { name: "Skytube", img: "SKYTUBE.jpg" },
-            "KOTOBUKIYA": { name: "Kotobukiya", img: "KOTOBUKIYA.png" },
-            "AMAKUNI": { name: "Amakuni", img: "AMAKUNI.png" },
-            "ALPHAMAX": { name: "Alphamax", img: "ALPHAMAX.png" },
-            "NATIVE": { name: "Native", img: "NATIVE.png" },
-            "MYETHOS": { name: "Myethos", img: "MYETHOS.png" },
-            "WAVE": { name: "WAVE", img: "WAVE.png" },
-            "MEGAHOUSE": { name: "MegaHouse", img: "MegaHouse.png" },
-            "FURYU": { name: "FuRyu", img: "FuRyu.png" },
-            "NEONMAX": { name: "NeonMax", img: "NEONMAX.png" },
-            "STRONGER": { name: "Stronger", img: "STRONGER.png" },
-            "QUESQ": { name: "QuesQ", img: "QUESQ.png" },
-            "UCI": { name: "Union Creative", img: "UCI.png" },
-            "PLUSONE": { name: "PlusOne", img: "PLUSONE.jpg" },
-            "SPIRITALE": { name: "Spiritale", img: "SPIRITALE.png" },
-            "ESTREAM": { name: "eStream", img: "ESTREAM.png" },
-            "VERTEX": { name: "Vertex", img: "VERTEX.png" },
-            "FNEX": { name: "F:NEX", img: "FNEX.png" },
-            "KADOKAWA": { name: "Kadokawa", img: "KADOKAWA.png" },
-            "ANIPLEX": { name: "Aniplex", img: "ANIPLEX.png" },
-            "DAIKI": { name: "Daiki", img: "DAIKI.png" },
-            "BROCCOLI": { name: "Broccoli", img: "BROCCOLI.png" },
-            "PLUM": { name: "PLUM", img: "PLUM.png" },
-            "FLARE": { name: "Flare", img: "FLARE.png" },
-            "CBF": { name: "CBF", img: "CBF.png" },
-            "BELLFINE": { name: "BellFine", img: "BellFine.png" },
-            "POP": { name: "POP", img: "POP.png" },
-            "HOBBYMAX": { name: "Hobbymax", img: "Hobbymax.png" },
-            "LEMOE": { name: "Lemoe Figure", img: "LEMOE.png" }
-        };
+			// 建立全域的資料陣列
+			window.figuresDataset = [];
 
-        let currentCategory = 'all';
-        let currentBrand = null;
-        let searchQuery = '';
-        let currentPage = 1;
-        const itemsPerPage = 24;
+			let currentCategory = 'all';
+			let searchQuery = '';
+			let currentPage = 1;
+			const itemsPerPage = 36;
+			let currentViewMode = 'large';
 
-        // 3. 將 HTML 的 onclick 綁定到 window 全域，避免 module 隔離問題
-        window.filterFigures = filterFigures;
-        window.clearSearchInput = clearSearchInput;
-        window.resetAllFilters = resetAllFilters;
-        window.setFilterCategory = setFilterCategory;
-        window.clearBrandFilter = clearBrandFilter;
+			// 將 HTML 的 onclick 綁定到 window 全域
+			window.filterFigures = filterFigures;
+			window.clearSearchInput = clearSearchInput;
+			window.resetAllFilters = resetAllFilters;
+			window.setFilterCategory = setFilterCategory;
+			window.setViewMode = setViewMode;
 
-        window.addEventListener('DOMContentLoaded', async () => {
-            const statusBadge = document.getElementById('displayStatusBadge');
-            
-            // 讀取前先顯示 loading
-            statusBadge.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-1"></i> 資料庫連線中...';
+			window.addEventListener('DOMContentLoaded', async () => {
+			const statusBadge = document.getElementById('displayStatusBadge');
 
-            try {
-                // 🚀 從 Firestore 抓取整個集合
-                const querySnapshot = await getDocs(collection(db, "figures"));
-                const fetchedData = [];
-                querySnapshot.forEach((doc) => {
-                    fetchedData.push(doc.data());
-                });
-                
-                window.figuresDataset = fetchedData;
+			statusBadge.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-1"></i> 資料庫連線中...';
 
-            } catch (error) {
-                console.error("資料庫讀取失敗:", error);
-                statusBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-400 mr-1"></i> 讀取失敗';
-                return; // 發生錯誤就中止執行
-            }
+			try {
+			const querySnapshot = await getDocs(collection(db, "figures"));
+			const fetchedData = [];
+			querySnapshot.forEach((doc) => {
+			fetchedData.push(doc.data());
+			});
 
-            // 💾 恢復狀態邏輯 (與原本相同)
-            const savedState = sessionStorage.getItem('shadowG_state');
-            if (savedState) {
-                const state = JSON.parse(savedState);
-                currentPage = state.page || 1;
-                currentBrand = state.brand || null;
-                currentCategory = state.category || 'all';
-                searchQuery = state.search || '';
+			window.figuresDataset = fetchedData;
 
-                document.getElementById('figureSearch').value = searchQuery;
-                if (searchQuery) document.getElementById('clearSearch').classList.remove('hidden');
-                if (currentBrand) document.getElementById('btnClearBrand').classList.remove('hidden');
+			} catch (error) {
+			console.error("資料庫讀取失敗:", error);
+			statusBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-400 mr-1"></i> 讀取失敗';
+			return;
+			}
 
-                const btnAll = document.getElementById('btn-cat-all');
-                const btnFeatured = document.getElementById('btn-cat-featured');
-                if (currentCategory === 'all') {
-                    btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
-                    btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
-                    document.getElementById('galleryHeading').textContent = "全部模型展區";
-                } else {
-                    btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
-                    btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
-                    document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
-                }
-            }
+			// 💾 恢復狀態邏輯
+			const savedState = sessionStorage.getItem('shadowG_state');
+			if (savedState) {
+			const state = JSON.parse(savedState);
+			currentPage = state.page || 1;
+			currentCategory = state.category || 'all';
+			searchQuery = state.search || '';
 
-            // 執行渲染
-            renderBrandSliders();
-            renderFiguresGrid();
+			if (state.viewMode) {
+			setViewMode(state.viewMode, false);
+			}
 
-            // 💾 恢復捲動位置
-            if (savedState) {
-                const state = JSON.parse(savedState);
-                if (state.scrollY) {
-                    requestAnimationFrame(() => {
-                        setTimeout(() => {
-                            window.scrollTo({ top: state.scrollY, behavior: 'instant' });
-                            sessionStorage.removeItem('shadowG_state');
-                        }, 50);
-                    });
-                } else {
-                    sessionStorage.removeItem('shadowG_state');
-                }
-            }
-        });
+			document.getElementById('figureSearch').value = searchQuery;
+			if (searchQuery) document.getElementById('clearSearch').classList.remove('hidden');
 
-        // ---------------- 以下為原有的 UI 渲染函式 (內容不變) ----------------
-        
-        function renderBrandSliders() {
-            const container = document.getElementById('brandFilterContainer');
-            container.innerHTML = '';
-            Object.entries(brandsConfig).forEach(([key, value]) => {
-                const isSelected = currentBrand === key;
-                const button = document.createElement('button');
-                button.className = `flex-none flex items-center space-x-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl transition-all border duration-300 text-xs ${isSelected ? 'bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-500/25 scale-[1.02]' : 'bg-slate-900 hover:bg-slate-800 border-slate-800/80 text-slate-300 hover:text-white'}`;
-                button.onclick = () => selectBrand(key);
+			const btnAll = document.getElementById('btn-cat-all');
+			const btnFeatured = document.getElementById('btn-cat-featured');
+			if (currentCategory === 'all') {
+			btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
+			btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
+			document.getElementById('galleryHeading').textContent = "全部模型展區";
+			} else {
+			btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
+			btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
+			document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
+			}
+			}
 
-                const img = document.createElement('img');
-                img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/brand/${value.img}`;
-                img.alt = value.name;
-                img.className = "h-3 sm:h-4 object-contain max-w-[50px] sm:max-w-[65px] brightness-90 contrast-125 filter group-hover:brightness-100";
-                img.onerror = () => {
-                    img.style.display = 'none';
-                    const fallbackText = document.createElement('span');
-                    fallbackText.className = "text-[10px] sm:text-xs font-bold";
-                    fallbackText.textContent = key;
-                    button.prepend(fallbackText);
-                };
+			// 執行渲染
+			renderFiguresGrid();
 
-                button.appendChild(img);
-                const brandCount = window.figuresDataset.filter(f => f.brand === key).length;
-                const badge = document.createElement('span');
-                badge.className = `text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded ${isSelected ? 'bg-violet-800 text-violet-200' : 'bg-slate-850 text-slate-500'}`;
-                badge.textContent = brandCount;
-                button.appendChild(badge);
-                container.appendChild(button);
-            });
-        }
+			// 💾 恢復捲動位置
+			if (savedState) {
+			const state = JSON.parse(savedState);
+			if (state.scrollY) {
+			requestAnimationFrame(() => {
+			setTimeout(() => {
+			window.scrollTo({ top: state.scrollY, behavior: 'instant' });
+			sessionStorage.removeItem('shadowG_state');
+			}, 50);
+			});
+			} else {
+			sessionStorage.removeItem('shadowG_state');
+			}
+			}
+			});
 
-        function selectBrand(brandKey) {
-            currentBrand = (currentBrand === brandKey) ? null : brandKey;
-            const btnClear = document.getElementById('btnClearBrand');
-            if (currentBrand) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
-            currentPage = 1;
-            renderBrandSliders();
-            renderFiguresGrid();
-        }
+			function setFilterCategory(category) {
+			currentCategory = category;
+			const btnAll = document.getElementById('btn-cat-all');
+			const btnFeatured = document.getElementById('btn-cat-featured');
+			if (category === 'all') {
+			btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
+			btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
+			document.getElementById('galleryHeading').textContent = "全部模型展區";
+			} else {
+			btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
+			btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
+			document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
+			}
+			currentPage = 1;
+			renderFiguresGrid();
+			}
 
-        function clearBrandFilter() {
-            currentBrand = null;
-            document.getElementById('btnClearBrand').classList.add('hidden');
-            currentPage = 1;
-            renderBrandSliders();
-            renderFiguresGrid();
-        }
+			function filterFigures() {
+			const input = document.getElementById('figureSearch');
+			searchQuery = input.value.trim().toLowerCase();
+			const btnClear = document.getElementById('clearSearch');
+			if (searchQuery.length > 0) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
+			currentPage = 1;
+			renderFiguresGrid();
+			}
 
-        function setFilterCategory(category) {
-            currentCategory = category;
-            const btnAll = document.getElementById('btn-cat-all');
-            const btnFeatured = document.getElementById('btn-cat-featured');
-            if (category === 'all') {
-                btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
-                btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
-                document.getElementById('galleryHeading').textContent = "全部模型展區";
-            } else {
-                btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
-                btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
-                document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
-            }
-            currentPage = 1;
-            renderFiguresGrid();
-        }
+			function clearSearchInput() {
+			document.getElementById('figureSearch').value = '';
+			searchQuery = '';
+			document.getElementById('clearSearch').classList.add('hidden');
+			currentPage = 1;
+			renderFiguresGrid();
+			}
 
-        function filterFigures() {
-            const input = document.getElementById('figureSearch');
-            searchQuery = input.value.trim().toLowerCase();
-            const btnClear = document.getElementById('clearSearch');
-            if (searchQuery.length > 0) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
-            currentPage = 1;
-            renderFiguresGrid();
-        }
+			function resetAllFilters() { clearSearchInput(); setFilterCategory('all'); }
 
-        function clearSearchInput() {
-            document.getElementById('figureSearch').value = '';
-            searchQuery = '';
-            document.getElementById('clearSearch').classList.add('hidden');
-            currentPage = 1;
-            renderFiguresGrid();
-        }
+			function renderPagination(totalFilteredItems) {
+			const container = document.getElementById('paginationContainer');
+			container.innerHTML = '';
 
-        function resetAllFilters() { clearSearchInput(); clearBrandFilter(); setFilterCategory('all'); }
+			const totalPages = Math.ceil(totalFilteredItems / itemsPerPage);
+			if (totalPages <= 1) return;
 
-        function renderPagination(totalFilteredItems) {
-            const container = document.getElementById('paginationContainer');
-            container.innerHTML = '';
+			const nav = document.createElement('nav');
+			nav.className = "flex justify-center items-center space-x-1.5 sm:space-x-2";
 
-            const totalPages = Math.ceil(totalFilteredItems / itemsPerPage);
-            if (totalPages <= 1) return;
+			const prevBtn = document.createElement('button');
+			prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left text-xs"></i>';
+			prevBtn.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === 1 ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
+			prevBtn.disabled = currentPage === 1;
+			prevBtn.onclick = () => {
+			if (currentPage > 1) {
+			currentPage--;
+			renderFiguresGrid();
+			scrollToTop();
+			}
+			};
+			nav.appendChild(prevBtn);
 
-            const nav = document.createElement('nav');
-            nav.className = "flex justify-center items-center space-x-1.5 sm:space-x-2";
+			for (let i = 1; i <= totalPages; i++) {
+			const pageBtn = document.createElement('button');
+			pageBtn.textContent = i;
+			if (i === currentPage) {
+			pageBtn.className = "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-violet-500/30 flex items-center justify-center scale-105";
+			} else {
+			pageBtn.className = "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex items-center justify-center text-xs sm:text-sm font-medium";
+			pageBtn.onclick = () => {
+			currentPage = i;
+			renderFiguresGrid();
+			scrollToTop();
+			};
+			}
+			nav.appendChild(pageBtn);
+			}
 
-            const prevBtn = document.createElement('button');
-            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left text-xs"></i>';
-            prevBtn.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === 1 ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.onclick = () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderFiguresGrid();
-                    scrollToTop();
-                }
-            };
-            nav.appendChild(prevBtn);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.textContent = i;
-                if (i === currentPage) {
-                    pageBtn.className = "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-violet-500/30 flex items-center justify-center scale-105";
-                } else {
-                    pageBtn.className = "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex items-center justify-center text-xs sm:text-sm font-medium";
-                    pageBtn.onclick = () => {
-                        currentPage = i;
-                        renderFiguresGrid();
-                        scrollToTop();
-                    };
-                }
-                nav.appendChild(pageBtn);
-            }
-
-            const nextBtn = document.createElement('button');
-            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right text-xs"></i>';
-            nextBtn.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === totalPages ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.onclick = () => {
-                if (currentPage < totalPages) {
+			const nextBtn = document.createElement('button');
+			nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right text-xs"></i>';
+			nextBtn.className = `w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all ${currentPage === totalPages ? 'bg-slate-800/50 text-slate-600 cursor-not-allowed' : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-violet-600 hover:border-violet-500 hover:text-white shadow-lg'}`;
+			nextBtn.disabled = currentPage === totalPages;
+			nextBtn.onclick = () => {
+			if (currentPage < totalPages) {
                     currentPage++;
                     renderFiguresGrid();
                     scrollToTop();
@@ -535,124 +455,184 @@
             window.scrollTo({ top: gallerySection.offsetTop - 80, behavior: 'smooth' });
         }
 
+        function setViewMode(mode, shouldRender = true) {
+            currentViewMode = mode;
+            const modes = ['large', 'small', 'list'];
+            
+            modes.forEach(m => {
+                const btn = document.getElementById(`view-${m}`);
+                if (!btn) return;
+                if (m === mode) {
+                    btn.className = "w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center text-white bg-violet-600 shadow transition-colors";
+                } else {
+                    btn.className = "w-7 h-7 sm:w-8 sm:h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition-colors";
+                }
+            });
+
+            if (shouldRender) {
+                currentPage = 1;
+                renderFiguresGrid();
+            }
+        }                    
+                    
         function renderFiguresGrid() {
             const grid = document.getElementById('galleryGrid');
             const emptyState = document.getElementById('emptyState');
             const statusBadge = document.getElementById('displayStatusBadge');
+            
+            if (currentViewMode === 'large') {
+                grid.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6";
+            } else if (currentViewMode === 'small') {
+                grid.className = "grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3";
+            } else if (currentViewMode === 'list') {
+                grid.className = "flex flex-col gap-3 max-w-5xl mx-auto w-full";
+            }
+            
             grid.innerHTML = '';
 
-            // 🌟 在 filter 後方加上 sort 進行排序
-            // 🌟 修正後的排序邏輯
+            const searchTerms = searchQuery.toLowerCase().split(' ').filter(term => term.trim() !== '');
+
             const filtered = window.figuresDataset.filter(figure => {
                 if (currentCategory === 'featured' && !figure.featured) return false;
-                if (currentBrand && figure.brand !== currentBrand) return false;
-                if (searchQuery) {
-                    const matchTitle = figure.title.toLowerCase().includes(searchQuery);
-                    const matchBrand = figure.brand.toLowerCase().includes(searchQuery);
-                    if (!matchTitle && !matchBrand) return false;
-                }
-                return true;
-            }).sort((a, b) => {
-                // 1. 先比較是否為精選 (featured 為 true 的會排在前面)
-                const isAFeatured = a.featured ? 1 : 0;
-                const isBFeatured = b.featured ? 1 : 0;
-                
-                // 如果一邊是精選、一邊不是，精選的優先 (b - a 會大於 0)
-                if (isBFeatured !== isAFeatured) {
-                    return isBFeatured - isAFeatured;
-                }
-                
-                // 2. 如果狀態一樣 (都是精選，或都不是)，就嚴格依照 orderIndex 排序
-                return (a.orderIndex || 0) - (b.orderIndex || 0);
-            });
 
-            if (filtered.length === 0) {
-            // ... 下面的程式碼維持不變 ...
-                grid.classList.add('hidden'); emptyState.classList.remove('hidden');
-                document.getElementById('paginationContainer').innerHTML = '';
-                statusBadge.innerHTML = `找不到模型`;
-                return;
-            }
+			if (searchTerms.length > 0) {
+			const matchAllTerms = searchTerms.every(term => {
+			const matchTitle = figure.title.toLowerCase().includes(term);
+			const matchBrand = (figure.brand || '').toLowerCase().includes(term);
+			return matchTitle || matchBrand;
+			});
+			if (!matchAllTerms) return false;
+			}
+			return true;
+			}).sort((a, b) => {
+			const isAFeatured = a.featured ? 1 : 0;
+			const isBFeatured = b.featured ? 1 : 0;
+			if (isBFeatured !== isAFeatured) return isBFeatured - isAFeatured;
+			return (a.orderIndex || 0) - (b.orderIndex || 0);
+			});
 
-            grid.classList.remove('hidden'); emptyState.classList.add('hidden');
+			if (filtered.length === 0) {
+			grid.classList.add('hidden'); emptyState.classList.remove('hidden');
+			document.getElementById('paginationContainer').innerHTML = '';
+			statusBadge.innerHTML = `找不到模型`;
+			return;
+			}
 
-            const totalItems = filtered.length;
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages;
+			grid.classList.remove('hidden'); emptyState.classList.add('hidden');
 
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageData = filtered.slice(startIndex, endIndex);
+			const totalItems = filtered.length;
+			const totalPages = Math.ceil(totalItems / itemsPerPage);
+			if (currentPage > totalPages) currentPage = totalPages;
 
-            const displayEnd = Math.min(endIndex, totalItems);
-            statusBadge.innerHTML = `顯示第 <span class="text-violet-400 font-bold mx-1">${startIndex + 1} - ${displayEnd}</span> 款 (共 <span class="text-slate-300">${totalItems}</span> 款)`;
+			const startIndex = (currentPage - 1) * itemsPerPage;
+			const endIndex = startIndex + itemsPerPage;
+			const pageData = filtered.slice(startIndex, endIndex);
 
-            pageData.forEach(figure => {
-                const card = document.createElement('div');
-                card.className = "group relative bg-slate-900/40 border border-slate-900 rounded-xl sm:rounded-2xl overflow-hidden shadow-md sm:shadow-lg transition-all duration-500 hover:-translate-y-1.5 glow-card cursor-pointer";
+			const displayEnd = Math.min(endIndex, totalItems);
+			statusBadge.innerHTML = `顯示第 <span class="text-violet-400 font-bold mx-1">${startIndex + 1} - ${displayEnd}</span> 款 (共 <span class="text-slate-300">${totalItems}</span> 款)`;
 
-                card.onclick = () => {
-                    const appState = {
-                        page: currentPage,
-                        brand: currentBrand,
-                        category: currentCategory,
-                        search: searchQuery,
-                        scrollY: window.scrollY
-                    };
-                    sessionStorage.setItem('shadowG_state', JSON.stringify(appState));
+			pageData.forEach(figure => {
+			const card = document.createElement('div');
+			const thumbContainer = document.createElement('div');
+			const overlay = document.createElement('div');
+			const img = document.createElement('img');
+			const infoContainer = document.createElement('div');
+			const title = document.createElement('h3');
+			const brandBadge = document.createElement('span');
 
-                    if (figure.customUrl && figure.customUrl.trim() !== "") {
-                        window.location.href = figure.customUrl;
-                    } else {
-                        window.location.href = `viewer.html?id=${figure.id}`;
-                    }
-                };
+			card.onclick = () => {
+			const appState = {
+			page: currentPage,
+			category: currentCategory,
+			search: searchQuery,
+			scrollY: window.scrollY,
+			viewMode: currentViewMode
+			};
+			sessionStorage.setItem('shadowG_state', JSON.stringify(appState));
 
-                const thumbContainer = document.createElement('div');
-                thumbContainer.className = "aspect-[4/5] relative bg-slate-950 overflow-hidden w-full flex items-center justify-center";
+			if (figure.customUrl && figure.customUrl.trim() !== "") {
+			window.location.href = figure.customUrl;
+			} else {
+			window.location.href = `viewer.html?id=${figure.id}`;
+			}
+			};
 
-                const img = document.createElement('img');
-                img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${figure.img}`;
-                img.alt = figure.title; img.loading = "lazy";
-                img.className = "object-cover w-full h-full transform transition-all duration-700 group-hover:scale-110";
-                img.onerror = () => {
-                    img.src = `https://placehold.co/400x500/1e1e2f/ffffff?text=${encodeURIComponent(figure.brand)}`;
-                };
+			img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${figure.img}`;
+			img.alt = figure.title;
+			img.loading = "lazy";
+			img.onerror = () => {
+			img.src = `https://placehold.co/400x500/1e1e2f/ffffff?text=${encodeURIComponent(figure.brand)}`;
+			};
 
-                const overlay = document.createElement('div');
-                overlay.className = "absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end justify-center pb-2 sm:pb-4";
+			title.textContent = figure.title;
+			brandBadge.textContent = figure.brand;
 
-                const hoverIndicator = document.createElement('div');
-                hoverIndicator.className = "transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center space-x-1 sm:space-x-1.5 bg-violet-600/95 text-white text-[9px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-bold uppercase shadow-lg shadow-violet-500/20";
-                hoverIndicator.innerHTML = '<i class="fa-solid fa-rotate text-[8px] sm:text-[10px] animate-spin-slow"></i> <span>360°</span>';
-                overlay.appendChild(hoverIndicator);
+			if (currentViewMode === 'list') {
+			card.className = "group relative bg-slate-900/40 border border-slate-800 hover:border-violet-500/50 rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:bg-slate-800/60 cursor-pointer flex flex-row items-center p-2 sm:p-3 gap-4";
+			thumbContainer.className = "w-16 h-20 sm:w-20 sm:h-24 relative bg-slate-950 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center";
+			img.className = "object-cover w-full h-full transform transition-all duration-700 group-hover:scale-110";
+			overlay.className = "hidden";
+			infoContainer.className = "flex flex-col flex-grow justify-center";
+			title.className = "text-sm sm:text-base font-semibold text-slate-200 line-clamp-2 mb-1.5 group-hover:text-violet-400 transition-colors";
+			brandBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase bg-slate-950/80 border border-slate-800 text-slate-300 w-max mb-1";
 
-                const brandBadge = document.createElement('span');
-                brandBadge.className = "absolute top-1.5 left-1.5 sm:top-3 sm:left-3 px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-bold tracking-wider uppercase bg-slate-950/85 border border-slate-800 text-slate-300 z-10 backdrop-blur-sm";
-                brandBadge.textContent = figure.brand;
+			} else {
+			card.className = "group relative bg-slate-900/40 border border-slate-900 rounded-xl sm:rounded-2xl overflow-hidden shadow-md sm:shadow-lg transition-all duration-500 hover:-translate-y-1.5 glow-card cursor-pointer flex flex-col h-full";
+			thumbContainer.className = "aspect-[4/5] relative bg-slate-950 overflow-hidden w-full flex items-center justify-center";
+			img.className = "object-cover w-full h-full transform transition-all duration-700 group-hover:scale-110";
+			overlay.className = "absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end justify-center pb-2 sm:pb-4";
 
-                let pickUpBadge = '';
-                if (figure.featured) {
-                    pickUpBadge = document.createElement('span');
-                    pickUpBadge.className = "absolute top-1.5 right-1.5 sm:top-3 sm:right-3 px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-bold bg-amber-500/20 border border-amber-500/30 text-amber-300 z-10 backdrop-blur-sm flex items-center";
-                    pickUpBadge.innerHTML = '<i class="fa-solid fa-star text-[7px] sm:text-[8px] mr-0.5"></i> PICKUP';
-                }
+			const hoverIndicator = document.createElement('div');
+			hoverIndicator.className = "transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center space-x-1 sm:space-x-1.5 bg-violet-600/95 text-white text-[9px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-bold uppercase shadow-lg shadow-violet-500/20";
+			hoverIndicator.innerHTML = '<i class="fa-solid fa-rotate text-[8px] sm:text-[10px] animate-spin-slow"></i> <span>360°</span>';
+			overlay.appendChild(hoverIndicator);
 
-                thumbContainer.appendChild(img); thumbContainer.appendChild(overlay); thumbContainer.appendChild(brandBadge);
-                if (pickUpBadge) thumbContainer.appendChild(pickUpBadge);
+			if (currentViewMode === 'small') {
+			title.className = "text-[10px] sm:text-[11px] font-semibold text-slate-200 line-clamp-2 leading-tight group-hover:text-violet-400 transition-colors";
+			infoContainer.className = "p-1.5 sm:p-2 flex-grow flex items-start";
+			brandBadge.className = "absolute top-1 left-1 px-1 py-0.5 rounded text-[7px] sm:text-[8px] font-bold tracking-wider uppercase bg-slate-950/85 border border-slate-800 text-slate-300 z-10 backdrop-blur-sm";
+			} else {
+			title.className = "text-[11px] sm:text-xs md:text-sm font-semibold text-slate-200 line-clamp-2 leading-tight sm:leading-snug group-hover:text-violet-400 transition-colors";
+			infoContainer.className = "p-2 sm:p-3.5 flex-grow flex items-start";
+			brandBadge.className = "absolute top-1.5 left-1.5 sm:top-3 sm:left-3 px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-bold tracking-wider uppercase bg-slate-950/85 border border-slate-800 text-slate-300 z-10 backdrop-blur-sm";
+			}
+			}
 
-                const infoContainer = document.createElement('div');
-                infoContainer.className = "p-2 sm:p-3.5";
-                const title = document.createElement('h3');
-                title.className = "text-[11px] sm:text-xs md:text-sm font-semibold text-slate-200 line-clamp-2 leading-tight sm:leading-snug group-hover:text-violet-400 transition-colors";
-                title.textContent = figure.title;
+			thumbContainer.appendChild(img);
+			thumbContainer.appendChild(overlay);
 
-                infoContainer.appendChild(title); card.appendChild(thumbContainer); card.appendChild(infoContainer);
-                grid.appendChild(card);
-            });
+			if (figure.featured) {
+			const pickUpBadge = document.createElement('span');
+			if (currentViewMode === 'list') {
+			pickUpBadge.className = "ml-2 px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center whitespace-nowrap";
+			pickUpBadge.innerHTML = '<i class="fa-solid fa-star text-[8px] mr-0.5"></i> PICKUP';
+			const tagsWrapper = document.createElement('div');
+			tagsWrapper.className = "flex flex-wrap items-center mb-1";
+			tagsWrapper.appendChild(brandBadge);
+			tagsWrapper.appendChild(pickUpBadge);
+			infoContainer.appendChild(tagsWrapper);
+			} else {
+			pickUpBadge.className = `absolute ${currentViewMode === 'small' ? 'top-1 right-1' : 'top-1.5 right-1.5 sm:top-3 sm:right-3'} px-1.5 py-0.5 rounded ${currentViewMode === 'small' ? 'text-[7px]' : 'text-[8px] sm:text-[9px]'} font-bold bg-amber-500/20 border border-amber-500/30 text-amber-300 z-10 backdrop-blur-sm flex items-center`;
+			pickUpBadge.innerHTML = `<i class="fa-solid fa-star ${currentViewMode === 'small' ? 'text-[6px]' : 'text-[7px] sm:text-[8px]'} mr-0.5"></i> PICKUP`;
+			thumbContainer.appendChild(pickUpBadge);
+			thumbContainer.appendChild(brandBadge);
+			}
+			} else {
+			if (currentViewMode === 'list') {
+			infoContainer.appendChild(brandBadge);
+			} else {
+			thumbContainer.appendChild(brandBadge);
+			}
+			}
 
-            renderPagination(totalItems);
-        }
-    </script>
-</body>
+			infoContainer.appendChild(title);
+			card.appendChild(thumbContainer);
+			card.appendChild(infoContainer);
+			grid.appendChild(card);
+			});
+
+			renderPagination(totalItems);
+			}
+		</script>
+	</body>
 </html>
