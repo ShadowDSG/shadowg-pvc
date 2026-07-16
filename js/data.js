@@ -3,7 +3,7 @@ const figuresDataset = [
     "id": "fig_wp8kor9v",
     "title": "test 2",
     "brand": "GSC",
-    "totalFrames": 36,
+    "totalFrames": 12,
     "featured": false,
     "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003E\u963F\u5B8F\u003C/span\u003E \u63D0\u4F9B",
     "img": "fig_wp8kor9v.jpg",
@@ -11,7 +11,7 @@ const figuresDataset = [
       {
         "name": "test",
         "folder": "test ou",
-        "totalFrames": 36,
+        "totalFrames": 12,
         "is18Plus": false
       }
     ]
