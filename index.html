@@ -542,6 +542,7 @@
             grid.innerHTML = '';
 
             // 🌟 在 filter 後方加上 sort 進行排序
+            // 🌟 修正後的排序邏輯
             const filtered = window.figuresDataset.filter(figure => {
                 if (currentCategory === 'featured' && !figure.featured) return false;
                 if (currentBrand && figure.brand !== currentBrand) return false;
@@ -552,11 +553,17 @@
                 }
                 return true;
             }).sort((a, b) => {
-                // 將 boolean 轉換為數字比較 (true 為 1, false/undefined 為 0)
-                // 這樣 b - a 大於 0 時，b (精選) 就會排到 a 的前面
+                // 1. 先比較是否為精選 (featured 為 true 的會排在前面)
                 const isAFeatured = a.featured ? 1 : 0;
                 const isBFeatured = b.featured ? 1 : 0;
-                return isBFeatured - isAFeatured;
+                
+                // 如果一邊是精選、一邊不是，精選的優先 (b - a 會大於 0)
+                if (isBFeatured !== isAFeatured) {
+                    return isBFeatured - isAFeatured;
+                }
+                
+                // 2. 如果狀態一樣 (都是精選，或都不是)，就嚴格依照 orderIndex 排序
+                return (a.orderIndex || 0) - (b.orderIndex || 0);
             });
 
             if (filtered.length === 0) {
