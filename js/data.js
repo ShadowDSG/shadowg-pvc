@@ -6,7 +6,7 @@ const figuresDataset = [
     "totalFrames": 36,
     "featured": true,
     "is18Plus": false,
-    "img": "GSX_9903.jpg",
+    "img": "GSX_9939.jpg",
     "modes": [
       {
         "name": "\u5168\u8EAB",
