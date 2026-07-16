@@ -119,13 +119,11 @@ const figuresDataset = [
     "img": "131.jpg",
     "brand": "GSC",
     "featured": true,
-    "folder": "PA15",
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036\u0026snA=68624",
     "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B",
-    "is18Plus": false,
-    "modes": null
+    "is18Plus": false
   },
   {
     "id": "yodayo",
@@ -147,13 +145,11 @@ const figuresDataset = [
     "img": "125.jpg",
     "brand": "GSC",
     "featured": true,
-    "folder": "Ryza",
     "totalFrames": 33,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/Co.php?bsn=60036\u0026sn=329928",
     "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B",
-    "is18Plus": false,
-    "modes": null
+    "is18Plus": false
   },
   {
     "id": "rutorionfan1",
@@ -224,11 +220,8 @@ const figuresDataset = [
     "img": "124.jpg",
     "brand": "GSC",
     "featured": true,
-    "folder": "hokusai1",
-    "totalFrames": 36,
+    "totalFrames": 216,
     "customUrl": "",
-    "reviewLink": "",
-    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -314,15 +307,12 @@ const figuresDataset = [
     "img": "120.jpg",
     "brand": "STRONGER",
     "featured": true,
-    "folder": "iriasu1",
-    "totalFrames": 36,
+    "totalFrames": 180,
     "customUrl": "",
-    "reviewLink": "",
-    "credit": null,
     "is18Plus": false,
     "modes": [
       {
-        "name": "\u5168\u8EAB ",
+        "name": "\u5168\u8EAB",
         "folder": "iriasu1",
         "totalFrames": 36,
         "is18Plus": false
@@ -359,11 +349,9 @@ const figuresDataset = [
     "img": "100.jpg",
     "brand": "WAVE",
     "featured": true,
-    "folder": "hakuchou1",
-    "totalFrames": 36,
+    "totalFrames": 180,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036\u0026snA=62249\u0026subbsn=0\u0026page=1\u0026gothis=323087#323087",
-    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -404,11 +392,8 @@ const figuresDataset = [
     "img": "112.jpg",
     "brand": "ALTER",
     "featured": true,
-    "folder": "siriasu1",
-    "totalFrames": 36,
+    "totalFrames": 216,
     "customUrl": "",
-    "reviewLink": "",
-    "credit": null,
     "is18Plus": false,
     "modes": [
       {
@@ -436,13 +421,13 @@ const figuresDataset = [
         "is18Plus": false
       },
       {
-        "name": "\u81C9\u3001\u984F \u89D2\u5EA62 ",
+        "name": "\u81C9\u3001\u984F \u89D2\u5EA62",
         "folder": "siriasu5",
         "totalFrames": 36,
         "is18Plus": false
       },
       {
-        "name": "\u80F8 ex ",
+        "name": "\u80F8 ex",
         "folder": "siriasu6",
         "totalFrames": 36,
         "is18Plus": true
@@ -455,8 +440,7 @@ const figuresDataset = [
     "img": "155.jpg",
     "brand": "LEMOE",
     "featured": false,
-    "folder": "15thup",
-    "totalFrames": 32,
+    "totalFrames": 64,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036\u0026snA=61907",
     "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B",
@@ -2587,12 +2571,10 @@ const figuresDataset = [
     "title": "\u30A2\u30B5\u30B7\u30F3\uFF0F\u9152\u5451\u7AE5\u5B50 \u82F1\u970A\u796D\u88DDVer.",
     "img": "116.jpg",
     "brand": "QUESQ",
-    "featured": true,
-    "folder": "shutenzom1",
-    "totalFrames": 36,
+    "featured": false,
+    "totalFrames": 144,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036\u0026snA=65111",
-    "credit": null,
     "is18Plus": false,
     "modes": [
       {
