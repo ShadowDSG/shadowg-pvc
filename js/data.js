@@ -18,6 +18,12 @@ const figuresDataset = [
         "folder": "noshiro2",
         "totalFrames": 36,
         "is18Plus": false
+      },
+      {
+        "name": "\u4E0A\u8EAB",
+        "folder": "noshiro3",
+        "totalFrames": 0,
+        "is18Plus": false
       }
     ]
   },
