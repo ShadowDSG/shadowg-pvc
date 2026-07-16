@@ -1,17 +1,17 @@
 const figuresDataset = [
   {
-    "id": "fig_ee0cqfmw",
-    "title": "\u6E2C\u8A66\u6E2C\u8A66",
+    "id": "fig_wp8kor9v",
+    "title": "test 2",
     "brand": "GSC",
-    "totalFrames": 33,
+    "totalFrames": 36,
     "featured": false,
-    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003E\u963F\u5B5F\u003C/span\u003E \u63D0\u4F9B",
-    "img": "fig_ee0cqfmw.JPG",
+    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003E\u963F\u5B8F\u003C/span\u003E \u63D0\u4F9B",
+    "img": "fig_wp8kor9v.jpg",
     "modes": [
       {
-        "name": "\u9ED1\u9F8D",
-        "folder": "GGEET",
-        "totalFrames": 33,
+        "name": "test",
+        "folder": "test ou",
+        "totalFrames": 36,
         "is18Plus": false
       }
     ]
