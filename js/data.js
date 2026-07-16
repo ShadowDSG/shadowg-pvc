@@ -3,7 +3,7 @@ const figuresDataset = [
     "id": "noshiro",
     "title": "\u80FD\u4EE3 \u9700\u8981\u5C11\u51B0\u55CE?",
     "brand": "AliceGlint",
-    "totalFrames": 72,
+    "totalFrames": 105,
     "featured": true,
     "img": "GSX_9939.jpg",
     "modes": [
@@ -22,7 +22,7 @@ const figuresDataset = [
       {
         "name": "\u4E0A\u8EAB",
         "folder": "noshiro3",
-        "totalFrames": 0,
+        "totalFrames": 33,
         "is18Plus": false
       }
     ]
