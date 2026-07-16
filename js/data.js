@@ -3,7 +3,7 @@ const figuresDataset = [
     "id": "noshiro",
     "title": "\u80FD\u4EE3 \u9700\u8981\u5C11\u51B0\u55CE?",
     "brand": "AliceGlint",
-    "totalFrames": 105,
+    "totalFrames": 108,
     "featured": true,
     "img": "GSX_9939.jpg",
     "modes": [
@@ -20,10 +20,10 @@ const figuresDataset = [
         "is18Plus": false
       },
       {
-        "name": "\u6E2C\u8A66",
+        "name": "\u4E0A\u8EAB",
         "folder": "noshiro3",
-        "totalFrames": 33,
-        "is18Plus": true
+        "totalFrames": 36,
+        "is18Plus": false
       }
     ]
   },
@@ -33,11 +33,9 @@ const figuresDataset = [
     "img": "149.jpg",
     "brand": "WAVE",
     "featured": true,
-    "folder": "makise",
-    "totalFrames": 32,
+    "totalFrames": 0,
     "customUrl": "",
-    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003E\u661F\u969B\u5929\u8FB2\u003C/span\u003E \u63D0\u4F9B",
-    "is18Plus": false
+    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003E\u661F\u969B\u5929\u8FB2\u003C/span\u003E \u63D0\u4F9B"
   },
   {
     "id": "altersora",
@@ -45,12 +43,10 @@ const figuresDataset = [
     "img": "139.jpg",
     "brand": "ALTER",
     "featured": true,
-    "folder": "altersora",
-    "totalFrames": 33,
+    "totalFrames": 0,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/C.php?bsn=60036\u0026snA=69656",
-    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B",
-    "is18Plus": false
+    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B"
   },
   {
     "id": "gokusinsukasi01",
