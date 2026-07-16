@@ -146,11 +146,10 @@ const figuresDataset = [
     "img": "125.jpg",
     "brand": "GSC",
     "featured": true,
-    "totalFrames": 33,
+    "totalFrames": 0,
     "customUrl": "",
     "reviewLink": "https://forum.gamer.com.tw/Co.php?bsn=60036\u0026sn=329928",
-    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B",
-    "is18Plus": false
+    "credit": "\u7531\u5DF4\u54C8\u7DB2\u53CB \u003Cspan class=\u0027text-red-400\u0027\u003EYaMao\u6D0B\u5E3D\u53D4\u53D4\u003C/span\u003E \u63D0\u4F9B"
   },
   {
     "id": "rutorionfan1",
