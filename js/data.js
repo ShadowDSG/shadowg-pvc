@@ -6,7 +6,15 @@ const figuresDataset = [
     "totalFrames": 36,
     "featured": true,
     "is18Plus": false,
-    "img": "31.JPG"
+    "img": "GSX_9903.jpg",
+    "modes": [
+      {
+        "name": "\u5168\u8EAB",
+        "folder": "noshiro",
+        "totalFrames": 36,
+        "is18Plus": false
+      }
+    ]
   },
   {
     "id": "makise",
