@@ -4,29 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>ShadowG的攝影小屋 - 360° Figure Studio</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: { 
-                extend: { 
-                    fontFamily: { 
-                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'], 
-                    }, 
-                    colors: { 
-                        studio: { 
-                            50: '#f5f3ff', 
-                            100: '#ede9fe', 
-                            800: '#3c096c', 
-                            900: '#240046', 
-                            950: '#10002b', 
-                        } 
-                    } 
-                } 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        studio: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            800: '#3c096c',
+                            900: '#240046',
+                            950: '#10002b',
+                        }
+                    }
+                }
             }
         }
     </script>
@@ -34,48 +34,91 @@
 
     <style>
         /* 📱 雙重鎖定：防止任何瀏覽器下的橫向溢出與手勢彈性滑動 */
-        html, body { 
-            zoom: 1.1; /* 🎯 預設大小已調整為原來的 1.1 倍 */
+        html, body {
+            zoom: 1.1;
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
-            /* 📱 禁止整個網頁的行動端橫向橡皮筋回彈與側滑手勢 */
             overscroll-behavior-x: none;
         }
+
         @media (min-width: 1024px) {
-            html { 
-                zoom: 1.15; /* 🎯 寬螢幕進行適度微調比例至 1.15 倍 */
+            html {
+                zoom: 1.15;
             }
         }
-        body { 
-            background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg'); 
-            background-attachment: fixed; 
-            background-size: cover; 
-            background-position: center; 
+
+        body {
+            background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-        
-        .glass-panel { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.06); }
-        .glow-card:hover { box-shadow: 0 0 25px rgba(139, 92, 246, 0.25); border-color: rgba(139, 92, 246, 0.4); }
-        @keyframes orbit { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-        .glowing-orb { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%); transform: translate(-50%, -50%); z-index: 0; pointer-events: none; animation: orbit 20s linear infinite; }
-        
-        /* 📱 讓橫向滑動品牌列更順暢，並限制它本身的滑動事件不傳遞至網頁主體 */
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #475569;
+            }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glow-card:hover {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .glowing-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            animation: orbit 20s linear infinite;
+        }
+
         #brandFilterContainer {
             -webkit-overflow-scrolling: touch;
             overscroll-behavior-x: contain;
         }
-        #brandFilterContainer::-webkit-scrollbar {
-            height: 4px;
-        }
+
+            #brandFilterContainer::-webkit-scrollbar {
+                height: 4px;
+            }
     </style>
 </head>
 <body class="text-slate-100 font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
 
-    <!-- 📱 專屬背景特效安全包覆層：徹底防止動態光暈寬度溢出而造成手機版畫面發抖 -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none z-0 max-w-full">
         <div class="glowing-orb"></div>
     </div>
@@ -137,7 +180,7 @@
                 </div>
                 <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-start lg:justify-end">
                     <span class="text-[10px] sm:text-xs text-slate-400 font-semibold tracking-wider uppercase mr-1">快速檢視:</span>
-                    <button onclick="setFilterCategory('all')" id="btn-cat-all" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white transition-all duration-300">全部模型</button>
+                    <button onclick="setFilterCategory('all')" id="btn-cat-all" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300">全部模型</button>
                     <button onclick="setFilterCategory('featured')" id="btn-cat-featured" class="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300">精選推薦 (Pick Up)</button>
                 </div>
             </div>
@@ -164,7 +207,7 @@
 
         <!-- 📱 模型展示網格 -->
         <div id="galleryGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6"></div>
-        
+
         <div id="paginationContainer" class="w-full mt-10"></div>
 
         <div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-center">
@@ -210,18 +253,26 @@
 
     <script src="js/data.js"></script>
 
-    <script>
-        // 備份展示用資料 (以防未讀取到外部 js/data.js，確保預覽不留白)
-        if (typeof figuresDataset === 'undefined') {
-            window.figuresDataset = [
-                { id: 1, title: "初音未來 MIKU 15th Anniversary Ver.", brand: "GSC", img: "miku.jpg", featured: true },
-                { id: 2, title: "時崎狂三 兔女郎 1/4 Scale Figure", brand: "FREEing", img: "kurumi.jpg", featured: true },
-                { id: 3, title: "Fate/Grand Order Saber / 葛飾北齋 1/7", brand: "GSC", img: "saber.jpg", featured: true },
-                { id: 4, title: "碧藍航線 聖路易斯 輕裝Ver. 1/7", brand: "ALTER", img: "stlouis.jpg", featured: false },
-                { id: 5, title: "萊莎的鍊金工房 萊莎 1/7", brand: "KOTOBUKIYA", img: "ryza.jpg", featured: false },
-                { id: 6, title: "原神 刻晴 霓裾翩袂Ver. 1/7", brand: "APEX", img: "keqing.jpg", featured: true }
-            ];
-        }
+    <script type="module">
+        // 1. 引入 Firebase 模組
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        // 2. 貼上你的 Firebase 設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVmV57KOKBgd0UJs-N-eqWu8dJGn7J-kk",
+            authDomain: "figurestudio-bdd7f.firebaseapp.com",
+            projectId: "figurestudio-bdd7f",
+            storageBucket: "figurestudio-bdd7f.firebasestorage.app",
+            messagingSenderId: "280890475667",
+            appId: "1:280890475667:web:27adeec7d4191974213966"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 建立全域的資料陣列
+        window.figuresDataset = [];
 
         const brandsConfig = {
             "GSC": { name: "Good Smile Company", img: "GSC.png" },
@@ -260,41 +311,111 @@
         let currentCategory = 'all';
         let currentBrand = null;
         let searchQuery = '';
-        
-        // 🎯 分頁設定變數
         let currentPage = 1;
-        const itemsPerPage = 24; 
+        const itemsPerPage = 24;
 
-        window.addEventListener('DOMContentLoaded', () => {
+        // 3. 將 HTML 的 onclick 綁定到 window 全域，避免 module 隔離問題
+        window.filterFigures = filterFigures;
+        window.clearSearchInput = clearSearchInput;
+        window.resetAllFilters = resetAllFilters;
+        window.setFilterCategory = setFilterCategory;
+        window.clearBrandFilter = clearBrandFilter;
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            const statusBadge = document.getElementById('displayStatusBadge');
+            
+            // 讀取前先顯示 loading
+            statusBadge.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-1"></i> 資料庫連線中...';
+
+            try {
+                // 🚀 從 Firestore 抓取整個集合
+                const querySnapshot = await getDocs(collection(db, "figures"));
+                const fetchedData = [];
+                querySnapshot.forEach((doc) => {
+                    fetchedData.push(doc.data());
+                });
+                
+                window.figuresDataset = fetchedData;
+
+            } catch (error) {
+                console.error("資料庫讀取失敗:", error);
+                statusBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-400 mr-1"></i> 讀取失敗';
+                return; // 發生錯誤就中止執行
+            }
+
+            // 💾 恢復狀態邏輯 (與原本相同)
+            const savedState = sessionStorage.getItem('shadowG_state');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                currentPage = state.page || 1;
+                currentBrand = state.brand || null;
+                currentCategory = state.category || 'all';
+                searchQuery = state.search || '';
+
+                document.getElementById('figureSearch').value = searchQuery;
+                if (searchQuery) document.getElementById('clearSearch').classList.remove('hidden');
+                if (currentBrand) document.getElementById('btnClearBrand').classList.remove('hidden');
+
+                const btnAll = document.getElementById('btn-cat-all');
+                const btnFeatured = document.getElementById('btn-cat-featured');
+                if (currentCategory === 'all') {
+                    btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
+                    btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
+                    document.getElementById('galleryHeading').textContent = "全部模型展區";
+                } else {
+                    btnAll.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all duration-300";
+                    btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
+                    document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
+                }
+            }
+
+            // 執行渲染
             renderBrandSliders();
             renderFiguresGrid();
+
+            // 💾 恢復捲動位置
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                if (state.scrollY) {
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            window.scrollTo({ top: state.scrollY, behavior: 'instant' });
+                            sessionStorage.removeItem('shadowG_state');
+                        }, 50);
+                    });
+                } else {
+                    sessionStorage.removeItem('shadowG_state');
+                }
+            }
         });
 
+        // ---------------- 以下為原有的 UI 渲染函式 (內容不變) ----------------
+        
         function renderBrandSliders() {
             const container = document.getElementById('brandFilterContainer');
             container.innerHTML = '';
             Object.entries(brandsConfig).forEach(([key, value]) => {
                 const isSelected = currentBrand === key;
                 const button = document.createElement('button');
-                button.className = `flex-none flex items-center space-x-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl transition-all border duration-300 text-xs ${ isSelected ? 'bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-500/25 scale-[1.02]' : 'bg-slate-900 hover:bg-slate-800 border-slate-800/80 text-slate-300 hover:text-white' }`;
+                button.className = `flex-none flex items-center space-x-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl transition-all border duration-300 text-xs ${isSelected ? 'bg-violet-600 border-violet-500 text-white shadow-lg shadow-violet-500/25 scale-[1.02]' : 'bg-slate-900 hover:bg-slate-800 border-slate-800/80 text-slate-300 hover:text-white'}`;
                 button.onclick = () => selectBrand(key);
 
                 const img = document.createElement('img');
                 img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/brand/${value.img}`;
                 img.alt = value.name;
                 img.className = "h-3 sm:h-4 object-contain max-w-[50px] sm:max-w-[65px] brightness-90 contrast-125 filter group-hover:brightness-100";
-                img.onerror = () => { 
-                    img.style.display = 'none'; 
-                    const fallbackText = document.createElement('span'); 
-                    fallbackText.className = "text-[10px] sm:text-xs font-bold"; 
-                    fallbackText.textContent = key; 
-                    button.prepend(fallbackText); 
+                img.onerror = () => {
+                    img.style.display = 'none';
+                    const fallbackText = document.createElement('span');
+                    fallbackText.className = "text-[10px] sm:text-xs font-bold";
+                    fallbackText.textContent = key;
+                    button.prepend(fallbackText);
                 };
 
                 button.appendChild(img);
-                const brandCount = figuresDataset.filter(f => f.brand === key).length;
+                const brandCount = window.figuresDataset.filter(f => f.brand === key).length;
                 const badge = document.createElement('span');
-                badge.className = `text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded ${ isSelected ? 'bg-violet-800 text-violet-200' : 'bg-slate-850 text-slate-500' }`;
+                badge.className = `text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded ${isSelected ? 'bg-violet-800 text-violet-200' : 'bg-slate-850 text-slate-500'}`;
                 badge.textContent = brandCount;
                 button.appendChild(badge);
                 container.appendChild(button);
@@ -305,7 +426,7 @@
             currentBrand = (currentBrand === brandKey) ? null : brandKey;
             const btnClear = document.getElementById('btnClearBrand');
             if (currentBrand) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
-            currentPage = 1; 
+            currentPage = 1;
             renderBrandSliders();
             renderFiguresGrid();
         }
@@ -313,7 +434,7 @@
         function clearBrandFilter() {
             currentBrand = null;
             document.getElementById('btnClearBrand').classList.add('hidden');
-            currentPage = 1; 
+            currentPage = 1;
             renderBrandSliders();
             renderFiguresGrid();
         }
@@ -331,7 +452,7 @@
                 btnFeatured.className = "px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium bg-violet-600 text-white shadow-lg shadow-violet-500/20 transition-all duration-300";
                 document.getElementById('galleryHeading').textContent = "精選推薦 (Pick Up)";
             }
-            currentPage = 1; 
+            currentPage = 1;
             renderFiguresGrid();
         }
 
@@ -340,7 +461,7 @@
             searchQuery = input.value.trim().toLowerCase();
             const btnClear = document.getElementById('clearSearch');
             if (searchQuery.length > 0) { btnClear.classList.remove('hidden'); } else { btnClear.classList.add('hidden'); }
-            currentPage = 1; 
+            currentPage = 1;
             renderFiguresGrid();
         }
 
@@ -348,7 +469,7 @@
             document.getElementById('figureSearch').value = '';
             searchQuery = '';
             document.getElementById('clearSearch').classList.add('hidden');
-            currentPage = 1; 
+            currentPage = 1;
             renderFiguresGrid();
         }
 
@@ -357,9 +478,9 @@
         function renderPagination(totalFilteredItems) {
             const container = document.getElementById('paginationContainer');
             container.innerHTML = '';
-            
+
             const totalPages = Math.ceil(totalFilteredItems / itemsPerPage);
-            if (totalPages <= 1) return; 
+            if (totalPages <= 1) return;
 
             const nav = document.createElement('nav');
             nav.className = "flex justify-center items-center space-x-1.5 sm:space-x-2";
@@ -420,7 +541,8 @@
             const statusBadge = document.getElementById('displayStatusBadge');
             grid.innerHTML = '';
 
-            const filtered = figuresDataset.filter(figure => {
+            // 🌟 在 filter 後方加上 sort 進行排序
+            const filtered = window.figuresDataset.filter(figure => {
                 if (currentCategory === 'featured' && !figure.featured) return false;
                 if (currentBrand && figure.brand !== currentBrand) return false;
                 if (searchQuery) {
@@ -429,24 +551,31 @@
                     if (!matchTitle && !matchBrand) return false;
                 }
                 return true;
+            }).sort((a, b) => {
+                // 將 boolean 轉換為數字比較 (true 為 1, false/undefined 為 0)
+                // 這樣 b - a 大於 0 時，b (精選) 就會排到 a 的前面
+                const isAFeatured = a.featured ? 1 : 0;
+                const isBFeatured = b.featured ? 1 : 0;
+                return isBFeatured - isAFeatured;
             });
 
             if (filtered.length === 0) {
+            // ... 下面的程式碼維持不變 ...
                 grid.classList.add('hidden'); emptyState.classList.remove('hidden');
-                document.getElementById('paginationContainer').innerHTML = ''; 
+                document.getElementById('paginationContainer').innerHTML = '';
                 statusBadge.innerHTML = `找不到模型`;
                 return;
             }
 
             grid.classList.remove('hidden'); emptyState.classList.add('hidden');
-            
+
             const totalItems = filtered.length;
             const totalPages = Math.ceil(totalItems / itemsPerPage);
-            if (currentPage > totalPages) currentPage = totalPages; 
+            if (currentPage > totalPages) currentPage = totalPages;
 
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageData = filtered.slice(startIndex, endIndex); 
+            const pageData = filtered.slice(startIndex, endIndex);
 
             const displayEnd = Math.min(endIndex, totalItems);
             statusBadge.innerHTML = `顯示第 <span class="text-violet-400 font-bold mx-1">${startIndex + 1} - ${displayEnd}</span> 款 (共 <span class="text-slate-300">${totalItems}</span> 款)`;
@@ -454,12 +583,21 @@
             pageData.forEach(figure => {
                 const card = document.createElement('div');
                 card.className = "group relative bg-slate-900/40 border border-slate-900 rounded-xl sm:rounded-2xl overflow-hidden shadow-md sm:shadow-lg transition-all duration-500 hover:-translate-y-1.5 glow-card cursor-pointer";
-                
-                card.onclick = () => { 
+
+                card.onclick = () => {
+                    const appState = {
+                        page: currentPage,
+                        brand: currentBrand,
+                        category: currentCategory,
+                        search: searchQuery,
+                        scrollY: window.scrollY
+                    };
+                    sessionStorage.setItem('shadowG_state', JSON.stringify(appState));
+
                     if (figure.customUrl && figure.customUrl.trim() !== "") {
                         window.location.href = figure.customUrl;
                     } else {
-                        window.location.href = `viewer.html?id=${figure.id}`; 
+                        window.location.href = `viewer.html?id=${figure.id}`;
                     }
                 };
 
@@ -471,13 +609,12 @@
                 img.alt = figure.title; img.loading = "lazy";
                 img.className = "object-cover w-full h-full transform transition-all duration-700 group-hover:scale-110";
                 img.onerror = () => {
-                    // 備份圖片防留白機制
                     img.src = `https://placehold.co/400x500/1e1e2f/ffffff?text=${encodeURIComponent(figure.brand)}`;
                 };
-                
+
                 const overlay = document.createElement('div');
                 overlay.className = "absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 flex items-end justify-center pb-2 sm:pb-4";
-                
+
                 const hoverIndicator = document.createElement('div');
                 hoverIndicator.className = "transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center space-x-1 sm:space-x-1.5 bg-violet-600/95 text-white text-[9px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-bold uppercase shadow-lg shadow-violet-500/20";
                 hoverIndicator.innerHTML = '<i class="fa-solid fa-rotate text-[8px] sm:text-[10px] animate-spin-slow"></i> <span>360°</span>';
@@ -502,7 +639,7 @@
                 const title = document.createElement('h3');
                 title.className = "text-[11px] sm:text-xs md:text-sm font-semibold text-slate-200 line-clamp-2 leading-tight sm:leading-snug group-hover:text-violet-400 transition-colors";
                 title.textContent = figure.title;
-                
+
                 infoContainer.appendChild(title); card.appendChild(thumbContainer); card.appendChild(infoContainer);
                 grid.appendChild(card);
             });
