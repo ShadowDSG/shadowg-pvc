@@ -3,11 +3,10 @@ const figuresDataset = [
     "id": "noshiro",
     "title": "\u80FD\u4EE3 \u9700\u8981\u5C11\u51B0\u55CE?",
     "brand": "AliceGlint",
-    "folder": "noshiro",
     "totalFrames": 36,
     "featured": true,
     "is18Plus": false,
-    "img": "1.jpg"
+    "img": "31.JPG"
   },
   {
     "id": "makise",
