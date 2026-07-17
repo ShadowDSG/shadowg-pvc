@@ -128,9 +128,19 @@
     <!-- 主要模型檢視舞台區域 -->
     <main class="flex-1 w-full mx-auto px-4 md:px-8 py-4 flex flex-col items-center justify-center">
 
-        <div class="text-center mb-4 w-full">
-            <h1 id="dynamic-title" class="text-2xl md:text-3.5xl font-black tracking-tight text-white mb-1 leading-tight">載入中...</h1>
-        </div>
+   <!-- 標題與協力者區塊 -->
+<div class="text-center mb-4 w-full">
+    <!-- 關鍵：用 relative inline-block 包住標題，這樣它本身會置中，且能當作精準定位的基準 -->
+    <div class="relative inline-block">
+        <h1 id="dynamic-title" class="text-2xl md:text-3.5xl font-black tracking-tight text-white leading-tight">載入中...</h1>
+        
+        <!-- 絕對定位：從標題的最右邊 (100%) 再往右推剛好 50px -->
+        <div id="credit-container" class="absolute left-[calc(100%+100px)] bottom-1 md:bottom-1.5 whitespace-nowrap hidden sm:block"></div>
+    </div>
+    
+    <!-- 手機版備用：如果螢幕太小，右邊 50px 會超出畫面，所以手機版改為顯示在標題正下方 -->
+    <div id="credit-container-mobile" class="mt-1 sm:hidden flex justify-center"></div>
+</div>
 
         <div id="viewer-container" class="w-[98%] max-w-[3300px] h-[77vh] md:h-[93.5vh] bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
 
@@ -386,6 +396,28 @@
 
         document.title = `${figure.title} - 360° Figure Studio`;
         document.getElementById('dynamic-title').innerHTML = figure.title;
+
+
+const creditContainer = document.getElementById('credit-container');
+const creditContainerMobile = document.getElementById('credit-container-mobile');
+
+if (figure.credit && figure.credit.trim() !== "") {
+    // 透過 replace 自動把不需要的字眼替換成空白
+    let cleanCredit = figure.credit.replace(/由巴哈網友/g, '').replace(/提供/g, '').trim();
+    
+    if (cleanCredit !== "") {
+        const creditHTML = `
+            <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-default flex items-baseline gap-1.5">
+                <span class="text-[10px] text-slate-400 tracking-widest uppercase">Photo by</span>
+                <span class="text-[13px] text-violet-400 font-bold">${cleanCredit}</span>
+            </div>
+        `;
+        
+        // 同時塞入電腦版(右側50px)與手機版(下方置中)的容器中
+        if (creditContainer) creditContainer.innerHTML = creditHTML;
+        if (creditContainerMobile) creditContainerMobile.innerHTML = creditHTML;
+    }
+}
 
         const unboxingWrapper = document.getElementById('unboxing-link-wrapper');
         if (figure.reviewLink) {
