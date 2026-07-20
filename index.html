@@ -146,13 +146,18 @@
                 }
             });
 
-            filtered.forEach(f => {
+           filtered.forEach(f => {
                 const card = document.createElement('div');
                 card.className = "group relative bg-slate-900/40 border border-slate-900 rounded-2xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-300";
                 card.onclick = () => window.location.href = `viewer.html?id=${f.id}`;
+                
+                // ✨ 加上 ?t= 亂數時間戳，強制避開瀏覽器快取
+                const cacheBuster = "?t=" + new Date().getTime();
+                const thumbUrl = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${f.img}${cacheBuster}`;
+
                 card.innerHTML = `
                     <div class="aspect-[4/5] relative bg-slate-950">
-                        <img src="https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${f.img}" class="object-cover w-full h-full">
+                        <img src="${thumbUrl}" class="object-cover w-full h-full" loading="lazy" onerror="this.src='https://placehold.co/400x500/1e1e2f/ffffff?text=${encodeURIComponent(f.brand || 'Figure')}${cacheBuster}'">
                         ${f.featured ? '<span class="absolute top-2 right-2 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">PICKUP</span>' : ''}
                     </div>
                     <div class="p-3"><h3 class="text-sm font-bold text-slate-200 truncate">${f.title}</h3><p class="text-[10px] text-slate-500">${f.brand}</p></div>
