@@ -58,9 +58,18 @@
                     <span class="block text-[10px] text-slate-400 tracking-widest font-medium">FIGURE 360° PORTFOLIO</span>
                 </div>
             </a>
-            <div class="flex items-center space-x-3">
-                <a href="https://three60manager.onrender.com/manager.html" target="_blank" rel="noopener" class="h-9 px-6 rounded-lg bg-slate-800/80 hover:bg-emerald-500 hover:text-white flex items-center justify-center gap-2 text-slate-300 transition-all duration-300 text-sm font-medium">
-                    <i class="fa-solid fa-cloud-arrow-up text-base"></i><span>管理</span>
+            
+            <!-- 修正後的完整導航列按鈕，使用 flex 與 gap 完美對齊不跑版 -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <a href="https://three60manager.onrender.com/manager.html" target="_blank" rel="noopener" class="h-9 px-4 sm:px-6 rounded-lg bg-slate-800/80 hover:bg-emerald-500 hover:text-white flex items-center justify-center gap-2 text-slate-300 transition-all duration-300 text-sm font-medium" title="後台上傳管理">
+                    <i class="fa-solid fa-cloud-arrow-up text-base"></i>
+                    <span class="hidden sm:inline">+新增</span>
+                </a>
+                <a href="https://twitter.com/04Dsg" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-sky-500 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="Twitter / X">
+                    <i class="fa-brands fa-x-twitter text-base"></i>
+                </a>
+                <a href="https://home.gamer.com.tw/profile/index.php?&owner=G0953398466" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-slate-800/80 hover:bg-violet-600 hover:text-white flex items-center justify-center text-slate-300 transition-all duration-300" title="巴哈姆特小屋">
+                    <i class="fa-solid fa-user text-base"></i>
                 </a>
             </div>
         </div>
@@ -80,9 +89,15 @@
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input type="text" id="figureSearch" oninput="filterFigures()" placeholder="搜尋名稱、作品或品牌..." class="w-full pl-11 pr-10 py-3 bg-slate-950/80 border border-slate-800 rounded-xl focus:border-violet-500 text-sm outline-none transition-all" />
                 </div>
+                
+                <!-- 修正後的排序按鈕 HTML 結構 -->
                 <div class="flex gap-2 shrink-0">
-                    <button id="sortFeaturedBtn" onclick="toggleSort('featured')" class="px-4 py-3 rounded-xl bg-violet-600 text-white text-sm font-semibold shadow-lg shadow-violet-500/20">精選排序</button>
-                    <button id="sortTimeBtn" onclick="toggleSort('time')" class="px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 text-sm font-semibold">時間排序</button>
+                    <button id="sortFeaturedBtn" onclick="toggleSort('featured')" class="px-4 py-3 rounded-xl bg-violet-600 border border-violet-500 text-white text-sm font-semibold shadow-lg shadow-violet-500/20 flex items-center justify-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-star"></i> 精選排序
+                    </button>
+                    <button id="sortTimeBtn" onclick="toggleSort('time')" class="px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-slate-200 text-sm font-semibold flex items-center justify-center gap-1.5 transition-all">
+                        <i class="fa-regular fa-clock"></i> 時間排序 <i id="timeSortIcon" class="fa-solid fa-arrow-down hidden ml-1"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -118,10 +133,43 @@
             } catch (error) { console.error("資料讀取失敗", error); }
         });
 
+        // 加入完整狀態切換與UI更新的排序邏輯
         window.toggleSort = (type) => {
-            currentSortMode = (type === 'featured') ? 'featured' : (currentSortMode === 'timeDesc' ? 'timeAsc' : 'timeDesc');
+            if (type === 'featured') {
+                currentSortMode = 'featured';
+            } else {
+                currentSortMode = (currentSortMode === 'timeDesc') ? 'timeAsc' : 'timeDesc';
+            }
+            updateSortUI();
             renderFiguresGrid();
         };
+
+        // 控制按鈕樣式與箭頭顯示/隱藏的函式
+        function updateSortUI() {
+            const featuredBtn = document.getElementById('sortFeaturedBtn');
+            const timeBtn = document.getElementById('sortTimeBtn');
+            const timeIcon = document.getElementById('timeSortIcon');
+
+            const activeClass = "px-4 py-3 rounded-xl bg-violet-600 border border-violet-500 text-white text-sm font-semibold shadow-lg shadow-violet-500/20 flex items-center justify-center gap-1.5 transition-all";
+            const inactiveClass = "px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-slate-200 text-sm font-semibold flex items-center justify-center gap-1.5 transition-all";
+
+            if (currentSortMode === 'featured') {
+                featuredBtn.className = activeClass;
+                timeBtn.className = inactiveClass;
+                timeIcon.classList.add('hidden');
+            } else {
+                featuredBtn.className = inactiveClass;
+                timeBtn.className = activeClass;
+                timeIcon.classList.remove('hidden');
+                
+                // 判斷箭頭方向
+                if (currentSortMode === 'timeDesc') {
+                    timeIcon.className = "fa-solid fa-arrow-down ml-1";
+                } else {
+                    timeIcon.className = "fa-solid fa-arrow-up ml-1";
+                }
+            }
+        }
 
         window.filterFigures = () => {
             searchQuery = document.getElementById('figureSearch').value.toLowerCase();
