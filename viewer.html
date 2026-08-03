@@ -486,11 +486,19 @@ if (figure.credit && figure.credit.trim() !== "") {
         const radius = 40;
         const circumference = 2 * Math.PI * radius;
 
+        // ✨ 建立一個高效能的 Canvas 畫布，用來取代原本的數十個 img 標籤
+        let viewerCanvas = document.getElementById("viewer-canvas");
+        if (!viewerCanvas) {
+            viewerCanvas = document.createElement("canvas");
+            viewerCanvas.id = "viewer-canvas";
+            // 套用跟你原本一模一樣的外觀與陰影
+            viewerCanvas.className = "max-w-full max-h-full object-contain pointer-events-none drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
+            viewerStage.appendChild(viewerCanvas);
+        }
+
         for (let i = 1; i <= total; i++) {
-            const img = document.createElement("img");
+            const img = new Image(); // ✨ 改用記憶體中的 Image 物件，不要塞入網頁 DOM
             img.src = `${baseUrl}/${folder}/${i}.JPG`;
-            img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
-            img.alt = `Frame ${i}`;
             img.setAttribute("data-index", i - 1);
 
             img.onerror = () => {
@@ -515,6 +523,10 @@ if (figure.credit && figure.credit.trim() !== "") {
                     viewerContainer.style.height = "100vh";
                     viewerContainer.style.width = "auto";
                     viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+                    
+                    // ✨ 設定 Canvas 的真實解析度
+                    viewerCanvas.width = img.naturalWidth;
+                    viewerCanvas.height = img.naturalHeight;
                 }
 
                 loadedCount++;
@@ -526,8 +538,7 @@ if (figure.credit && figure.credit.trim() !== "") {
                 if (loadedCount === total) onPreloadComplete();
             };
 
-            viewerStage.appendChild(img);
-            imageElements.push(img);
+            imageElements.push(img); // 存入記憶體陣列
         }
     }
 
@@ -543,18 +554,23 @@ if (figure.credit && figure.credit.trim() !== "") {
         setupFullscreenAndMagnifier();
     }
 
-    function showFrame(index) {
+   function showFrame(index) {
         currentIndex = (index + total) % total;
-        imageElements.forEach((img, i) => {
-            if (i === currentIndex) {
-                img.classList.remove("hidden"); img.classList.add("block");
-            } else {
-                img.classList.remove("block"); img.classList.add("hidden");
-            }
-        });
+        const img = imageElements[currentIndex];
+
+        // ✨ 透過 Canvas 瞬間繪製當前畫面，極大降低 CPU 效能消耗
+        const viewerCanvas = document.getElementById("viewer-canvas");
+        if (viewerCanvas && img.complete) {
+            const ctx = viewerCanvas.getContext("2d");
+            ctx.clearRect(0, 0, viewerCanvas.width, viewerCanvas.height);
+            ctx.drawImage(img, 0, 0);
+        }
+
         frameRange.value = currentIndex;
         frameCounter.textContent = `${currentIndex + 1} / ${total}`;
-        if (magImg) magImg.src = imageElements[currentIndex].src;
+        
+        // ✨ 避免放大鏡重複載入相同的圖片導致網路微卡頓
+       if (magImg.src !== img.src) magImg.src = img.src;
     }
 
     frameRange.oninput = function () {
