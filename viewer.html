@@ -179,8 +179,8 @@
             </div>
 
             <!-- 旋轉照片實際載入與操作層 -->
-            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: filter 0.05s ease-out;"></div>
-
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: filter 0.05s ease-out;">
+            </div>
             <div class="absolute top-4 left-4 z-10 hidden sm:block pointer-events-none">
                 <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm shadow-md">
                     <i class="fa-solid fa-mobile-screen-button text-violet-400"></i> 手機版建議橫放觀看
@@ -481,54 +481,61 @@ if (figure.credit && figure.credit.trim() !== "") {
     // 底下的函數皆維持原樣 (preloadImages, showFrame, setupInteractEvents 等)
     // ==========================================
     
-    function preloadImages() {
-        const radius = 40;
-        const circumference = 2 * Math.PI * radius;
+        function preloadImages() {
+            const radius = 40;
+            const circumference = 2 * Math.PI * radius;
 
-        for (let i = 1; i <= total; i++) {
-            const img = document.createElement("img");
-            img.src = `${baseUrl}/${folder}/${i}.JPG`;
-            img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
-            img.alt = `Frame ${i}`;
-            img.setAttribute("data-index", i - 1);
+            for (let i = 1; i <= total; i++) {
+                const img = document.createElement("img");
+                img.src = `${baseUrl}/${folder}/${i}.JPG`;
+                img.className = "max-w-full max-h-full object-contain pointer-events-none absolute hidden drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]";
+                img.alt = `Frame ${i}`;
+                img.setAttribute("data-index", i - 1);
 
-            img.onerror = () => {
-                if (!img.dataset.triedLower) {
-                    img.src = `${baseUrl}/${folder}/${i}.jpg`;
-                    img.dataset.triedLower = "true";
-                } else {
-                    loadedCount++;
-                    if (loadedCount === total) onPreloadComplete();
-                }
-            };
+                img.onerror = () => {
+                    if (!img.dataset.triedLower) {
+                        img.src = `${baseUrl}/${folder}/${i}.jpg`;
+                        img.dataset.triedLower = "true";
+                    } else {
+                        loadedCount++;
+                        if (loadedCount === total) onPreloadComplete();
+                    }
+                };
 
-            img.onload = () => {
-                if (i === 1) {
-                    document.body.style.backgroundImage = `radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('${img.src}')`;
-                }
+                img.onload = () => {
+                    // 【關鍵優化】：強迫 Chrome 在背景將圖片解壓縮，防止拖曳時才解碼造成卡頓
+                    img.decode().then(() => {
+                        if (i === 1) {
+                            document.body.style.backgroundImage = `radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('${img.src}')`;
+                        }
+                        if (loadedCount === 0) {
+                            viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
+                            viewerContainer.style.maxHeight = "93.5vh";
+                            viewerContainer.style.maxWidth = "98vw";
+                            viewerContainer.style.height = "100vh";
+                            viewerContainer.style.width = "auto";
+                            viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+                        }
 
-                if (loadedCount === 0) {
-                    viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
-                    viewerContainer.style.maxHeight = "93.5vh";
-                    viewerContainer.style.maxWidth = "98vw";
-                    viewerContainer.style.height = "100vh";
-                    viewerContainer.style.width = "auto";
-                    viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
-                }
+                        loadedCount++;
+                        const progress = loadedCount / total;
+                        const offset = circumference - (progress * circumference);
+                        loaderProgressBar.style.strokeDashoffset = offset;
+                        loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
 
-                loadedCount++;
-                const progress = loadedCount / total;
-                const offset = circumference - (progress * circumference);
-                loaderProgressBar.style.strokeDashoffset = offset;
-                loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+                        if (loadedCount === total) onPreloadComplete();
+                    }).catch(() => {
+                        // 即使 decode 失敗，也繼續跑進度條
+                        loadedCount++;
+                        if (loadedCount === total) onPreloadComplete();
+                    });
+                };
 
-                if (loadedCount === total) onPreloadComplete();
-            };
-
-            viewerStage.appendChild(img);
-            imageElements.push(img);
+                // 維持你原本的寫法，把它塞進 DOM 裡面
+                viewerStage.appendChild(img);
+                imageElements.push(img);
+            }
         }
-    }
 
     function onPreloadComplete() {
         loaderScreen.classList.add("opacity-0");
@@ -542,19 +549,24 @@ if (figure.credit && figure.credit.trim() !== "") {
         setupFullscreenAndMagnifier();
     }
 
-    function showFrame(index) {
-        currentIndex = (index + total) % total;
-        imageElements.forEach((img, i) => {
-            if (i === currentIndex) {
-                img.classList.remove("hidden"); img.classList.add("block");
-            } else {
-                img.classList.remove("block"); img.classList.add("hidden");
-            }
-        });
-        frameRange.value = currentIndex;
-        frameCounter.textContent = `${currentIndex + 1} / ${total}`;
-        if (magImg) magImg.src = imageElements[currentIndex].src;
-    }
+        function showFrame(index) {
+            currentIndex = (index + total) % total;
+
+            // 還原你原本的 DOM 切換寫法
+            imageElements.forEach((img, i) => {
+                if (i === currentIndex) {
+                    img.classList.remove("hidden");
+                    img.classList.add("block");
+                } else {
+                    img.classList.remove("block");
+                    img.classList.add("hidden");
+                }
+            });
+
+            frameRange.value = currentIndex;
+            frameCounter.textContent = `${currentIndex + 1} / ${total}`;
+            if (magImg) magImg.src = imageElements[currentIndex].src;
+        }
 
     frameRange.oninput = function () {
         stopAutoPlay();
@@ -562,52 +574,80 @@ if (figure.credit && figure.credit.trim() !== "") {
         hideDragTips();
     };
 
-    function setupInteractEvents() {
-        viewerStage.addEventListener("mousedown", (e) => {
-            isDragging = true; startX = e.clientX; stopAutoPlay(); hideDragTips();
-            magnifierLens.classList.add("hidden");
-        });
-        window.addEventListener("mousemove", (e) => {
-            if (!isDragging) return;
-            const deltaX = e.clientX - startX;
-            if (Math.abs(deltaX) > 15) {
-                showFrame(currentIndex + Math.sign(deltaX));
-                startX = e.clientX;
-            }
-        });
-        window.addEventListener("mouseup", () => { isDragging = false; });
+        function setupInteractEvents() {
+            let isTicking = false; // 新增節流鎖
 
-        viewerStage.addEventListener("touchstart", (e) => {
-            const target = e.target;
-            if (target.closest('#btn-fullscreen') || target.closest('#fullscreen-mag-control')) return;
-            isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); hideDragTips();
-            magnifierLens.classList.add("hidden");
-        }, { passive: true });
+            viewerStage.addEventListener("mousedown", (e) => {
+                isDragging = true; startX = e.clientX; stopAutoPlay(); hideDragTips();
+                magnifierLens.classList.add("hidden");
+            });
 
-        viewerStage.addEventListener("touchmove", (e) => {
-            if (!isDragging) return;
-            const deltaX = e.touches[0].clientX - startX;
-            if (Math.abs(deltaX) > 5) {
-                showFrame(currentIndex + Math.sign(deltaX));
-                startX = e.touches[0].clientX;
-            }
-        }, { passive: true });
+            window.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                const deltaX = e.clientX - startX;
 
-        viewerStage.addEventListener("touchend", () => { isDragging = false; });
-        viewerStage.addEventListener("wheel", (e) => {
-            e.preventDefault(); stopAutoPlay(); hideDragTips();
-            showFrame(currentIndex + Math.sign(e.deltaY));
-        }, { passive: false });
+                // 維持你原本 15px 的手感設定
+                if (Math.abs(deltaX) > 15) {
+                    // 【關鍵優化】：防止 Chrome 收到過多滑鼠事件而當機
+                    if (!isTicking) {
+                        requestAnimationFrame(() => {
+                            showFrame(currentIndex + Math.sign(deltaX));
+                            isTicking = false;
+                        });
+                        isTicking = true;
+                    }
+                    startX = e.clientX; // 維持原版：換圖後重置座標
+                }
+            });
+            window.addEventListener("mouseup", () => { isDragging = false; });
 
-        const controls = [fsZoomRange, zoomRange, frameRange, btnPlay, btnFullscreen, btnZoomReset];
-        controls.forEach(ctrl => {
-            if (ctrl) {
-                ctrl.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
-                ctrl.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
-                ctrl.addEventListener('mousedown', (e) => e.stopPropagation());
-            }
-        });
-    }
+            // --- 手機觸控事件 ---
+            viewerStage.addEventListener("touchstart", (e) => {
+                const target = e.target;
+                if (target.closest('#btn-fullscreen') || target.closest('#fullscreen-mag-control')) return;
+                isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); hideDragTips();
+                magnifierLens.classList.add("hidden");
+            }, { passive: true });
+
+            viewerStage.addEventListener("touchmove", (e) => {
+                if (!isDragging) return;
+                const deltaX = e.touches[0].clientX - startX;
+
+                // 手機版你原本設定 5px 的手感
+                if (Math.abs(deltaX) > 5) {
+                    if (!isTicking) {
+                        requestAnimationFrame(() => {
+                            showFrame(currentIndex + Math.sign(deltaX));
+                            isTicking = false;
+                        });
+                        isTicking = true;
+                    }
+                    startX = e.touches[0].clientX; // 換圖後重置座標
+                }
+            }, { passive: true });
+            viewerStage.addEventListener("touchend", () => { isDragging = false; });
+
+            // --- 滾輪事件 ---
+            viewerStage.addEventListener("wheel", (e) => {
+                e.preventDefault(); stopAutoPlay(); hideDragTips();
+                if (!isTicking) {
+                    requestAnimationFrame(() => {
+                        showFrame(currentIndex + Math.sign(e.deltaY));
+                        isTicking = false;
+                    });
+                    isTicking = true;
+                }
+            }, { passive: false });
+
+            const controls = [fsZoomRange, zoomRange, frameRange, btnPlay, btnFullscreen, btnZoomReset];
+            controls.forEach(ctrl => {
+                if (ctrl) {
+                    ctrl.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+                    ctrl.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
+                    ctrl.addEventListener('mousedown', (e) => e.stopPropagation());
+                }
+            });
+        }
 
     function setupMagnifierSettings() {
         function updateMagMultiplier(val) {
