@@ -486,15 +486,8 @@ if (figure.credit && figure.credit.trim() !== "") {
             const circumference = 2 * Math.PI * radius;
 
             for (let i = 1; i <= total; i++) {
-                // 在 for 迴圈中
                 const img = document.createElement("img");
                 img.src = `${baseUrl}/${folder}/${i}.JPG`;
-
-                // === 新增以下三行來強制壓榨 GPU 效能 ===
-                img.decoding = "async"; // 告訴瀏覽器在背景解碼，不要阻塞主執行緒
-                img.style.willChange = "opacity, visibility"; // 預告瀏覽器即將變化的屬性
-                img.style.transform = "translateZ(0)"; // 強制將每一張圖升級為獨立的 GPU 渲染圖層
-
                 img.className = "max-w-full max-h-full object-contain pointer-events-none absolute opacity-0 invisible drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] transition-none";
                 img.alt = `Frame ${i}`;
                 img.setAttribute("data-index", i - 1);
