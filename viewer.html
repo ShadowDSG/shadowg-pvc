@@ -586,7 +586,7 @@ if (figure.credit && figure.credit.trim() !== "") {
                 const deltaX = e.clientX - startX;
 
                 // 維持你原本 15px 的手感設定
-                if (Math.abs(deltaX) > 15) {
+                if (Math.abs(deltaX) > 30) {
                     // 【關鍵優化】：防止 Chrome 收到過多滑鼠事件而當機
                     if (!isTicking) {
                         requestAnimationFrame(() => {
