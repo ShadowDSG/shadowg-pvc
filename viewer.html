@@ -179,7 +179,8 @@
             </div>
 
             <!-- 旋轉照片實際載入與操作層 -->
-            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: filter 0.05s ease-out;">
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden">
+                <canvas id="viewer-canvas" class="max-w-full max-h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] pointer-events-none"></canvas>
             </div>
             <div class="absolute top-4 left-4 z-10 hidden sm:block pointer-events-none">
                 <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm shadow-md">
@@ -481,61 +482,58 @@ if (figure.credit && figure.credit.trim() !== "") {
     // 底下的函數皆維持原樣 (preloadImages, showFrame, setupInteractEvents 等)
     // ==========================================
     
+     const canvas = document.getElementById("viewer-canvas");
+const ctx = canvas.getContext("2d");
+let bitmaps = []; // 用來存純位圖
+        let imageURLs = [];
+
         function preloadImages() {
             const radius = 40;
             const circumference = 2 * Math.PI * radius;
+            let loadedCount = 0;
 
             for (let i = 1; i <= total; i++) {
-                const img = document.createElement("img");
-                img.src = `${baseUrl}/${folder}/${i}.JPG`;
-                img.className = "max-w-full max-h-full object-contain pointer-events-none absolute opacity-0 invisible drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] transition-none";
-                img.alt = `Frame ${i}`;
-                img.setAttribute("data-index", i - 1);
+                const url = `${baseUrl}/${folder}/${i}.JPG`;
 
-                img.onerror = () => {
-                    if (!img.dataset.triedLower) {
-                        img.src = `${baseUrl}/${folder}/${i}.jpg`;
-                        img.dataset.triedLower = "true";
-                    } else {
-                        loadedCount++;
-                        if (loadedCount === total) onPreloadComplete();
-                    }
-                };
+                fetch(url)
+                    .then(res => {
+                        if (!res.ok) throw new Error("JPG not found");
+                        return res.blob();
+                    })
+                    .catch(() => fetch(`${baseUrl}/${folder}/${i}.jpg`).then(res => res.blob()))
+                    .then(blob => {
+                        // 【修改這裡】：把 blob 轉成網址存起來，給放大鏡用
+                        imageURLs[i - 1] = URL.createObjectURL(blob);
+                        return createImageBitmap(blob);
+                    })
+                    .then(bitmap => {
+                        bitmaps[i - 1] = bitmap;
 
-                img.onload = () => {
-                    // 【關鍵優化】：強迫 Chrome 在背景將圖片解壓縮，防止拖曳時才解碼造成卡頓
-                    img.decode().then(() => {
-                        if (i === 1) {
-                            document.body.style.backgroundImage = `radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('${img.src}')`;
-                        }
                         if (loadedCount === 0) {
+                            canvas.width = bitmap.width;
+                            canvas.height = bitmap.height;
+
                             viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
                             viewerContainer.style.maxHeight = "93.5vh";
                             viewerContainer.style.maxWidth = "98vw";
                             viewerContainer.style.height = "100vh";
-                            viewerContainer.style.width = "auto";
-                            viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
                         }
 
                         loadedCount++;
                         const progress = loadedCount / total;
-                        const offset = circumference - (progress * circumference);
-                        loaderProgressBar.style.strokeDashoffset = offset;
+                        loaderProgressBar.style.strokeDashoffset = circumference - (progress * circumference);
                         loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
 
                         if (loadedCount === total) onPreloadComplete();
-                    }).catch(() => {
-                        // 即使 decode 失敗，也繼續跑進度條
+                    })
+                    .catch(err => {
                         loadedCount++;
                         if (loadedCount === total) onPreloadComplete();
                     });
-                };
-
-                // 維持你原本的寫法，把它塞進 DOM 裡面
-                viewerStage.appendChild(img);
-                imageElements.push(img);
             }
         }
+
+
 
     function onPreloadComplete() {
         loaderScreen.classList.add("opacity-0");
@@ -549,22 +547,25 @@ if (figure.credit && figure.credit.trim() !== "") {
         setupFullscreenAndMagnifier();
     }
 
+        // 3. 修改 showFrame，只需要呼叫 ctx.drawImage
         function showFrame(index) {
             currentIndex = (index + total) % total;
+            const bitmap = bitmaps[currentIndex];
 
-            imageElements.forEach((img, i) => {
-                if (i === currentIndex) {
-                    img.classList.remove("opacity-0", "invisible");
-                    img.classList.add("opacity-100", "visible", "z-10");
-                } else {
-                    img.classList.remove("opacity-100", "visible", "z-10");
-                    img.classList.add("opacity-0", "invisible");
+            if (bitmap) {
+                // 清除舊畫面並畫上新畫面
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(bitmap, 0, 0);
+
+                // 更新放大鏡的圖片來源 (如果你有用放大鏡)
+                if (magImg) {
+                    // 需要把 bitmap 轉成放大鏡能用的 URL，或者放大鏡也改用 canvas 實作
+                    // 最快的方法是：magImg.src = canvas.toDataURL("image/jpeg", 0.8);
                 }
-            });
+            }
 
             frameRange.value = currentIndex;
             frameCounter.textContent = `${currentIndex + 1} / ${total}`;
-            if (magImg) magImg.src = imageElements[currentIndex].src;
         }
 
     frameRange.oninput = function () {
@@ -576,9 +577,43 @@ if (figure.credit && figure.credit.trim() !== "") {
         function setupInteractEvents() {
             let isTicking = false; // 新增節流鎖
 
-            viewerStage.addEventListener("mousedown", (e) => {
-                isDragging = true; startX = e.clientX; stopAutoPlay(); hideDragTips();
-                magnifierLens.classList.add("hidden");
+            viewerStage.addEventListener("mousemove", (e) => {
+                if (isDragging) { magnifierLens.classList.add("hidden"); return; }
+
+                // 【修改這裡】：改用 bitmaps 和剛剛存的 imageURLs
+                const bitmap = bitmaps[currentIndex];
+                const currentUrl = imageURLs[currentIndex];
+
+                if (!bitmap || !currentUrl) return; // 確保圖片已載入
+
+                magImg.src = currentUrl;
+
+                const rect = viewerStage.getBoundingClientRect();
+
+                // 【修改這裡】：ImageBitmap 取得尺寸的屬性是 width/height，而不是 naturalWidth
+                const natW = bitmap.width;
+                const natH = bitmap.height;
+
+                const baseW = viewerStage.offsetWidth; const baseH = viewerStage.offsetHeight;
+                const ratio = Math.min(baseW / natW, baseH / natH);
+                const renderW = natW * ratio; const renderH = natH * ratio;
+                const offsetX = (rect.width - renderW) / 2; const offsetY = (rect.height - renderH) / 2;
+                const rx = e.clientX - rect.left - offsetX; const ry = e.clientY - rect.top - offsetY;
+
+                if (rx < 0 || rx > renderW || ry < 0 || ry > renderH) {
+                    magnifierLens.classList.add('hidden'); return;
+                }
+
+                magnifierLens.classList.remove('hidden');
+                const containerRect = viewerContainer.getBoundingClientRect();
+                const lensX = e.clientX - containerRect.left; const lensY = e.clientY - containerRect.top;
+
+                magnifierLens.style.left = `${lensX - magnifierLens.offsetWidth / 2}px`;
+                magnifierLens.style.top = `${lensY - magnifierLens.offsetHeight / 2}px`;
+                magImg.style.width = `${renderW * magMultiplier}px`;
+                magImg.style.height = `${renderH * magMultiplier}px`;
+                magImg.style.left = `${-(rx * magMultiplier) + magnifierLens.offsetWidth / 2}px`;
+                magImg.style.top = `${-(ry * magMultiplier) + magnifierLens.offsetHeight / 2}px`;
             });
 
             window.addEventListener("mousemove", (e) => {
