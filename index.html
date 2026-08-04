@@ -35,16 +35,14 @@
     <style>
         /* 📱 雙重鎖定：防止任何瀏覽器下的橫向溢出與手勢彈性滑動 */
         html, body {
+            zoom: 1.3;
             max-width: 100%;
             overflow-x: hidden;
             position: relative;
             overscroll-behavior-x: none;
         }
 
-          html {
-      zoom: 1.3;
-  }
-        
+ 
         /* 根據裝置寬度智慧調整 zoom，保護手機版不被撐破 */
         @media (min-width: 768px) {
             html { zoom: 1.1; }
