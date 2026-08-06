@@ -412,23 +412,40 @@
                 }
                 return true;
             }).sort((a, b) => {
+                // 加入安全取得時間戳記的輔助函式，相容 Firebase 與字串等各種時間格式
+                const getSafeTime = (val) => {
+                    if (!val) return 0;
+                    if (typeof val === 'object') {
+                        if (val.seconds !== undefined) return val.seconds * 1000;
+                        if (val._seconds !== undefined) return val._seconds * 1000;
+                    }
+                    if (typeof val === 'number') return val > 1000000000000 ? val : val * 1000;
+                    return new Date(val).getTime() || 0;
+                };
+
+                const timeA = getSafeTime(a.createdAt);
+                const timeB = getSafeTime(b.createdAt);
+
                 if (currentSortMode === 'featured') {
                     const isAFeatured = a.featured ? 1 : 0;
                     const isBFeatured = b.featured ? 1 : 0;
+
+                    // 1. 區分精選與一般模型
                     if (isBFeatured !== isAFeatured) return isBFeatured - isAFeatured;
-                    
+
+                    // 2. 都是精選模型：照後台手動拖曳的順序
                     if (a.featured && b.featured) {
                         return (a.featuredOrderIndex || 0) - (b.featuredOrderIndex || 0);
                     }
-                    return (a.orderIndex || 0) - (b.orderIndex || 0);
-                } else {
-                    const timeA = a.createdAt ? a.createdAt.seconds : 0;
-                    const timeB = b.createdAt ? b.createdAt.seconds : 0;
 
+                    // 3. 都是一般模型：照上傳時間 (由新到舊)
+                    return timeB - timeA;
+                } else {
+                    // 純時間排序模式 (上傳時間排序按鈕)
                     if (currentSortMode === 'timeDesc') {
-                        return timeB - timeA; 
+                        return timeB - timeA;
                     } else {
-                        return timeA - timeB; 
+                        return timeA - timeB;
                     }
                 }
             });
