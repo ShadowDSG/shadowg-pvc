@@ -524,11 +524,13 @@ if (figure.credit && figure.credit.trim() !== "") {
                         loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
 
                         if (loadedCount === total) onPreloadComplete();
-                    }).catch(() => {
-                        // 即使 decode 失敗，也繼續跑進度條
-                        loadedCount++;
-                        if (loadedCount === total) onPreloadComplete();
-                    });
+                  }).catch(() => {
+    // 加上這行來抓手機的錯誤
+    alert("手機 Chrome 解碼失敗！這隻模型的圖片太大了。"); 
+
+    loadedCount++;
+    if (loadedCount === total) onPreloadComplete();
+});
                 };
 
                 // 維持你原本的寫法，把它塞進 DOM 裡面
