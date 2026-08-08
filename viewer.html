@@ -497,6 +497,8 @@ if (figure.credit && figure.credit.trim() !== "") {
                         img.src = `${baseUrl}/${folder}/${i}.jpg`;
                         img.dataset.triedLower = "true";
                     } else {
+if (i === 1) alert(`找不到圖片！請檢查網址：\n${img.src}`);
+                        
                         loadedCount++;
                         if (loadedCount === total) onPreloadComplete();
                     }
