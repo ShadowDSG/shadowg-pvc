@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>載入中... - ShadowG的攝影小屋 (手機優化版)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'Noto Sans TC', 'sans-serif'], }, colors: { studio: { 50: '#f5f3ff', 100: '#ede9fe', 800: '#3c096c', 900: '#240046', 950: '#10002b', } } } } }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        html { zoom: 1.0; }
+        @media (min-width: 768px) { html { zoom: 1.0; } }
+        #drag-tips { bottom: 20px; }
+        body {
+            background-image: radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/banner.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.8s ease-in-out;
+        }
+        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .neon-shadow-violet { box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 99px; }
+        #viewer-container:fullscreen { background-color: #020617; }
+        .pseudo-fullscreen {
+            position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important;
+            max-width: none !important; max-height: none !important; z-index: 9999 !important; background-color: #020617 !important;
+            border-radius: 0 !important; margin: 0 !important; padding: 0 !important;
+        }
+    </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden antialiased selection:bg-purple-600 selection:text-white">
+
+    <!-- 🔞 18禁年齡驗證提示框 -->
+    <div id="age-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-md"></div>
+        <div class="relative bg-[#1a1c29] border border-slate-800 rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl text-center">
+            <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">ShadowG's Studio</h2>
+            <div class="w-12 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full mb-6"></div>
+            <p class="text-sm text-slate-200 font-medium mb-2">此模型內容僅適合 18 歲或以上觀看。</p>
+            <p class="text-xs text-slate-500 mb-8">如未滿 18 歲，請點擊離開按鈕。</p>
+            <div class="flex items-center justify-center gap-4">
+                <button id="btn-age-yes" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-sm font-bold shadow-lg shadow-violet-500/30 hover:scale-105 transition-transform active:scale-95">我已滿 18 歲</button>
+                <button id="btn-age-no" class="px-6 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-sm font-bold hover:bg-slate-700 transition-colors active:scale-95">離開</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頂部導航列 -->
+    <nav class="w-full glass-panel border-b border-slate-800/60 py-2.5 md:py-3.5 px-4 md:px-8 z-30 sticky top-0 shadow-lg shadow-slate-950/20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="w-full md:w-auto flex justify-start order-2 md:order-1 md:flex-1">
+                <a href="index.html" class="w-full md:w-auto flex items-center justify-center space-x-2.5 px-4 py-1.5 rounded-xl bg-slate-900/90 hover:bg-violet-600/25 border border-slate-800 hover:border-violet-500/40 text-slate-300 hover:text-white shadow-lg transition-all duration-300 active:scale-[0.98] group">
+                    <div class="w-7 h-7 rounded-lg bg-slate-850 flex items-center justify-center group-hover:bg-violet-600 group-hover:scale-105 transition-all">
+                        <i class="fa-solid fa-arrow-left text-xs text-white"></i>
+                    </div>
+                    <span class="text-xs tracking-wider font-extrabold uppercase">返回模型展廳</span>
+                </a>
+            </div>
+            
+            <div class="flex justify-center order-1 md:order-2 w-full md:max-w-[65%]">
+                <div id="angle-switcher" class="flex flex-wrap items-center justify-center gap-1.5 bg-slate-950/90 p-2 rounded-2xl border border-slate-800/80 shadow-xl shadow-violet-950/30 max-w-full hidden">
+                </div>
+            </div>
+            
+            <div id="unboxing-link-wrapper" class="hidden md:flex justify-end order-3 md:flex-1 min-w-[120px]">
+                <div class="px-4 py-1 invisible pointer-events-none">平衡佔位</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要模型檢視舞台區域 -->
+    <main class="flex-1 w-full mx-auto px-4 md:px-8 py-4 flex flex-col items-center justify-center">
+
+        <div class="text-center mb-4 w-full">
+            <div class="relative inline-block">
+                <h1 id="dynamic-title" class="text-2xl md:text-3.5xl font-black tracking-tight text-white leading-tight">載入中...</h1>
+                <div id="credit-container" class="absolute left-[calc(100%+100px)] bottom-1 md:bottom-1.5 whitespace-nowrap hidden sm:block"></div>
+            </div>
+            <div id="credit-container-mobile" class="mt-1 sm:hidden flex justify-center"></div>
+        </div>
+
+        <div id="viewer-container" class="w-[98%] max-w-[3300px] h-[77vh] md:h-[93.5vh] bg-slate-950/80 rounded-3xl border border-slate-800/80 relative flex items-center justify-center overflow-hidden neon-shadow-violet group">
+
+            <!-- 全螢幕放大鏡倍率控制 -->
+            <div id="fullscreen-mag-control" class="hidden absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900/85 px-4 py-2.5 rounded-2xl border border-slate-700/80 backdrop-blur-md flex items-center gap-3 shadow-2xl transition-all">
+                <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
+                <input id="fs-zoom-range" type="range" min="1.5" max="5.0" value="1.5" step="0.5" class="w-32 h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
+                <span id="fs-zoom-counter" class="text-xs font-mono font-bold text-violet-400 min-w-[36px] text-center">1.5x</span>
+            </div>
+
+            <!-- 右上角全螢幕切換按鈕 -->
+            <button id="btn-fullscreen" class="absolute top-4 right-4 z-50 w-11 h-11 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-95 pointer-events-auto cursor-pointer" title="切換全螢幕">
+                <i id="fullscreen-icon" class="fa-solid fa-expand text-lg"></i>
+            </button>
+
+            <!-- 放大預覽鏡片圓框 (手機版極少觸發，但保留相容性) -->
+            <div id="magnifier-lens" class="hidden absolute pointer-events-none border border-white/20 shadow-[0_0_25px_rgba(0,0,0,0.8)] rounded-full w-[448px] h-[448px] z-40 bg-slate-950 overflow-hidden">
+                <img id="mag-img" class="absolute max-w-none" src="" alt="">
+            </div>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-4/5 h-10 bg-violet-600/10 blur-2xl rounded-full"></div>
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-2/3 h-1.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-40"></div>
+
+            <!-- 🔄 預載入等待遮罩 -->
+            <div id="loader-screen" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-slate-950/95 transition-opacity duration-500">
+                <div class="relative w-24 h-24 mb-4">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle class="text-slate-800" stroke-width="4" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                        <circle id="loader-progress-bar" class="text-violet-500 transition-all duration-100" stroke-width="5" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                    </svg>
+                    <span id="loader-percentage" class="absolute inset-0 flex items-center justify-center text-lg font-black text-white">0%</span>
+                </div>
+                <h3 class="text-sm font-bold text-slate-200 tracking-wider">手機版輕量載入中...</h3>
+                <p class="text-xs text-slate-500 mt-1.5">已啟用行動裝置記憶體最佳化</p>
+            </div>
+
+            <!-- 旋轉照片實際載入與操作層 -->
+            <div id="viewer-stage" class="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none hidden" style="transform-origin: center center; transition: filter 0.05s ease-out;">
+            </div>
+            
+            <div class="absolute top-4 left-4 z-10 hidden sm:block pointer-events-none">
+                <span class="inline-flex items-center px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-[10px] text-slate-400 gap-1.5 backdrop-blur-sm shadow-md">
+                    <i class="fa-solid fa-mobile-screen-button text-violet-400"></i> 手機版建議橫放觀看
+                </span>
+            </div>
+
+            <div id="drag-tips" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 transition-opacity duration-700 pointer-events-none">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-950/90 border border-slate-800 text-slate-300 gap-2 shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-arrows-left-right animate-pulse text-violet-400"></i> 拖曳、滑動或撥動圖片進行轉動
+                </span>
+            </div>
+        </div>
+
+        <!-- 控制與進度條面板 -->
+        <div class="w-[95%] max-w-5xl mt-6 space-y-4">
+            <div class="glass-panel rounded-2xl p-4 md:p-5 space-y-4">
+                <div class="flex justify-center items-center w-full">
+                    <div class="w-full max-w-lg flex items-center justify-between gap-3 bg-slate-900/40 p-2 rounded-xl border border-slate-800/50">
+                        <div class="flex-1 flex items-center gap-3">
+                            <i class="fa-solid fa-magnifying-glass text-slate-500 text-sm" title="放大鏡倍率"></i>
+                            <input id="zoom-range" type="range" min="1.5" max="5.0" value="1.5" step="0.5" class="w-full h-1.5 bg-slate-850 rounded-lg appearance-none cursor-pointer accent-violet-500 focus:outline-none" />
+                        </div>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <span id="zoom-counter" class="text-[11px] font-mono font-bold text-violet-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[42px] text-center">1.5x</span>
+                            <button id="btn-zoom-reset" class="px-2 py-1 bg-slate-800 hover:bg-slate-750 border border-slate-700/60 text-[10px] font-bold text-slate-300 hover:text-white rounded-md active:scale-95 transition-all" title="還原倍率">重設</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between gap-4 pt-3 border-t border-slate-800/60">
+                    <button id="btn-play" class="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg shadow-red-500/20 active:scale-95 transition-all shrink-0" title="自動播放">
+                        <i id="play-icon" class="fa-solid fa-play"></i>
+                    </button>
+                    <div class="flex-1 flex items-center gap-3">
+                        <i class="fa-solid fa-compass text-slate-500 text-sm" title="旋轉角度"></i>
+                        <input id="frame-range" type="range" min="0" max="32" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-slate-400 focus:outline-none" />
+                    </div>
+                    <span id="frame-counter" class="text-xs font-mono font-bold text-slate-400 bg-slate-950/80 px-2 py-1 rounded-md border border-slate-800/80 min-w-[50px] text-center shrink-0">1 / 18</span>
+                </div>
+            </div>
+
+            <!-- 自訂資訊欄位 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div id="about-card" class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] text-slate-400 font-bold mb-1 tracking-wider uppercase">關於 SHADOWG</h3>
+                        <h4 class="text-sm text-slate-200 font-bold mb-2">PVC 攝影與 360° 製作</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            2018 年踏入相機攝影，初衷是為了紀錄 PVC。曾於日本拍攝風光兩年，2020 年回國後，開始專注練習 PVC 攝影與 360° 旋轉展示製作。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-slate-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] text-slate-400 font-bold mb-1 tracking-wider uppercase">加入旋轉圖製作 / 合作</h3>
+                        <h4 class="text-sm text-slate-200 font-bold mb-2">歡迎與我聯繫聯絡</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            如果你想加入 360 旋轉圖的製作，或希望在您的開箱文中嵌入展示圖，歡迎隨時透過巴哈姆特私訊與我取得聯繫！
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-2 bg-emerald-950/20 border-l-4 border-emerald-600 p-4 rounded-r-2xl rounded-l-sm flex items-start gap-3">
+                <i class="fa-solid fa-mobile-screen text-emerald-500 mt-0.5 text-sm shrink-0"></i>
+                <div class="text-xs text-slate-400 leading-relaxed space-y-2">
+                    <p><i class="fa-solid fa-check text-emerald-500/80 mr-1.5"></i> 系統偵測為行動裝置，已自動載入 <span class="text-emerald-400 font-bold mx-1">手機最佳化模式 (記憶體減半)</span>，確保流暢轉動且不佔用過多網路頻寬。</p>
+                    <p><i class="fa-solid fa-thumbtack text-emerald-500/80 mr-1.5 -rotate-45"></i> 游標移入畫面即可觀看細節放大，手機觀看時推薦「<span class="text-slate-200 font-bold mx-1">橫置螢幕</span>」並點擊右上角進入全螢幕以獲得最佳視界。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950/80 border-t border-slate-900/60 py-6 px-4 text-center text-xs text-slate-500 w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 ShadowG的攝影小屋. 僅供個人模型愛好者交流與作品展示。</p>
+            <p>Designed with <i class="fa-solid fa-heart text-fuchsia-500"></i> using Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVmV57KOKBgd0UJs-N-eqWu8dJGn7J-kk",
+      authDomain: "figurestudio-bdd7f.firebaseapp.com",
+      projectId: "figurestudio-bdd7f",
+      storageBucket: "figurestudio-bdd7f.firebasestorage.app",
+      messagingSenderId: "280890475667",
+      appId: "1:280890475667:web:27adeec7d4191974213966"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    function showCustomError(message) {
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md";
+        errorDiv.innerHTML = `
+            <div class="bg-slate-900 border border-red-500/30 p-6 rounded-2xl max-w-sm w-full mx-4 text-center shadow-2xl">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 text-4xl mb-4"></i>
+                <h3 class="text-lg font-bold text-white mb-2">偵測到錯誤</h3>
+                <p class="text-sm text-slate-400 mb-6 leading-relaxed">${message}</p>
+                <button onclick="window.location.href='index.html'" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-red-500/20 active:scale-95">返回展間</button>
+            </div>
+        `;
+        document.body.appendChild(errorDiv);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentFigureId = urlParams.get('id');
+    const currentModeIndex = parseInt(urlParams.get('mode') || "0");
+
+    let folder = "";
+    let total = 0;
+    const baseUrl = "https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev";
+
+    const viewerContainer = document.getElementById("viewer-container");
+    const viewerStage = document.getElementById("viewer-stage");
+    const loaderScreen = document.getElementById("loader-screen");
+    const loaderProgressBar = document.getElementById("loader-progress-bar");
+    const loaderPercentage = document.getElementById("loader-percentage");
+    const frameRange = document.getElementById("frame-range");
+    const frameCounter = document.getElementById("frame-counter");
+    const btnPlay = document.getElementById("btn-play");
+    const playIcon = document.getElementById("play-icon");
+    const dragTips = document.getElementById("drag-tips");
+    const zoomRange = document.getElementById("zoom-range");
+    const zoomCounter = document.getElementById("zoom-counter");
+    const btnZoomReset = document.getElementById("btn-zoom-reset");
+    const fsMagControl = document.getElementById("fullscreen-mag-control");
+    const fsZoomRange = document.getElementById("fs-zoom-range");
+    const fsZoomCounter = document.getElementById("fs-zoom-counter");
+    const btnFullscreen = document.getElementById("btn-fullscreen");
+    const fullscreenIcon = document.getElementById("fullscreen-icon");
+    const magnifierLens = document.getElementById("magnifier-lens");
+    const magImg = document.getElementById("mag-img");
+    const aboutCard = document.getElementById('about-card');
+
+    let loadedCount = 0;
+    let imageElements = [];
+    let currentIndex = 0;
+    let isDragging = false;
+    let startX = 0;
+    let autoPlayInterval = null;
+    let playSpeed = 100;
+    let magMultiplier = parseFloat(zoomRange.value);
+    let isPseudoFullscreen = false;
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        if (!currentFigureId) {
+            showCustomError("無效的模型 ID！");
+            return;
+        }
+
+        let figure = null;
+
+        try {
+            const docRef = doc(db, "figures", currentFigureId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                figure = docSnap.data();
+                figure.id = docSnap.id;
+            } else {
+                showCustomError("找不到該模型資料，將為您導回大廳。");
+                return;
+            }
+        } catch (error) {
+            console.error("Firebase 讀取失敗:", error);
+            showCustomError("資料庫連線失敗，請稍後再試。");
+            return;
+        }
+
+        if (figure.credit && aboutCard) {
+            aboutCard.innerHTML = `
+                <div class="w-10 h-10 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div>
+                    <h3 class="text-[10px] text-slate-400 font-bold mb-1 tracking-wider uppercase">360° 旋轉寫真協力</h3>
+                    <h4 class="text-sm text-slate-200 font-bold mb-2">本次攝影協力</h4>
+                    <div class="text-xs text-slate-400 leading-relaxed">${figure.credit} 提供</div>
+                </div>
+            `;
+            aboutCard.classList.remove('hover:border-slate-700');
+            aboutCard.classList.add('border-violet-500/30', 'bg-violet-950/10');
+        }
+
+        document.title = `${figure.title} - 360° Figure Studio`;
+        document.getElementById('dynamic-title').innerHTML = figure.title;
+
+        const creditContainer = document.getElementById('credit-container');
+        const creditContainerMobile = document.getElementById('credit-container-mobile');
+
+        if (figure.credit && figure.credit.trim() !== "") {
+            let cleanCredit = figure.credit.replace(/由巴哈網友/g, '').replace(/提供/g, '').trim();
+            if (cleanCredit !== "") {
+                const creditHTML = `
+                    <div class="opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-default flex items-baseline gap-1.5">
+                        <span class="text-[10px] text-slate-400 tracking-widest uppercase">Photo by</span>
+                        <span class="text-[13px] text-violet-400 font-bold">${cleanCredit}</span>
+                    </div>
+                `;
+                if (creditContainer) creditContainer.innerHTML = creditHTML;
+                if (creditContainerMobile) creditContainerMobile.innerHTML = creditHTML;
+            }
+        }
+
+        const unboxingWrapper = document.getElementById('unboxing-link-wrapper');
+        if (figure.reviewLink) {
+            unboxingWrapper.innerHTML = `
+                <a href="${figure.reviewLink}" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900/50 hover:bg-sky-900/40 border border-slate-700/60 hover:border-sky-500/50 text-slate-300 hover:text-sky-300 shadow-lg transition-all duration-300">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span class="text-xs tracking-widest font-bold">開箱文連結</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            `;
+        }
+
+        const angleSwitcher = document.getElementById('angle-switcher');
+        let requires18Plus = false;
+
+        if (figure.modes && figure.modes.length > 0) {
+            angleSwitcher.innerHTML = '';
+            angleSwitcher.classList.remove('hidden');
+
+            folder = figure.modes[currentModeIndex].folder;
+            total = figure.modes[currentModeIndex].totalFrames || figure.totalFrames;
+            requires18Plus = figure.modes[currentModeIndex].is18Plus === true || figure.is18Plus === true;
+
+            figure.modes.forEach((mode, index) => {
+                const btn = document.createElement('a');
+                btn.href = `viewer2.html?id=${figure.id}&mode=${index}`;
+                if (index === currentModeIndex) {
+                    btn.className = "px-4 md:px-5 py-1.5 m-0.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-lg shadow-violet-500/20 whitespace-nowrap text-center transition-all shrink-0";
+                } else {
+                    btn.className = "px-4 md:px-5 py-1.5 m-0.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all duration-300 hover:bg-slate-900/60 whitespace-nowrap text-center shrink-0";
+                }
+                btn.textContent = mode.name;
+                angleSwitcher.appendChild(btn);
+            });
+        } else {
+            folder = figure.folder;
+            total = figure.totalFrames;
+            requires18Plus = figure.is18Plus === true;
+        }
+
+        const ageModal = document.getElementById('age-modal');
+        if (requires18Plus) {
+            ageModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            document.getElementById('btn-age-yes').onclick = () => {
+                ageModal.classList.add('hidden');
+                document.body.style.overflow = '';
+                preloadImagesMobile();
+            };
+            document.getElementById('btn-age-no').onclick = () => {
+                window.location.href = 'index.html';
+            };
+        } else {
+            preloadImagesMobile();
+        }
+    });
+
+    // 🚀 【手機版專屬優化】：非同步循序載入 + 跳幀載入 (Frame Skipping)
+    async function preloadImagesMobile() {
+        const radius = 40;
+        const circumference = 2 * Math.PI * radius;
+        
+        // 核心設定：手機版每次跳 2 幀 (記憶體節省 50%)
+        const frameStep = 2; 
+        const actualTotal = Math.ceil(total / frameStep);
+        
+        frameRange.max = actualTotal - 1; // 修正進度條最大值
+
+        for (let i = 1; i <= total; i += frameStep) {
+            // 使用 await 確保上一張圖片載入並解碼完畢後，才發送下一張網路請求
+            await new Promise((resolve) => {
+                const img = document.createElement("img");
+                // 優先使用小寫 .jpg 避免觸發手機端 onerror 重抓漏洞
+                img.src = `${baseUrl}/${folder}/${i}.jpg`; 
+                img.className = "max-w-full max-h-full object-contain pointer-events-none absolute opacity-0 invisible drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] transition-none";
+                img.alt = `Frame ${i}`;
+                img.setAttribute("data-index", loadedCount);
+
+                const finalizeLoad = () => {
+                    if (loadedCount === 0 && img.naturalWidth) {
+                        document.body.style.backgroundImage = `radial-gradient(circle at top, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.98) 100%), url('${img.src}')`;
+                        viewerContainer.classList.remove("w-[98%]", "max-w-[3300px]", "h-[77vh]", "md:h-[93.5vh]");
+                        viewerContainer.style.maxHeight = "93.5vh";
+                        viewerContainer.style.maxWidth = "98vw";
+                        viewerContainer.style.height = "100vh";
+                        viewerContainer.style.width = "auto";
+                        viewerContainer.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+                    }
+
+                    loadedCount++;
+                    const progress = loadedCount / actualTotal;
+                    const offset = circumference - (progress * circumference);
+                    loaderProgressBar.style.strokeDashoffset = offset;
+                    loaderPercentage.textContent = `${Math.floor(progress * 100)}%`;
+
+                    viewerStage.appendChild(img);
+                    imageElements.push(img);
+
+                    if (loadedCount === actualTotal) {
+                        onPreloadComplete();
+                    }
+                    resolve(); // 解鎖，允許迴圈發送下一張請求
+                };
+
+                img.onload = () => {
+                    img.decode().then(finalizeLoad).catch((err) => {
+                        console.warn("手機端 decode 警告 (不影響執行):", err);
+                        finalizeLoad();
+                    });
+                };
+
+                img.onerror = () => {
+                    if (!img.dataset.triedUpper) {
+                        img.src = `${baseUrl}/${folder}/${i}.JPG`;
+                        img.dataset.triedUpper = "true";
+                    } else {
+                        finalizeLoad();
+                    }
+                };
+            });
+        }
+    }
+
+    function onPreloadComplete() {
+        loaderScreen.classList.add("opacity-0");
+        setTimeout(() => {
+            loaderScreen.style.display = "none";
+            viewerStage.classList.remove("hidden");
+        }, 500);
+        showFrame(0);
+        setupInteractEvents();
+        setupMagnifierSettings();
+        setupFullscreenAndMagnifier();
+    }
+
+    function showFrame(index) {
+        const activeTotal = imageElements.length;
+        currentIndex = (index + activeTotal) % activeTotal;
+
+        imageElements.forEach((img, i) => {
+            if (i === currentIndex) {
+                img.classList.remove("opacity-0", "invisible");
+                img.classList.add("opacity-100", "visible", "z-10");
+            } else {
+                img.classList.remove("opacity-100", "visible", "z-10");
+                img.classList.add("opacity-0", "invisible");
+            }
+        });
+
+        frameRange.value = currentIndex;
+        frameCounter.textContent = `${currentIndex + 1} / ${activeTotal}`;
+        if (magImg) magImg.src = imageElements[currentIndex].src;
+    }
+
+    frameRange.oninput = function () {
+        stopAutoPlay();
+        showFrame(parseInt(this.value));
+        hideDragTips();
+    };
+
+    function setupInteractEvents() {
+        let isTicking = false;
+
+        viewerStage.addEventListener("mousedown", (e) => {
+            isDragging = true; startX = e.clientX; stopAutoPlay(); hideDragTips();
+            magnifierLens.classList.add("hidden");
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            if (Math.abs(deltaX) > 30) {
+                if (!isTicking) {
+                    requestAnimationFrame(() => {
+                        showFrame(currentIndex + Math.sign(deltaX));
+                        isTicking = false;
+                    });
+                    isTicking = true;
+                }
+                startX = e.clientX;
+            }
+        });
+        window.addEventListener("mouseup", () => { isDragging = false; });
+
+        viewerStage.addEventListener("touchstart", (e) => {
+            const target = e.target;
+            if (target.closest('#btn-fullscreen') || target.closest('#fullscreen-mag-control')) return;
+            isDragging = true; startX = e.touches[0].clientX; stopAutoPlay(); hideDragTips();
+            magnifierLens.classList.add("hidden");
+        }, { passive: true });
+
+        viewerStage.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
+            const deltaX = e.touches[0].clientX - startX;
+            if (Math.abs(deltaX) > 5) {
+                if (!isTicking) {
+                    requestAnimationFrame(() => {
+                        showFrame(currentIndex + Math.sign(deltaX));
+                        isTicking = false;
+                    });
+                    isTicking = true;
+                }
+                startX = e.touches[0].clientX;
+            }
+        }, { passive: true });
+        viewerStage.addEventListener("touchend", () => { isDragging = false; });
+
+        viewerStage.addEventListener("wheel", (e) => {
+            e.preventDefault(); stopAutoPlay(); hideDragTips();
+            if (!isTicking) {
+                requestAnimationFrame(() => {
+                    showFrame(currentIndex + Math.sign(e.deltaY));
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        }, { passive: false });
+
+        const controls = [fsZoomRange, zoomRange, frameRange, btnPlay, btnFullscreen, btnZoomReset];
+        controls.forEach(ctrl => {
+            if (ctrl) {
+                ctrl.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+                ctrl.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
+                ctrl.addEventListener('mousedown', (e) => e.stopPropagation());
+            }
+        });
+    }
+
+    function setupMagnifierSettings() {
+        function updateMagMultiplier(val) {
+            magMultiplier = parseFloat(val);
+            zoomRange.value = val;
+            fsZoomRange.value = val;
+            const text = `${magMultiplier.toFixed(1)}x`;
+            zoomCounter.textContent = text;
+            fsZoomCounter.textContent = text;
+        }
+        zoomRange.oninput = function () { updateMagMultiplier(this.value); };
+        fsZoomRange.oninput = function () { updateMagMultiplier(this.value); };
+        btnZoomReset.onclick = function () { updateMagMultiplier(1.5); };
+    }
+
+    function setupFullscreenAndMagnifier() {
+        const toggleFullscreen = () => {
+            const requestFS = viewerContainer.requestFullscreen || viewerContainer.webkitRequestFullscreen || viewerContainer.mozRequestFullScreen || viewerContainer.msRequestFullscreen;
+            const isNativeFS = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            if (requestFS) {
+                if (!isNativeFS) {
+                    requestFS.call(viewerContainer).catch(() => togglePseudoFullscreen());
+                } else {
+                    const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+                    if (exitFS) exitFS.call(document);
+                }
+            } else {
+                togglePseudoFullscreen();
+            }
+        };
+
+        const togglePseudoFullscreen = () => {
+            isPseudoFullscreen = !isPseudoFullscreen;
+            if (isPseudoFullscreen) {
+                viewerContainer.classList.add('pseudo-fullscreen');
+                fullscreenIcon.className = "fa-solid fa-compress text-lg";
+                viewerStage.style.cursor = "crosshair";
+                fsMagControl.classList.remove("hidden");
+                document.body.style.overflow = 'hidden';
+            } else {
+                viewerContainer.classList.remove('pseudo-fullscreen');
+                fullscreenIcon.className = "fa-solid fa-expand text-lg";
+                magnifierLens.classList.add("hidden");
+                viewerStage.style.cursor = "grab";
+                fsMagControl.classList.add("hidden");
+                document.body.style.overflow = '';
+            }
+        };
+
+        btnFullscreen.addEventListener("click", (e) => {
+            e.preventDefault(); e.stopPropagation(); toggleFullscreen();
+        });
+
+        const onFullscreenChange = () => {
+            const isFS = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            if (isFS) {
+                fullscreenIcon.className = "fa-solid fa-compress text-lg";
+                viewerStage.style.cursor = "crosshair";
+                fsMagControl.classList.remove("hidden");
+            } else {
+                if (isPseudoFullscreen) {
+                    viewerContainer.classList.remove('pseudo-fullscreen');
+                    isPseudoFullscreen = false;
+                    document.body.style.overflow = '';
+                }
+                fullscreenIcon.className = "fa-solid fa-expand text-lg";
+                magnifierLens.classList.add("hidden");
+                viewerStage.style.cursor = "grab";
+                fsMagControl.classList.add("hidden");
+            }
+        };
+
+        document.addEventListener("fullscreenchange", onFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", onFullscreenChange);
+        document.addEventListener("mozfullscreenchange", onFullscreenChange);
+        document.addEventListener("MSFullscreenChange", onFullscreenChange);
+
+        viewerStage.addEventListener("mousemove", (e) => {
+            if (isDragging) { magnifierLens.classList.add("hidden"); return; }
+            const img = imageElements[currentIndex];
+            magImg.src = img.src;
+            const rect = viewerStage.getBoundingClientRect();
+            const natW = img.naturalWidth; const natH = img.naturalHeight;
+            const baseW = viewerStage.offsetWidth; const baseH = viewerStage.offsetHeight;
+            const ratio = Math.min(baseW / natW, baseH / natH);
+            const renderW = natW * ratio; const renderH = natH * ratio;
+            const offsetX = (rect.width - renderW) / 2; const offsetY = (rect.height - renderH) / 2;
+            const rx = e.clientX - rect.left - offsetX; const ry = e.clientY - rect.top - offsetY;
+
+            if (rx < 0 || rx > renderW || ry < 0 || ry > renderH) {
+                magnifierLens.classList.add('hidden'); return;
+            }
+
+            magnifierLens.classList.remove('hidden');
+            const containerRect = viewerContainer.getBoundingClientRect();
+            const lensX = e.clientX - containerRect.left; const lensY = e.clientY - containerRect.top;
+
+            magnifierLens.style.left = `${lensX - magnifierLens.offsetWidth / 2}px`;
+            magnifierLens.style.top = `${lensY - magnifierLens.offsetHeight / 2}px`;
+            magImg.style.width = `${renderW * magMultiplier}px`;
+            magImg.style.height = `${renderH * magMultiplier}px`;
+            magImg.style.left = `${-(rx * magMultiplier) + magnifierLens.offsetWidth / 2}px`;
+            magImg.style.top = `${-(ry * magMultiplier) + magnifierLens.offsetHeight / 2}px`;
+        });
+
+        viewerStage.addEventListener("mouseleave", () => { magnifierLens.classList.add('hidden'); });
+    }
+
+    btnPlay.onclick = () => { if (autoPlayInterval) { stopAutoPlay(); } else { startAutoPlay(); hideDragTips(); } };
+
+    function startAutoPlay() {
+        if (autoPlayInterval) return;
+        autoPlayInterval = setInterval(() => { showFrame(currentIndex + 1); }, playSpeed);
+        playIcon.className = "fa-solid fa-pause";
+        btnPlay.classList.remove("bg-red-600"); btnPlay.classList.add("bg-rose-700");
+    }
+
+    function stopAutoPlay() {
+        if (!autoPlayInterval) return;
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+        playIcon.className = "fa-solid fa-play";
+        btnPlay.classList.remove("bg-rose-700"); btnPlay.classList.add("bg-red-600");
+    }
+
+    function hideDragTips() {
+        dragTips.classList.add("opacity-0");
+        setTimeout(() => { dragTips.style.display = "none"; }, 700);
+    }
+    </script>
+</body>
+</html>
