@@ -479,20 +479,29 @@
                 const title = document.createElement('h3');
                 const brandBadge = document.createElement('span');
 
-                card.onclick = () => {
-                    const appState = {
-                        page: currentPage,
-                        search: searchQuery,
-                        scrollY: window.scrollY
-                    };
-                    sessionStorage.setItem('shadowG_state', JSON.stringify(appState));
+            card.onclick = () => {
+    const appState = {
+        page: currentPage,
+        search: searchQuery,
+        scrollY: window.scrollY
+    };
+    sessionStorage.setItem('shadowG_state', JSON.stringify(appState));
 
-                    if (figure.customUrl && figure.customUrl.trim() !== "") {
-                        window.location.href = figure.customUrl;
-                    } else {
-                        window.location.href = `viewer.html?id=${figure.id}`;
-                    }
-                };
+    if (figure.customUrl && figure.customUrl.trim() !== "") {
+        window.location.href = figure.customUrl;
+    } else {
+        // 👇 新增：判斷是否為行動裝置 (螢幕寬度小於等於 768px)
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // 手機版：導向專屬的輕量化/客製化檢視器
+            window.location.href = `viewer2.html?id=${figure.id}`;
+        } else {
+            // 電腦版：維持原本的高畫質檢視器
+            window.location.href = `viewer.html?id=${figure.id}`;
+        }
+    }
+};
 
                 img.src = `https://pub-94ae3cd9057e4dcabe3910431b5fea5a.r2.dev/thumbs/${figure.img}`;
                 img.alt = figure.title;
