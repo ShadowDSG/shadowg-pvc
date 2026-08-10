@@ -490,9 +490,11 @@
     if (figure.customUrl && figure.customUrl.trim() !== "") {
         window.location.href = figure.customUrl;
     } else {
-     const isMobile = window.innerWidth <= 768;
+     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        const isTabletWidth = window.innerWidth <= 1024;
+        const isMobileOrTablet = isTouchDevice || isTabletWidth;
         
-        if (isMobile) {
+       if (isMobileOrTablet) {
             // 手機與平板：導向專屬的輕量化/客製化檢視器
             window.location.href = `viewer2.html?id=${figure.id}`;
         } else {
