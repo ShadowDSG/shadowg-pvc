@@ -479,7 +479,7 @@
                 const title = document.createElement('h3');
                 const brandBadge = document.createElement('span');
 
-            card.onclick = () => {
+      card.onclick = () => {
     const appState = {
         page: currentPage,
         search: searchQuery,
@@ -490,11 +490,13 @@
     if (figure.customUrl && figure.customUrl.trim() !== "") {
         window.location.href = figure.customUrl;
     } else {
-        // 👇 新增：判斷是否為行動裝置 (螢幕寬度小於等於 768px)
-        const isMobile = window.innerWidth <= 768;
+        // 👇 更新：更嚴謹的判斷邏輯，把平板也抓出來 (包含會偽裝成 Mac 的新版 iPad)
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        const isTabletWidth = window.innerWidth <= 1024;
+        const isMobileOrTablet = isTouchDevice || isTabletWidth;
         
-        if (isMobile) {
-            // 手機版：導向專屬的輕量化/客製化檢視器
+        if (isMobileOrTablet) {
+            // 手機與平板：導向專屬的輕量化/客製化檢視器
             window.location.href = `viewer2.html?id=${figure.id}`;
         } else {
             // 電腦版：維持原本的高畫質檢視器
