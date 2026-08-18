@@ -432,15 +432,10 @@
                     const isAFeatured = a.featured ? 1 : 0;
                     const isBFeatured = b.featured ? 1 : 0;
 
-                    // 1. 區分精選與一般模型
+                    // 1. 區分精選與一般模型 (精選排在最前面)
                     if (isBFeatured !== isAFeatured) return isBFeatured - isAFeatured;
 
-                    // 2. 都是精選模型：照後台手動拖曳的順序
-                    if (a.featured && b.featured) {
-                        return (a.featuredOrderIndex || 0) - (b.featuredOrderIndex || 0);
-                    }
-
-                    // 3. 都是一般模型：照上傳時間 (由新到舊)
+                    // 2. 不論是「皆為精選」或「皆為一般」，都統一照上傳時間 (由新到舊) 排序
                     return timeB - timeA;
                 } else {
                     // 純時間排序模式 (上傳時間排序按鈕)
